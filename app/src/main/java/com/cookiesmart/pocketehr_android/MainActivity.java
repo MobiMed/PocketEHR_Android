@@ -16,6 +16,7 @@ import com.parse.Parse;
 
 
 public class MainActivity extends Activity {
+    public static String USEROBJECTID = "";
     private static final String MAIN = "MainActivity";
     Context context = this;
 
@@ -28,8 +29,15 @@ public class MainActivity extends Activity {
         } else {
             Parse.initialize(this, "CguKOD63X4OsgUyUPVy7jxS2b2DWap7My8J3QjI6", "OJZgRlZlpAoN3zc3XacaQCNOaH9i4VGi7i22TfWS");
         }
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivityForResult(intent, 1);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        USEROBJECTID = data.getStringExtra("userObjectId");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

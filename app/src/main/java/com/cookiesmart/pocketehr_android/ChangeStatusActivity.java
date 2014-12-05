@@ -105,8 +105,10 @@ public class ChangeStatusActivity extends Activity implements AdapterView.OnItem
 
     private void saveNotes(String notes) {
         ParseObject patientObject = ParseObject.createWithoutData("Patient", objectId);
+        ParseObject userObject = ParseObject.createWithoutData("User", MainActivity.USEROBJECTID);
         ParseObject noteObject = new ParseObject("Activity");
 
+        noteObject.put("author", userObject);
         noteObject.put("text", notes);
         noteObject.put("patient", patientObject);
         noteObject.put("type", "kTextAdded");

@@ -123,8 +123,10 @@ public class AddPatientActivity extends FragmentActivity {
         LinearLayout notesLayout = (LinearLayout) main_add_patient_layout.findViewById(R.id.notes_layout);
         final String notes = ((EditText) notesLayout.findViewById(R.id.patient_notes_input)).getText().toString();
         Log.i(ADDPATIENT, notes + " notes field");
+        ParseObject userObject = ParseObject.createWithoutData("User", MainActivity.USEROBJECTID);
 
         patient.put("firstName", firstName);
+        patient.put("author", userObject);
         patient.put("lastName", lastName);
         patient.put("hospital", hospital);
         patient.put("telepathologyID", "TPPID151");
@@ -153,7 +155,10 @@ public class AddPatientActivity extends FragmentActivity {
     public void saveNotes(String objectId, String notes) {
         Log.i(ADDPATIENT, "save notes called");
         ParseObject patientObject = ParseObject.createWithoutData("Patient", objectId);
+        ParseObject userObject = ParseObject.createWithoutData("User", MainActivity.USEROBJECTID);
         ParseObject noteObject = new ParseObject("Activity");
+
+        noteObject.put("author", userObject);
         noteObject.put("text", notes);
         noteObject.put("patient", patientObject);
         noteObject.saveInBackground();
