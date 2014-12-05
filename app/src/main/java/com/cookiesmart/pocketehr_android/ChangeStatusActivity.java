@@ -1,0 +1,121 @@
+package com.cookiesmart.pocketehr_android;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+/**
+ * Created by aditya841 on 12/3/2014.
+ */
+public class ChangeStatusActivity extends Activity implements AdapterView.OnItemSelectedListener {
+
+    private String statusSelected;
+    private String originalStatus;
+    private String objectId;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_changestatus);
+
+        Spinner spinner = (Spinner) findViewById(R.id.status_spinner);
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.status, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
+
+        Intent intent = getIntent();
+        objectId = intent.getStringExtra("objectId");
+
+        originalStatus = intent.getStringExtra("status");
+        statusSelected = intent.getStringExtra("status");
+
+        if (originalStatus.equalsIgnoreCase("Incomplete")) {
+            spinner.setSelection(0);
+        } else if (originalStatus.equalsIgnoreCase("Negative")) {
+            spinner.setSelection(1);
+        } else if (originalStatus.equalsIgnoreCase("Positive")) {
+            spinner.setSelection(2);
+        } else if (originalStatus.equalsIgnoreCase("Deceased")) {
+            spinner.setSelection(3);
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        statusSelected = (String) parent.getItemAtPosition(position);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    public void sendStatus(View view) {
+        LinearLayout main_layout = (LinearLayout) view.getParent();
+        String notes = ((EditText) main_layout.findViewById(R.id.patient_notes_input)).getText().toString();
+        if (!notes.trim().equalsIgnoreCase("")) {
+            saveNotes(notes);
+        }
+        if (!originalStatus.equalsIgnoreCase(statusSelected)) {
+            saveStatus();
+        }
+        Intent intent = new Intent();
+        intent.putExtra("status", statusSelected);
+        intent.putExtra("notes", notes);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
+    private void saveStatus() {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Patient");
+
+        // Retrieve the object by id
+        query.getInBackground(objectId, new GetCallback<ParseObject>() {
+            public void done(ParseObject gameScore, ParseException e) {
+                if (e == null) {
+                    // Now let's update it with some new data. In this case, only cheatMode and score
+                    // will get sent to the Parse Cloud. playerName hasn't changed.
+                    if (statusSelected.contains("Postive") || statusSelected.contains("Negative")) {
+                        gameScore.put("status", "kDiagnosed" + statusSelected);
+                    } else {
+                        gameScore.put("status", "k" + statusSelected);
+                    }
+                    gameScore.saveInBackground();
+                }
+            }
+        });
+    }
+
+    private void saveNotes(String notes) {
+        ParseObject patientObject = ParseObject.createWithoutData("Patient", objectId);
+        ParseObject noteObject = new ParseObject("Activity");
+
+        noteObject.put("text", notes);
+        noteObject.put("patient", patientObject);
+        noteObject.put("type", "kTextAdded");
+        noteObject.saveInBackground();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        setResult(RESULT_CANCELED);
+    }
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/patient_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:height="140px"
+        android:gravity="left"
+        android:textColor="@android:color/white"
+        android:textSize="60px"
+        android:textStyle="bold"></TextView>
+
+    <TextView
+        android:id="@+id/patient_status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:height="140px"
+        android:background="@android:color/holo_blue_bright"
+        android:gravity="left"
+        android:maxHeight="10dp"
+        android:text="INCOMPLETE"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"></TextView>
+
+</LinearLayout>

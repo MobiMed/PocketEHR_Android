@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Pocket EHR</string>
+    <string name="home_patient_text">Patients</string>
+    <string name="last_name_input">Last Name</string>
+    <string name="first_name_input">First Name</string>
+    <string name="hospital_input">Hospital/Medical Centre</string>
+    <string name="patient_id_number_input">Patient ID Number</string>
+    <string name="contact_number_input">Contact No.</string>
+    <string name="address_input">Address</string>
+    <string name="email_input">Email</string>
+    <string name="submit_button">Submit</string>
+    <string name="next_button">Next</string>
+    <string name="gender_input">Sex</string>
+    <string name="dob_input">MM/DD/YYYY</string>
+    <string name="age_label">Age</string>
+    <string name="dob_label">DOB</string>
+    <string name="occupation_input">Occupation</string>
+    <string name="home_add_patient_text">Add Patient</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_notes_button">Add Note</string>
+    <string-array name="gender">
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+    <string-array name="status">
+        <item>Incomplete</item>
+        <item>Negative</item>
+        <item>Positive</item>
+        <item>Deceased</item>
+    </string-array>
+
+</resources>
