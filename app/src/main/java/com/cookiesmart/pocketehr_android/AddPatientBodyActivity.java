@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import org.json.JSONObject;
@@ -34,6 +35,9 @@ public class AddPatientBodyActivity extends Activity {
 
     public void saveAndFinish(View v) {
         final ParseObject patient = new ParseObject("Patient");
+        ParseUser userObject = ParseUser.getCurrentUser();
+
+        patient.put("author", userObject);
         patient.put("firstName", p.getFirstName());
         patient.put("lastName", p.getLastName());
 
@@ -85,12 +89,14 @@ public class AddPatientBodyActivity extends Activity {
     public void saveNotes(String objectId, String notes) {
         Log.i(ADDPATIENT, "save notes called");
         ParseObject patientObject = ParseObject.createWithoutData("Patient", objectId);
+        ParseUser userObject = ParseUser.getCurrentUser();
         ParseObject noteObject = new ParseObject("Activity");
         if (notes.trim().equals("")) {
             noteObject.put("text", JSONObject.NULL);
         } else {
             noteObject.put("text", notes);
         }
+        noteObject.put("author", userObject);
         noteObject.put("patient", patientObject);
         noteObject.put("type", "kPatientCreated");
         noteObject.saveInBackground();

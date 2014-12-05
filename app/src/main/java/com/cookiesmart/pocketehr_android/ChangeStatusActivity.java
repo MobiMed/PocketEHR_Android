@@ -14,6 +14,7 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 /**
  * Created by aditya841 on 12/3/2014.
@@ -105,7 +106,7 @@ public class ChangeStatusActivity extends Activity implements AdapterView.OnItem
 
     private void saveNotes(String notes) {
         ParseObject patientObject = ParseObject.createWithoutData("Patient", objectId);
-        ParseObject userObject = ParseObject.createWithoutData("User", MainActivity.USEROBJECTID);
+        ParseUser userObject = ParseUser.getCurrentUser();
         ParseObject noteObject = new ParseObject("Activity");
 
         noteObject.put("author", userObject);

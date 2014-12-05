@@ -1,16 +1,24 @@
 package com.cookiesmart.pocketehr_android;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -21,24 +29,49 @@ import com.parse.SignUpCallback;
 
 public class LoginActivity extends Activity {
     Context context = this;
+    private static final String LOGIN = "LoginActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        if (!isOnline()) {
+            showAlert();
+        } else {
+            Parse.initialize(this, "CguKOD63X4OsgUyUPVy7jxS2b2DWap7My8J3QjI6", "OJZgRlZlpAoN3zc3XacaQCNOaH9i4VGi7i22TfWS");
+        }
+
+        final EditText password_input = (EditText) findViewById(R.id.password_input);
+
+        Button register_button = (Button) findViewById(R.id.register_button);
+        register_button.setTag("1");
+
+        CheckBox checkbox = (CheckBox) findViewById(R.id.visible_check);
+        checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    password_input.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                } else {
+                    password_input.setInputType(129);
+                }
+            }
+        });
     }
 
     public void login(View view) {
-        String username = ((EditText) view.findViewById(R.id.username_input)).getText().toString();
-        String password = ((EditText) view.findViewById(R.id.username_input)).getText().toString();
+
+        String username = ((EditText) findViewById(R.id.username_input)).getText().toString();
+        String password = ((EditText) findViewById(R.id.password_input)).getText().toString();
+        Log.i("Username", username);
+        Log.i("Password", password);
 
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             public void done(ParseUser user, ParseException e) {
                 if (user != null) {
                     Intent intent = new Intent(context, MainActivity.class);
-                    intent.putExtra("userObjectId", user.getObjectId());
-                    setResult(RESULT_OK, intent);
-                    finish();
+                    startActivity(intent);
                 } else {
                     Toast.makeText(context, e.getMessage() + "Username or Password incorrect. Please try again.",
                             Toast.LENGTH_LONG).show();
@@ -47,44 +80,38 @@ public class LoginActivity extends Activity {
         });
     }
 
-    public void showPassword(View view) {
-        boolean checked = ((CheckBox) view).isChecked();
-        if (checked) {
-            EditText password_input = (EditText) findViewById(R.id.password_input);
-            password_input.setInputType(InputType.TYPE_CLASS_TEXT);
-        } else {
-            EditText password_input = (EditText) findViewById(R.id.password_input);
-            password_input.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        }
-    }
-
     public void register(View view) {
+        Button register_button = (Button) view;
+
         final EditText email_input = (EditText) findViewById(R.id.email_input);
-        email_input.setVisibility(View.VISIBLE);
 
-        final View v = view;
-        email_input.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String username = ((EditText) v.findViewById(R.id.username_input)).getText().toString();
-                final String password = ((EditText) v.findViewById(R.id.username_input)).getText().toString();
-                String email = email_input.getText().toString();
-                ParseUser user = new ParseUser();
-                user.setUsername(username);
-                user.setPassword(password);
-                user.setEmail(email);
-
-                user.signUpInBackground(new SignUpCallback() {
-                    public void done(ParseException e) {
-                        if (e == null) {
-                            loginAfterRegister(username, password);
-                        } else {
-                            Toast.makeText(context, e.getMessage() + "Try again.", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+        if (register_button.getTag() == "1") {
+            email_input.setVisibility(View.VISIBLE);
+            register_button.setTag("2");
+        } else {
+            Log.i(LOGIN, "onclickset");
+            final String username = ((EditText) findViewById(R.id.username_input)).getText().toString();
+            final String password = ((EditText) findViewById(R.id.username_input)).getText().toString();
+            String email = email_input.getText().toString();
+            if (username.trim().equals("") || password.trim().equals("") || email.trim().equals("")) {
+                Toast.makeText(context, "All fields are necessary.", Toast.LENGTH_LONG).show();
+                return;
             }
-        });
+            ParseUser user = new ParseUser();
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setEmail(email);
+
+            user.signUpInBackground(new SignUpCallback() {
+                public void done(ParseException e) {
+                    if (e == null) {
+                        loginAfterRegister(username, password);
+                    } else {
+                        Toast.makeText(context, e.getMessage() + "Try again.", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }
     }
 
     public void loginAfterRegister(String username, String password) {
@@ -92,14 +119,51 @@ public class LoginActivity extends Activity {
             public void done(ParseUser user, ParseException e) {
                 if (user != null) {
                     Intent intent = new Intent(context, MainActivity.class);
-                    intent.putExtra("userId", user.getUsername());
-                    setResult(RESULT_OK, intent);
-                    finish();
+                    startActivity(intent);
                 } else {
                     Toast.makeText(context, e.getMessage() + "Username or Password incorrect. Please try again.",
                             Toast.LENGTH_LONG).show();
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        setResult(RESULT_CANCELED);
+    }
+
+    private boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    private void showAlert() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                context);
+
+        // set title
+        alertDialogBuilder.setTitle("Network");
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("No network connection. Click Ok to exit!")
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // if this login_button is clicked, close
+                        // current activity
+                        LoginActivity.this.finish();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
     }
 }

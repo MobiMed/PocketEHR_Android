@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 /**
  * Created by aditya841 on 12/5/2014.
@@ -38,7 +39,7 @@ public class AddNoteActivity extends Activity {
 
     private void saveNotes(String notes) {
         ParseObject patientObject = ParseObject.createWithoutData("Patient", objectId);
-        ParseObject userObject = ParseObject.createWithoutData("User", MainActivity.USEROBJECTID);
+        ParseUser userObject = ParseUser.getCurrentUser();
         ParseObject noteObject = new ParseObject("Activity");
 
         noteObject.put("author", userObject);

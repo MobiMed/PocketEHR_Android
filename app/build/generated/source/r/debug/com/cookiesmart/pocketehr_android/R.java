@@ -36,8 +36,6 @@ public final class R {
         public static final int address_input=0x7f090020;
         public static final int age_input=0x7f090026;
         public static final int body_part_image=0x7f090010;
-        public static final int button=0x7f090008;
-        public static final int button2=0x7f090009;
         public static final int contact_information_layout=0x7f09001a;
         public static final int contact_information_scroll_layout=0x7f090019;
         public static final int contact_number_input=0x7f09001f;
@@ -55,6 +53,7 @@ public final class R {
         public static final int last_name=0x7f090012;
         public static final int last_name_input=0x7f09001b;
         public static final int listView=0x7f090018;
+        public static final int login_button=0x7f090008;
         public static final int main_add_patient_layout=0x7f090002;
         public static final int main_section=0x7f09000f;
         public static final int notes_layout=0x7f090022;
@@ -69,6 +68,7 @@ public final class R {
         public static final int patient_notes_input=0x7f090000;
         public static final int patient_status=0x7f09002b;
         public static final int patient_text=0x7f09000c;
+        public static final int register_button=0x7f090009;
         public static final int status_patient_screen=0x7f090016;
         public static final int status_spinner=0x7f090003;
         public static final int submit_button=0x7f090001;
