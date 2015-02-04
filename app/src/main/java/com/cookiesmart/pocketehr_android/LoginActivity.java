@@ -91,7 +91,7 @@ public class LoginActivity extends Activity {
         } else {
             Log.i(LOGIN, "onclickset");
             final String username = ((EditText) findViewById(R.id.username_input)).getText().toString();
-            final String password = ((EditText) findViewById(R.id.username_input)).getText().toString();
+            final String password = ((EditText) findViewById(R.id.password_input)).getText().toString();
             String email = email_input.getText().toString();
             if (username.trim().equals("") || password.trim().equals("") || email.trim().equals("")) {
                 Toast.makeText(context, "All fields are necessary.", Toast.LENGTH_LONG).show();

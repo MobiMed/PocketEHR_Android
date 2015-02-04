@@ -28,6 +28,7 @@ public final class R {
         public static final int ic_launcher=0x7f020006;
         public static final int ic_pocketehr=0x7f020007;
         public static final int male_body_parts=0x7f020008;
+        public static final int round_edittext=0x7f020009;
     }
     public static final class id {
         public static final int action_settings=0x7f09002c;
@@ -89,6 +90,7 @@ public final class R {
         public static final int note_object=0x7f030009;
         public static final int patient_history_object=0x7f03000a;
         public static final int rowlayout=0x7f03000b;
+        public static final int spinner_item=0x7f03000c;
     }
     public static final class menu {
         public static final int main=0x7f080000;

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -30,6 +31,12 @@ public class AddPatientBodyActivity extends Activity {
 
         Intent intent = getIntent();
         p = intent.getParcelableExtra("Patient");
+        ImageView bodyImage = (ImageView) findViewById(R.id.body_part_image);
+        if (p.getGender().equals("Male")) {
+            bodyImage.setImageResource(R.drawable.male_body_parts);
+        }else{
+            bodyImage.setImageResource(R.drawable.female_body_parts);
+        }
 
     }
 
@@ -50,6 +57,11 @@ public class AddPatientBodyActivity extends Activity {
             patient.put("contactNo", JSONObject.NULL);
         } else {
             patient.put("contactNo", p.getContactNo());
+        }
+        if (p.getPatientIDNumber().trim().equals("")) {
+            patient.put("patientIDNumber", JSONObject.NULL);
+        } else {
+            patient.put("patientIDNumber", p.getPatientIDNumber());
         }
 
         Date d = null;

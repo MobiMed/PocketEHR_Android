@@ -11,36 +11,33 @@
         android:id="@+id/dobandage_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2"
-            android:text="@string/dob_label" />
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
 
         <EditText
             android:id="@+id/dob_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/round_edittext"
+            android:paddingLeft="10dp"
+            android:hint="DOB"
+            android:textColorHint="@android:color/black"
             android:layout_weight="1"
             android:clickable="true"
             android:focusable="false"
             android:inputType="none"
             android:onClick="showDatePicker" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:paddingStart="40dp"
-            android:text="@string/age_label" />
-
         <EditText
             android:id="@+id/age_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
+            android:background="@drawable/round_edittext"
+            android:paddingLeft="10dp"
+            android:layout_marginLeft="10dp"
+            android:hint="Age"
+            android:textColorHint="@android:color/black"
             android:inputType="number" />
     </LinearLayout>
 
@@ -49,6 +46,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/occupation_input"
+        android:textColorHint="@android:color/black"
+        android:background="@drawable/round_edittext"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:inputType="text" />
 
     <LinearLayout
@@ -60,8 +62,9 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/gender_input" />
+            android:layout_weight="0.2"
+            android:text="@string/gender_input"
+            android:textColor="@android:color/white"/>
 
         <Spinner
             android:id="@+id/gender_spinner"

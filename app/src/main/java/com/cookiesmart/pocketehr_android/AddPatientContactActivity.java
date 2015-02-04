@@ -35,6 +35,7 @@ public class AddPatientContactActivity extends Activity {
         p.setLastName(((EditText) contactInformationLayout.findViewById(R.id.last_name_input)).getText().toString());
         p.setFirstName(((EditText) contactInformationLayout.findViewById(R.id.first_name_input)).getText().toString());
         p.setHospital(((EditText) contactInformationLayout.findViewById(R.id.hospital_input)).getText().toString());
+        p.setPatientIDNumber(((EditText) contactInformationLayout.findViewById(R.id.patient_id_number_input)).getText().toString());
         p.setContactNo(((EditText) contactInformationLayout.findViewById(R.id.contact_number_input)).getText().toString());
         p.setEmail(((EditText) contactInformationLayout.findViewById(R.id.email_input)).getText().toString());
 

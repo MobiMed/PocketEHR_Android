@@ -15,6 +15,7 @@ public class Patient implements Parcelable {
     private String dob = "";
     private String notes = "";
     private String hospital = "";
+    private String patientIDNumber = "";
     private int age = -1;
     private String status = "kIncomplete";
     public static final Parcelable.Creator<Patient> CREATOR
@@ -31,6 +32,7 @@ public class Patient implements Parcelable {
             p.hospital = in.readString();
             p.age = in.readInt();
             p.status = in.readString();
+            p.patientIDNumber = in.readString();
             return p;
         }
 
@@ -59,10 +61,19 @@ public class Patient implements Parcelable {
         dest.writeString(hospital);
         dest.writeInt(age);
         dest.writeString(status);
+        dest.writeString(patientIDNumber);
     }
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public String getPatientIDNumber() {
+        return patientIDNumber;
+    }
+
+    public void setPatientIDNumber(String patientIDNumber) {
+        this.patientIDNumber = patientIDNumber;
     }
 
     public void setFirstName(String firstName) {

@@ -14,9 +14,16 @@
 
         <EditText
             android:id="@+id/last_name_input"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/last_name_input"
+            android:textColorHint="@android:color/black"
+            android:background="@drawable/round_edittext"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
             android:inputType="textCapWords" />
 
         <EditText
@@ -24,6 +31,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/first_name_input"
+            android:textColorHint="@android:color/black"
+            android:background="@drawable/round_edittext"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
             android:inputType="textCapWords" />
 
         <EditText
@@ -31,6 +44,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hospital_input"
+            android:textColorHint="@android:color/black"
+            android:background="@drawable/round_edittext"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
             android:inputType="textCapWords" />
 
         <EditText
@@ -38,6 +57,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/patient_id_number_input"
+            android:textColorHint="@android:color/black"
+            android:background="@drawable/round_edittext"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
             android:inputType="textCapCharacters" />
 
         <EditText
@@ -45,6 +70,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/contact_number_input"
+            android:textColorHint="@android:color/black"
+            android:background="@drawable/round_edittext"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
             android:inputType="phone" />
 
         <EditText
@@ -52,6 +83,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/address_input"
+            android:textColorHint="@android:color/black"
+            android:background="@drawable/round_edittext"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
             android:inputType="textPostalAddress|textCapWords|textNoSuggestions" />
 
         <EditText
@@ -59,6 +96,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email_input"
+            android:textColorHint="@android:color/black"
+            android:background="@drawable/round_edittext"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
             android:inputType="textEmailAddress" />
 
         <Button
