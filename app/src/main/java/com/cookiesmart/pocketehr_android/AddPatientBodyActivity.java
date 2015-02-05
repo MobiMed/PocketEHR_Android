@@ -17,6 +17,8 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
@@ -29,20 +31,20 @@ import java.util.Iterator;
  */
 public class AddPatientBodyActivity extends Activity {
     private static final String ADDPATIENT = "AddPatientBodyActivity";
-    private static final int HEAD = 1;
-    private static final int THROAT = 2;
-    private static final int UPPERARMLEFT = 3;
-    private static final int CHESTLEFT = 4;
-    private static final int CHESTRIGHT = 5;
-    private static final int UPPERARMRIGHT = 6;
-    private static final int LOWERARMLEFT = 7;
-    private static final int ABDOMEN = 8;
-    private static final int LOWERARMRIGHT = 9;
-    private static final int GROIN = 10;
-    private static final int UPPERLEGLEFT = 11;
-    private static final int UPPERLEGRIGHT = 12;
-    private static final int LOWERLEGLEFT = 13;
-    private static final int LOWERLEGRIGHT = 14;
+    //    private static final int HEAD = 1;
+//    private static final int THROAT = 2;
+//    private static final int UPPERARMLEFT = 3;
+//    private static final int CHESTLEFT = 4;
+//    private static final int CHESTRIGHT = 5;
+//    private static final int UPPERARMRIGHT = 6;
+//    private static final int LOWERARMLEFT = 7;
+//    private static final int ABDOMEN = 8;
+//    private static final int LOWERARMRIGHT = 9;
+//    private static final int GROIN = 10;
+//    private static final int UPPERLEGLEFT = 11;
+//    private static final int UPPERLEGRIGHT = 12;
+//    private static final int LOWERLEGLEFT = 13;
+//    private static final int LOWERLEGRIGHT = 14;
     Patient p = null;
     private ImageView bodyImage;
     private static HashSet<String> bodyParts = new HashSet<String>();
@@ -374,13 +376,20 @@ public class AddPatientBodyActivity extends Activity {
         drawFemaleBodyPart(bodyParts);
     }
 
-    public void saveAndFinish(View v) {
+    public void saveAndFinish(View v) throws JSONException {
         final ParseObject patient = new ParseObject("Patient");
         ParseUser userObject = ParseUser.getCurrentUser();
 
         patient.put("author", userObject);
         patient.put("firstName", p.getFirstName());
         patient.put("lastName", p.getLastName());
+
+        if (bodyParts.size() == 0) {
+            patient.put("locations", JSONObject.NULL);
+        } else {
+            JSONArray bodyPartsArray = new JSONArray(bodyParts.toArray());
+            patient.put("locations", bodyPartsArray);
+        }
 
         if (p.getHospital().trim().equals("")) {
             patient.put("hospital", JSONObject.NULL);

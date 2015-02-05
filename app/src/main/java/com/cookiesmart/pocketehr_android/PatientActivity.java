@@ -3,7 +3,10 @@ package com.cookiesmart.pocketehr_android;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -165,11 +168,100 @@ public class PatientActivity extends Activity {
         String gender = intent.getStringExtra("sex");
 
         ImageView body_parts = (ImageView) findViewById(R.id.body_part_image);
+        ArrayList<String> bodyParts = intent.getStringArrayListExtra("locations");
+        Drawable[] layers = new Drawable[bodyParts.size() + 1];
+        Resources r = getResources();
         if (gender.contains("Female")) {
-            body_parts.setImageResource(R.drawable.female_body_parts);
+            layers[0] = r.getDrawable(R.drawable.female_body_parts);
+            if (bodyParts.size() == 0) {
+                //do nothing
+            } else {
+                int i = 1;
+                while (i <= bodyParts.size()) {
+                    String bodyPart = bodyParts.get(i-1);
+                    System.out.println(bodyPart);
+                    if (bodyPart.equals("head")) {
+                        layers[i] = r.getDrawable(R.drawable.female_head);
+                    } else if (bodyPart.equals("throat")) {
+                        layers[i] = r.getDrawable(R.drawable.female_throat);
+                    } else if (bodyPart.equals("upperArmLeft")) {
+                        layers[i] = r.getDrawable(R.drawable.female_upper_arm_left);
+                    } else if (bodyPart.equals("chestLeft")) {
+                        layers[i] = r.getDrawable(R.drawable.female_chest_left);
+                    } else if (bodyPart.equals("chestRight")) {
+                        layers[i] = r.getDrawable(R.drawable.female_chest_right);
+                    } else if (bodyPart.equals("upperArmRight")) {
+                        layers[i] = r.getDrawable(R.drawable.female_upper_arm_right);
+                    } else if (bodyPart.equals("abdomen")) {
+                        layers[i] = r.getDrawable(R.drawable.female_abdomen);
+                    } else if (bodyPart.equals("groin")) {
+                        layers[i] = r.getDrawable(R.drawable.female_groin);
+                    } else if (bodyPart.equals("upperLegLeft")) {
+                        layers[i] = r.getDrawable(R.drawable.female_upper_leg_left);
+                    } else if (bodyPart.equals("upperLegLeft")) {
+                        layers[i] = r.getDrawable(R.drawable.female_upper_leg_left);
+                    } else if (bodyPart.equals("upperLegRight")) {
+                        layers[i] = r.getDrawable(R.drawable.female_upper_leg_right);
+                    } else if (bodyPart.equals("lowerLegLeft")) {
+                        layers[i] = r.getDrawable(R.drawable.female_lower_leg_left);
+                    } else if (bodyPart.equals("lowerLegRight")) {
+                        layers[i] = r.getDrawable(R.drawable.female_lower_leg_right);
+                    } else if (bodyPart.equals("lowerArmLeft")) {
+                        layers[i] = r.getDrawable(R.drawable.female_lower_arm_left);
+                    } else if (bodyPart.equals("lowerArmRight")) {
+                        layers[i] = r.getDrawable(R.drawable.female_lower_arm_right);
+                    }
+                    i++;
+                }
+            }
+            LayerDrawable layerDrawable = new LayerDrawable(layers);
+            body_parts.setImageDrawable(layerDrawable);
             sex.setText(FEMALE);
         } else {
-            body_parts.setImageResource(R.drawable.male_body_parts);
+            layers[0] = r.getDrawable(R.drawable.male_body_parts);
+            if (bodyParts.size() == 0) {
+                //do nothing
+            } else {
+                int i = 1;
+                while (i <= bodyParts.size()) {
+                    String bodyPart = bodyParts.get(i-1);
+                    System.out.println(bodyPart);
+                    if (bodyPart.equals("head")) {
+                        layers[i] = r.getDrawable(R.drawable.male_head);
+                    } else if (bodyPart.equals("throat")) {
+                        layers[i] = r.getDrawable(R.drawable.male_throat);
+                    } else if (bodyPart.equals("upperArmLeft")) {
+                        layers[i] = r.getDrawable(R.drawable.male_upper_arm_left);
+                    } else if (bodyPart.equals("chestLeft")) {
+                        layers[i] = r.getDrawable(R.drawable.male_chest_left);
+                    } else if (bodyPart.equals("chestRight")) {
+                        layers[i] = r.getDrawable(R.drawable.male_chest_right);
+                    } else if (bodyPart.equals("upperArmRight")) {
+                        layers[i] = r.getDrawable(R.drawable.male_upper_arm_right);
+                    } else if (bodyPart.equals("abdomen")) {
+                        layers[i] = r.getDrawable(R.drawable.male_abdomen);
+                    } else if (bodyPart.equals("groin")) {
+                        layers[i] = r.getDrawable(R.drawable.male_groin);
+                    } else if (bodyPart.equals("upperLegLeft")) {
+                        layers[i] = r.getDrawable(R.drawable.male_upper_leg_left);
+                    } else if (bodyPart.equals("upperLegLeft")) {
+                        layers[i] = r.getDrawable(R.drawable.male_upper_leg_left);
+                    } else if (bodyPart.equals("upperLegRight")) {
+                        layers[i] = r.getDrawable(R.drawable.male_upper_leg_right);
+                    } else if (bodyPart.equals("lowerLegLeft")) {
+                        layers[i] = r.getDrawable(R.drawable.male_lower_leg_left);
+                    } else if (bodyPart.equals("lowerLegRight")) {
+                        layers[i] = r.getDrawable(R.drawable.male_lower_leg_right);
+                    } else if (bodyPart.equals("lowerArmLeft")) {
+                        layers[i] = r.getDrawable(R.drawable.male_lower_arm_left);
+                    } else if (bodyPart.equals("lowerArmRight")) {
+                        layers[i] = r.getDrawable(R.drawable.male_lower_arm_right);
+                    }
+                    i++;
+                }
+            }
+            LayerDrawable layerDrawable = new LayerDrawable(layers);
+            body_parts.setImageDrawable(layerDrawable);
             sex.setText(MALE);
         }
 

@@ -13,6 +13,9 @@ import android.widget.ListView;
 
 import com.parse.ParseObject;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.ArrayList;
 
 /**
@@ -66,6 +69,20 @@ public class PatientListActivity extends Activity {
                 intent.putExtra("status", patient.getString("status"));
                 intent.putExtra("sex", patient.getString("sex"));
                 intent.putExtra("objectId", patient.getObjectId());
+
+                //getting locations array of patient
+                JSONArray bodyPartsArray = patient.getJSONArray("locations");
+                ArrayList<String> bodyParts = new ArrayList<String>();
+                if (bodyPartsArray != null) {
+                    for (int i = 0; i < bodyPartsArray.length(); i++) {
+                        try {
+                            bodyParts.add(bodyPartsArray.get(i).toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                intent.putStringArrayListExtra("locations", bodyParts);
                 startActivity(intent);
             }
         });
