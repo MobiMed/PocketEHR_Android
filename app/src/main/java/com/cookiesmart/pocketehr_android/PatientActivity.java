@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -92,24 +91,28 @@ public class PatientActivity extends Activity {
             LinearLayout main_section = (LinearLayout) findViewById(R.id.main_section);
             if (!notes.trim().equalsIgnoreCase("")) {
                 TextView newTextView = new TextView(context);
-                newTextView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT));
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                layoutParams.setMargins(0, 10, 0, 0);
+                newTextView.setBackgroundColor(Color.WHITE);
                 newTextView.setMinHeight(150);
                 newTextView.setPadding(20, 10, 0, 0);
                 newTextView.setText(notes);
-                main_section.addView(newTextView);
+                main_section.addView(newTextView, layoutParams);
             }
         } else {
             String notes = data.getStringExtra("notes");
             LinearLayout main_section = (LinearLayout) findViewById(R.id.main_section);
             if (!notes.trim().equalsIgnoreCase("")) {
                 TextView newTextView = new TextView(context);
-                newTextView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT));
+                newTextView.setBackgroundColor(Color.WHITE);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                layoutParams.setMargins(0, 10, 0, 0);
                 newTextView.setMinHeight(150);
                 newTextView.setPadding(20, 10, 0, 0);
                 newTextView.setText(notes);
-                main_section.addView(newTextView);
+                main_section.addView(newTextView, layoutParams);
             }
 
         }
@@ -178,7 +181,7 @@ public class PatientActivity extends Activity {
             } else {
                 int i = 1;
                 while (i <= bodyParts.size()) {
-                    String bodyPart = bodyParts.get(i-1);
+                    String bodyPart = bodyParts.get(i - 1);
                     System.out.println(bodyPart);
                     if (bodyPart.equals("head")) {
                         layers[i] = r.getDrawable(R.drawable.female_head);
@@ -224,7 +227,7 @@ public class PatientActivity extends Activity {
             } else {
                 int i = 1;
                 while (i <= bodyParts.size()) {
-                    String bodyPart = bodyParts.get(i-1);
+                    String bodyPart = bodyParts.get(i - 1);
                     System.out.println(bodyPart);
                     if (bodyPart.equals("head")) {
                         layers[i] = r.getDrawable(R.drawable.male_head);
@@ -291,13 +294,15 @@ public class PatientActivity extends Activity {
         LinearLayout main_section = (LinearLayout) findViewById(R.id.main_section);
         for (ParseObject notes : notesList) {
             TextView newTextView = new TextView(context);
-            newTextView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
+            newTextView.setBackgroundColor(Color.WHITE);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(0, 10, 0, 0);
             newTextView.setMinHeight(150);
             newTextView.setPadding(20, 10, 0, 0);
             String note = notes.getString("text");
             newTextView.setText(note);
-            main_section.addView(newTextView);
+            main_section.addView(newTextView, layoutParams);
         }
         return;
     }

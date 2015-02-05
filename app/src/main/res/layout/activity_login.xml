@@ -14,7 +14,7 @@
         android:textColorHint="@android:color/white"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="153dp" />
+        android:layout_marginTop="150dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -37,6 +37,17 @@
         android:layout_alignStart="@+id/password_input"
         android:visibility="gone" />
 
+    <EditText
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tppid_input"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email_input"
+        android:textColorHint="@android:color/white"
+        android:layout_below="@+id/password_input"
+        android:layout_alignStart="@+id/password_input"
+        android:visibility="gone" />
+
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,11 +59,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_button"
-        android:layout_below="@+id/password_input"
         android:layout_toStartOf="@+id/password_input"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="59dp"
         android:id="@+id/login_button"
-        android:onClick="login" />
+        android:onClick="login"
+        android:layout_below="@+id/password_input"
+        android:layout_toEndOf="@+id/email_input" />
 
     <Button
         android:layout_width="wrap_content"
@@ -62,5 +74,15 @@
         android:layout_toEndOf="@+id/password_input"
         android:id="@+id/register_button"
         android:onClick="register" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/patient_register_button"
+        android:layout_toEndOf="@+id/login_button"
+        android:id="@+id/patient_register_button"
+        android:onClick="patientRegister"
+        android:layout_alignTop="@+id/login_button"
+        android:layout_alignEnd="@+id/username_input" />
 
 </RelativeLayout>
