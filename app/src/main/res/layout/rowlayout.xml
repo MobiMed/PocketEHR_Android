@@ -8,24 +8,22 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:height="140px"
         android:gravity="left"
-        android:textColor="@android:color/white"
-        android:textSize="60px"
-        android:textStyle="bold"></TextView>
+        android:text="aditya nenawati"
+        android:textColor="@android:color/black"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/patient_status"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:height="140px"
         android:background="@android:color/holo_blue_bright"
-        android:gravity="left"
-        android:maxHeight="10dp"
-        android:text="INCOMPLETE"
+        android:gravity="center_horizontal"
+        android:text="@string/incomplete_string"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"></TextView>
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

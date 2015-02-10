@@ -5,4 +5,5 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <color name="background_color">#d3d3d3</color>
 </resources>

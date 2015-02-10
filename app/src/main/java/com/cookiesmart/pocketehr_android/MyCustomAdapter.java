@@ -28,6 +28,7 @@ public class MyCustomAdapter extends ParseQueryAdapter<ParseObject> {
                 return query;
             }
         });
+        setObjectsPerPage(50);
     }
 
     // Customize the layout by overriding getItemView
@@ -44,7 +45,7 @@ public class MyCustomAdapter extends ParseQueryAdapter<ParseObject> {
         TextView statusTextView = (TextView) v.findViewById(R.id.patient_status);
 
         if (status.contains("Negative")) {
-            statusTextView.setBackgroundColor(Color.GREEN);
+            statusTextView.setBackgroundColor(Color.parseColor("#00BB00"));
             //status_field.setTextColor(Color.WHITE);
             statusTextView.setText(NEGATIVE);
         } else if (status.contains("Positive")) {

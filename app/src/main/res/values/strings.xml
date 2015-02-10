@@ -23,9 +23,11 @@
     <string name="username_input">Username</string>
     <string name="password_input">Password</string>
     <string name="login_button">Login</string>
-    <string name="register_button">Doctor Register</string>
+    <string name="register_button">Register</string>
+    <string name="incomplete_string">INCOMPLETE</string>
     <string name="patient_register_button">Patient Register</string>
     <string name="add_notes_button">Add Note</string>
+    <string name="background">#d3d3d3</string>
     <string-array name="gender">
         <item>Female</item>
         <item>Male</item>

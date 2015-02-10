@@ -31,7 +31,6 @@ public class PatientListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patientlist);
-        //System.out.print(patients.get(0).getString("firstName"));
 
         final MyCustomAdapter patientViewAdapter = new MyCustomAdapter(this);
         final ListView listView = (ListView) findViewById(R.id.listView);

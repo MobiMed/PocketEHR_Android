@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.Parse;
+import com.parse.ParseCrashReporting;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -39,6 +40,7 @@ public class LoginActivity extends Activity {
         if (!isOnline()) {
             showAlert();
         } else {
+            ParseCrashReporting.enable(this);
             Parse.initialize(this, "CguKOD63X4OsgUyUPVy7jxS2b2DWap7My8J3QjI6", "OJZgRlZlpAoN3zc3XacaQCNOaH9i4VGi7i22TfWS");
         }
 
@@ -114,39 +116,39 @@ public class LoginActivity extends Activity {
         }
     }
 
-    public void patientRegister(View view) {
-        Button register_button = (Button) view;
-
-        final EditText tppid_input = (EditText) findViewById(R.id.tppid_input);
-
-        if (register_button.getTag() == "1") {
-            tppid_input.setVisibility(View.VISIBLE);
-            register_button.setTag("2");
-        } else {
-            Log.i(LOGIN, "onclickset");
-            final String username = ((EditText) findViewById(R.id.username_input)).getText().toString();
-            final String password = ((EditText) findViewById(R.id.password_input)).getText().toString();
-            String email = tppid_input.getText().toString();
-            if (username.trim().equals("") || password.trim().equals("") || email.trim().equals("")) {
-                Toast.makeText(context, "All fields are necessary.", Toast.LENGTH_LONG).show();
-                return;
-            }
-            ParseUser user = new ParseUser();
-            user.setUsername(username);
-            user.setPassword(password);
-            user.setEmail(email);
-
-            user.signUpInBackground(new SignUpCallback() {
-                public void done(ParseException e) {
-                    if (e == null) {
-                        loginAfterRegister(username, password);
-                    } else {
-                        Toast.makeText(context, e.getMessage() + "Try again.", Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-        }
-    }
+//    public void patientRegister(View view) {
+//        Button register_button = (Button) view;
+//
+//        final EditText tppid_input = (EditText) findViewById(R.id.tppid_input);
+//
+//        if (register_button.getTag() == "1") {
+//            tppid_input.setVisibility(View.VISIBLE);
+//            register_button.setTag("2");
+//        } else {
+//            Log.i(LOGIN, "onclickset");
+//            final String username = ((EditText) findViewById(R.id.username_input)).getText().toString();
+//            final String password = ((EditText) findViewById(R.id.password_input)).getText().toString();
+//            String email = tppid_input.getText().toString();
+//            if (username.trim().equals("") || password.trim().equals("") || email.trim().equals("")) {
+//                Toast.makeText(context, "All fields are necessary.", Toast.LENGTH_LONG).show();
+//                return;
+//            }
+//            ParseUser user = new ParseUser();
+//            user.setUsername(username);
+//            user.setPassword(password);
+//            user.setEmail(email);
+//
+//            user.signUpInBackground(new SignUpCallback() {
+//                public void done(ParseException e) {
+//                    if (e == null) {
+//                        loginAfterRegister(username, password);
+//                    } else {
+//                        Toast.makeText(context, e.getMessage() + "Try again.", Toast.LENGTH_LONG).show();
+//                    }
+//                }
+//            });
+//        }
+//    }
 
     public void loginAfterRegister(String username, String password) {
         ParseUser.logInInBackground(username, password, new LogInCallback() {

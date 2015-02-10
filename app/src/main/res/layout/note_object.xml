@@ -3,14 +3,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/notes_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/app_background">
+    android:background="@color/background_color">
 
     <EditText
         android:id="@+id/patient_notes_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:background="@drawable/round_edittext"
         android:inputType="text|textMultiLine|textNoSuggestions"
         android:minHeight="150dp" />
