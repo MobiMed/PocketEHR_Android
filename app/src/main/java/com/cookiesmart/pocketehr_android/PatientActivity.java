@@ -30,12 +30,6 @@ import java.util.List;
 public class PatientActivity extends Activity {
     private static String objectId;
     private static String PATIENT = "PatientActivity";
-    private static String NEGATIVE = "NEGATIVE";
-    private static String POSITIVE = "POSITIVE";
-    private static String INCOMPLETE = "INCOMPLETE";
-    private static String DECEASED = "DECEASED";
-    private static String FEMALE = "Female";
-    private static String MALE = "Male";
     Context context = this;
 
     @Override
@@ -72,19 +66,19 @@ public class PatientActivity extends Activity {
             if (status.contains("Negative")) {
                 status_field.setBackgroundColor(Color.GREEN);
                 //status_field.setTextColor(Color.WHITE);
-                status_field.setText(NEGATIVE);
+                status_field.setText(getString(R.string.negative_status));
             } else if (status.contains("Positive")) {
                 status_field.setBackgroundColor(Color.RED);
                 //status_field.setTextColor(Color.WHITE);
-                status_field.setText(POSITIVE);
+                status_field.setText(getString(R.string.positive_status));
             } else if (status.contains("Incomplete")) {
                 status_field.setBackgroundColor(Color.BLUE);
                 //status_field.setTextColor(Color.WHITE);
-                status_field.setText(INCOMPLETE);
+                status_field.setText(R.string.incomplete_status);
             } else if (status.contains("Deceased")) {
                 status_field.setBackgroundColor(Color.BLACK);
                 //status_field.setTextColor(Color.WHITE);
-                status_field.setText(DECEASED);
+                status_field.setText(getString(R.string.deceased_status));
             }
 
             String notes = data.getStringExtra("notes");
@@ -149,19 +143,19 @@ public class PatientActivity extends Activity {
         if (status.contains("Negative")) {
             status_field.setBackgroundColor(Color.GREEN);
             //status_field.setTextColor(Color.WHITE);
-            status_field.setText(NEGATIVE);
+            status_field.setText(getString(R.string.negative_status));
         } else if (status.contains("Positive")) {
             status_field.setBackgroundColor(Color.RED);
             //status_field.setTextColor(Color.WHITE);
-            status_field.setText(POSITIVE);
+            status_field.setText(getString(R.string.positive_status));
         } else if (status.contains("Incomplete")) {
             status_field.setBackgroundColor(Color.BLUE);
             //status_field.setTextColor(Color.WHITE);
-            status_field.setText(INCOMPLETE);
+            status_field.setText(getString(R.string.incomplete_status));
         } else if (status.contains("Deceased")) {
             status_field.setBackgroundColor(Color.BLACK);
             //status_field.setTextColor(Color.WHITE);
-            status_field.setText(DECEASED);
+            status_field.setText(getString(R.string.deceased_status));
         }
 
         TextView telepathologyID = (TextView) findViewById(R.id.telepathologyID);
@@ -219,7 +213,7 @@ public class PatientActivity extends Activity {
             }
             LayerDrawable layerDrawable = new LayerDrawable(layers);
             body_parts.setImageDrawable(layerDrawable);
-            sex.setText(FEMALE);
+            sex.setText(getString(R.string.female_gender));
         } else {
             layers[0] = r.getDrawable(R.drawable.male_body_parts);
             if (bodyParts.size() == 0) {
@@ -265,7 +259,7 @@ public class PatientActivity extends Activity {
             }
             LayerDrawable layerDrawable = new LayerDrawable(layers);
             body_parts.setImageDrawable(layerDrawable);
-            sex.setText(MALE);
+            sex.setText(getString(R.string.male_gender));
         }
 
         fetchNotes();

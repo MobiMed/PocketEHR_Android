@@ -15,10 +15,6 @@ import com.parse.ParseQueryAdapter;
  */
 public class MyCustomAdapter extends ParseQueryAdapter<ParseObject> {
     private static String ADAPTER = "CustomAdapter";
-    private static String NEGATIVE = "NEGATIVE";
-    private static String POSITIVE = "POSITIVE";
-    private static String INCOMPLETE = "INCOMPLETE";
-    private static String DECEASED = "DECEASED";
 
     public MyCustomAdapter(Context context) {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
@@ -38,6 +34,7 @@ public class MyCustomAdapter extends ParseQueryAdapter<ParseObject> {
             v = View.inflate(getContext(), R.layout.rowlayout, null);
         }
 
+        Context context = getContext();
         super.getItemView(object, v, parent);
 
         // Add the patient name
@@ -47,19 +44,19 @@ public class MyCustomAdapter extends ParseQueryAdapter<ParseObject> {
         if (status.contains("Negative")) {
             statusTextView.setBackgroundColor(Color.parseColor("#00BB00"));
             //status_field.setTextColor(Color.WHITE);
-            statusTextView.setText(NEGATIVE);
+            statusTextView.setText(context.getString(R.string.negative_status));
         } else if (status.contains("Positive")) {
             statusTextView.setBackgroundColor(Color.RED);
             //status_field.setTextColor(Color.WHITE);
-            statusTextView.setText(POSITIVE);
+            statusTextView.setText(context.getString(R.string.positive_status));
         } else if (status.contains("Incomplete")) {
             statusTextView.setBackgroundColor(Color.BLUE);
             //status_field.setTextColor(Color.WHITE);
-            statusTextView.setText(INCOMPLETE);
+            statusTextView.setText(context.getString(R.string.incomplete_status));
         } else if (status.contains("Deceased")) {
             statusTextView.setBackgroundColor(Color.BLACK);
             //status_field.setTextColor(Color.WHITE);
-            statusTextView.setText(DECEASED);
+            statusTextView.setText(context.getString(R.string.deceased_status));
         }
 
 
