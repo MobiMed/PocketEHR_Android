@@ -2,46 +2,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/background_color"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/home_patient"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:onClick="showPatientList"
-        android:src="@drawable/home_patients" />
-
-    <ImageView
-        android:id="@+id/add_patient"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignBottom="@+id/home_patient"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/home_patient"
-        android:onClick="addPatient"
-        android:src="@drawable/add_patient" />
-
-    <TextView
-        android:id="@+id/patient_text"
+    <LinearLayout
+        android:id="@+id/main_patient_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/home_patient"
-        android:layout_marginLeft="52dp"
-        android:text="@string/home_patient_text" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/add_patient_text"
+        <ImageView
+            android:id="@+id/home_patient"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:onClick="showPatientList"
+            android:src="@drawable/home_patients" />
+
+        <TextView
+            android:id="@+id/patient_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="52dp"
+            android:text="@string/home_patient_text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/main_add_patient_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/add_patient"
-        android:layout_marginLeft="205dp"
-        android:text="@string/home_add_patient_text" />
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/main_patient_layout">
+
+        <ImageView
+            android:id="@+id/add_patient"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:onClick="addPatient"
+            android:src="@drawable/add_patient" />
+
+        <TextView
+            android:id="@+id/add_patient_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:text="@string/home_add_patient_text" />
+
+    </LinearLayout>
 </RelativeLayout>

@@ -1,18 +1,12 @@
 package com.cookiesmart.pocketehr_android;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.parse.Parse;
 
 
 public class MainActivity extends Activity {
@@ -51,7 +45,9 @@ public class MainActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            return true;
+            startSettingsActivity();
+        } else if (id == R.id.action_help) {
+            startAboutActivity();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -59,12 +55,20 @@ public class MainActivity extends Activity {
     public void showPatientList(View v) {
         Intent intent = new Intent(this, PatientListActivity.class);
         startActivity(intent);
-        return;
     }
 
     public void addPatient(View v) {
         Intent intent = new Intent(this, AddPatientContactActivity.class);
         startActivity(intent);
-        return;
+    }
+
+    private void startSettingsActivity() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    private void startAboutActivity() {
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
     }
 }
