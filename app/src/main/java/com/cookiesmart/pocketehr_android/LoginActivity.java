@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
@@ -69,9 +71,18 @@ public class LoginActivity extends Activity {
         Log.i("Username", username);
         Log.i("Password", password);
 
+        final RelativeLayout login_layout = (RelativeLayout) view.getParent();
+        final ProgressBar progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleLarge);
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.VISIBLE);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(300, 300);
+        params.addRule(RelativeLayout.CENTER_IN_PARENT);
+        login_layout.addView(progressBar, params);
+
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             public void done(ParseUser user, ParseException e) {
                 if (user != null) {
+                    login_layout.removeView(progressBar);
                     Intent intent = new Intent(context, MainActivity.class);
                     startActivity(intent);
                 } else {

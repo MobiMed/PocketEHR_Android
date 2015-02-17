@@ -47,13 +47,13 @@ public class ChangeStatusActivity extends Activity implements AdapterView.OnItem
         originalStatus = intent.getStringExtra("status");
         statusSelected = intent.getStringExtra("status");
 
-        if (originalStatus.equalsIgnoreCase("Incomplete")) {
+        if (originalStatus.equalsIgnoreCase(getString(R.string.incomplete_status))) {
             spinner.setSelection(0);
-        } else if (originalStatus.equalsIgnoreCase("Negative")) {
+        } else if (originalStatus.equalsIgnoreCase(getString(R.string.negative_status))) {
             spinner.setSelection(1);
-        } else if (originalStatus.equalsIgnoreCase("Positive")) {
+        } else if (originalStatus.equalsIgnoreCase(getString(R.string.positive_status))) {
             spinner.setSelection(2);
-        } else if (originalStatus.equalsIgnoreCase("Deceased")) {
+        } else if (originalStatus.equalsIgnoreCase(getString(R.string.deceased_status))) {
             spinner.setSelection(3);
         }
     }
