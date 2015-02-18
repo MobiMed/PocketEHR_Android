@@ -3,7 +3,8 @@
     <string name="version_number">1.0</string>
     <string name="version">Version</string>
     <string name="app_name">Pocket EHR</string>
-    <string name="home_patient_text">Patient</string>
+    <string name="home_patient_text">Patients</string>
+    <string name="patient_patient_text">Patient</string>
     <string name="home_add_patient_text">Add Patient</string>
     <string name="last_name_input">Last Name</string>
     <string name="first_name_input">First Name</string>
@@ -40,7 +41,17 @@
     <string name="incomplete_string">INCOMPLETE</string>
     <string name="patient_register_button">Patient Register</string>
     <string name="add_notes_button">Add Note</string>
+    <string name="add_picture_button">Add Picture</string>
+    <string name="server_positive_status">kDiagnosedPositive</string>
+    <string name="server_negative_status">kDiagnosedNegative</string>
+    <string name="server_incomplete_status">kIncomplete</string>
+    <string name="server_deceased_status">kDeceased</string>
+    <string name="server_file_type">kGross</string>
+    <string name="server_activity_imageAddedType">kImageAdded</string>
+    <string name="server_sex_male">Male</string>
+    <string name="server_sex_female">Female</string>
     <string name="background">#d3d3d3</string>
+    <string name="image_dialog_box">Select source</string>
     <string-array name="gender">
         <item>Female</item>
         <item>Male</item>

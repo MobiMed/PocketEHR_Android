@@ -10,15 +10,14 @@ import android.view.View;
 
 
 public class MainActivity extends Activity {
-    public static String USEROBJECTID = "";
     private static final String MAIN = "MainActivity";
+    public static String USEROBJECTID = "";
     Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
     }
 
     @Override

@@ -3,6 +3,7 @@
     <string name="version_number">1.0</string>
     <string name="app_name">Pocket EHR</string>
     <string name="home_patient_text">रोगी</string>
+    <string name="patient_patient_text">रोगी</string>
     <string name="home_add_patient_text">रोगी जोड़ें</string>
     <string name="last_name_input">उपनाम</string>
     <string name="first_name_input">पहला नाम</string>
@@ -15,7 +16,7 @@
     <string name="negative_status">नकारात्मक</string>
     <string name="positive_status">सकारात्मक</string>
     <string name="incomplete_status">अधूरी</string>
-    <string name="deceased_status">मुआ</string>
+    <string name="deceased_status">मृतक</string>
     <string name="male_gender">पुरुष</string>
     <string name="female_gender">स्त्री</string>
     <string name="next_button">अगली</string>
@@ -32,6 +33,7 @@
     <string name="register_button">रजिस्टर</string>
     <string name="incomplete_string">अधूरी</string>
     <string name="add_notes_button">नोट जोड़े</string>
+    <string name="add_picture_button">चित्र जोड़ें</string>
     <string name="background">#d3d3d3</string>
     <string name="english_locale">en</string>
     <string name="hindi_locale">hi</string>
@@ -40,6 +42,15 @@
     <string name="hindi_language">Hindi</string>
     <string name="french_language">French</string>
     <string name="version">संस्करण</string>
+    <string name="server_positive_status">kDiagnosedPositive</string>
+    <string name="server_negative_status">kDiagnosedNegative</string>
+    <string name="server_incomplete_status">kIncomplete</string>
+    <string name="server_deceased_status">kDeceased</string>
+    <string name="server_sex_male">Male</string>
+    <string name="server_sex_female">Female</string>
+    <string name="server_file_type">kGross</string>
+    <string name="server_activity_imageAddedType">kImageAdded</string>
+    <string name="image_dialog_box">सोर्स चुनें</string>
     <string-array name="gender">
         <item>स्त्री</item>
         <item>पुरुष</item>
@@ -50,7 +61,7 @@
         <item>हिंदी</item>
     </string-array>
     <string-array name="status">
-        <item>अधूरा</item>
+        <item>अधूरी</item>
         <item>नकारात्मक</item>
         <item>सकारात्मक</item>
         <item>मृतक</item>

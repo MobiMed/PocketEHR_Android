@@ -91,12 +91,18 @@ public class ChangeStatusActivity extends Activity implements AdapterView.OnItem
         query.getInBackground(objectId, new GetCallback<ParseObject>() {
             public void done(ParseObject gameScore, ParseException e) {
                 if (e == null) {
+//                    System.out.println("Updating status to parse");
+//                    System.out.println(statusSelected);
                     // Now let's update it with some new data. In this case, only cheatMode and score
                     // will get sent to the Parse Cloud. playerName hasn't changed.
-                    if (statusSelected.contains("Postive") || statusSelected.contains("Negative")) {
-                        gameScore.put("status", "kDiagnosed" + statusSelected);
-                    } else {
-                        gameScore.put("status", "k" + statusSelected);
+                    if (statusSelected.equalsIgnoreCase(getString(R.string.positive_status))) {
+                        gameScore.put("status", getString(R.string.server_positive_status));
+                    } else if (statusSelected.equalsIgnoreCase(getString(R.string.negative_status))) {
+                        gameScore.put("status", getString(R.string.server_negative_status));
+                    } else if (statusSelected.equalsIgnoreCase(getString(R.string.incomplete_status))) {
+                        gameScore.put("status", getString(R.string.server_incomplete_status));
+                    } else if (statusSelected.equalsIgnoreCase(getString(R.string.deceased_status))) {
+                        gameScore.put("status", getString(R.string.server_deceased_status));
                     }
                     gameScore.saveInBackground();
                 }

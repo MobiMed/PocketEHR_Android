@@ -31,6 +31,8 @@ import java.util.Iterator;
  */
 public class AddPatientBodyActivity extends Activity {
     private static final String ADDPATIENT = "AddPatientBodyActivity";
+    private static HashSet<String> bodyParts = new HashSet<String>();
+    private static String GENDER;
     //    private static final int HEAD = 1;
 //    private static final int THROAT = 2;
 //    private static final int UPPERARMLEFT = 3;
@@ -47,8 +49,6 @@ public class AddPatientBodyActivity extends Activity {
 //    private static final int LOWERLEGRIGHT = 14;
     Patient p = null;
     private ImageView bodyImage;
-    private static HashSet<String> bodyParts = new HashSet<String>();
-    private static String GENDER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

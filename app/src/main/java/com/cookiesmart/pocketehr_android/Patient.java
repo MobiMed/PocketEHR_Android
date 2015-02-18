@@ -68,16 +68,16 @@ public class Patient implements Parcelable {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getPatientIDNumber() {
         return patientIDNumber;
     }
 
     public void setPatientIDNumber(String patientIDNumber) {
         this.patientIDNumber = patientIDNumber;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public String getLastName() {

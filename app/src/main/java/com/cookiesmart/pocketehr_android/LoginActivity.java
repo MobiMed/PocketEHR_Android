@@ -31,8 +31,8 @@ import com.parse.SignUpCallback;
  */
 
 public class LoginActivity extends Activity {
-    Context context = this;
     private static final String LOGIN = "LoginActivity";
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

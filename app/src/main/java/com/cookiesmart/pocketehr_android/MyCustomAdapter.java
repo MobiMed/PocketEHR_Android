@@ -15,8 +15,9 @@ import com.parse.ParseQueryAdapter;
  */
 public class MyCustomAdapter extends ParseQueryAdapter<ParseObject> {
     private static String ADAPTER = "CustomAdapter";
+    private Context activity_context;
 
-    public MyCustomAdapter(Context context) {
+    public MyCustomAdapter(final Context context) {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
                 ParseQuery query = new ParseQuery("Patient");
@@ -25,6 +26,7 @@ public class MyCustomAdapter extends ParseQueryAdapter<ParseObject> {
             }
         });
         setObjectsPerPage(50);
+        activity_context = context;
     }
 
     // Customize the layout by overriding getItemView
@@ -41,19 +43,19 @@ public class MyCustomAdapter extends ParseQueryAdapter<ParseObject> {
         String status = object.getString("status");
         TextView statusTextView = (TextView) v.findViewById(R.id.patient_status);
 
-        if (status.contains("Negative")) {
+        if (status.equalsIgnoreCase(activity_context.getString(R.string.server_negative_status))) {
             statusTextView.setBackgroundColor(Color.parseColor("#00BB00"));
             //status_field.setTextColor(Color.WHITE);
             statusTextView.setText(context.getString(R.string.negative_status));
-        } else if (status.contains("Positive")) {
+        } else if (status.equalsIgnoreCase(activity_context.getString(R.string.server_positive_status))) {
             statusTextView.setBackgroundColor(Color.RED);
             //status_field.setTextColor(Color.WHITE);
             statusTextView.setText(context.getString(R.string.positive_status));
-        } else if (status.contains("Incomplete")) {
+        } else if (status.equalsIgnoreCase(activity_context.getString(R.string.server_incomplete_status))) {
             statusTextView.setBackgroundColor(Color.BLUE);
             //status_field.setTextColor(Color.WHITE);
             statusTextView.setText(context.getString(R.string.incomplete_status));
-        } else if (status.contains("Deceased")) {
+        } else if (status.equalsIgnoreCase(activity_context.getString(R.string.server_deceased_status))) {
             statusTextView.setBackgroundColor(Color.BLACK);
             //status_field.setTextColor(Color.WHITE);
             statusTextView.setText(context.getString(R.string.deceased_status));
