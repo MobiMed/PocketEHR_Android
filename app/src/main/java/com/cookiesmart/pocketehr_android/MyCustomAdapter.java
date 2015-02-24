@@ -39,12 +39,14 @@ public class MyCustomAdapter extends ParseQueryAdapter<ParseObject> {
         Context context = getContext();
         super.getItemView(object, v, parent);
 
-        // Add the patient name
+        v.setTag(object.getObjectId());
+
+        // Add the patient status
         String status = object.getString("status");
         TextView statusTextView = (TextView) v.findViewById(R.id.patient_status);
 
         if (status.equalsIgnoreCase(activity_context.getString(R.string.server_negative_status))) {
-            statusTextView.setBackgroundColor(Color.parseColor("#00BB00"));
+            statusTextView.setBackgroundColor(Color.GREEN);
             //status_field.setTextColor(Color.WHITE);
             statusTextView.setText(context.getString(R.string.negative_status));
         } else if (status.equalsIgnoreCase(activity_context.getString(R.string.server_positive_status))) {

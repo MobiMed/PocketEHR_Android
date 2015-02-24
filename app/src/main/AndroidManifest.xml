@@ -16,10 +16,11 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_pocketehr"
         android:label="@string/app_name"
-        android:theme="@style/CustomActionBarTheme">
+        android:theme="@style/CustomActionBarTheme"
+        android:name=".MyApplication">
         <activity
             android:name=".LoginActivity"
-            android:configChanges="locale|layoutDirection"
+            android:configChanges="screenSize|orientation"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,62 +30,71 @@
 
         <activity
             android:name=".PatientListActivity"
-            android:configChanges="locale|layoutDirection"
+            android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
             android:name=".PatientActivity"
-            android:configChanges="locale|layoutDirection"
+            android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
             android:name=".AddPatientBodyActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"
+            android:configChanges="screenSize|orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".AddPatientNotesActivity"
-            android:configChanges="locale|layoutDirection"
-            android:label="@string/app_name" />
+            android:configChanges="screenSize|orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="AddPatientContactActivity"
-            android:configChanges="locale|layoutDirection"
-            android:label="@string/app_name" />
+            android:configChanges="screenSize|orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".AddPatientHistoryActivity"
-            android:configChanges="locale|layoutDirection"
-            android:label="@string/app_name" />
+            android:configChanges="screenSize|orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ChangeStatusActivity"
-            android:configChanges="locale|layoutDirection"
+            android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
             android:name=".AddNoteActivity"
-            android:configChanges="locale|layoutDirection"
+            android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
             android:name=".MainActivity"
-            android:configChanges="locale|layoutDirection"
+            android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
             android:name=".ShowPhotoActivity"
+            android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
             android:name=".SettingsActivity"
-            android:configChanges="locale|layoutDirection"
+            android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
             android:name=".AboutActivity"
-            android:configChanges="locale|layoutDirection"
+            android:configChanges="screenSize|orientation"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".ShowAlertActivity"
+            android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
     </application>
 </manifest>

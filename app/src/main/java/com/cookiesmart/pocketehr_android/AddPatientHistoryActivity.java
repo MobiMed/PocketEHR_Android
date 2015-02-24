@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -30,7 +31,7 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
     Context context = this;
 
     public static void setAge(int age) {
-        EditText ageField = (EditText) dobandage.findViewById(R.id.age_input);
+        TextView ageField = (TextView) dobandage.findViewById(R.id.age_input);
         ageField.setText(age + "");
         ageField.setFocusable(false);
         flag = true;
@@ -59,7 +60,7 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
     }
 
     public void saveAndNext(View v) {
-        String ageString = ((EditText) dobandage.findViewById(R.id.age_input)).getText().toString();
+        String ageString = ((TextView) dobandage.findViewById(R.id.age_input)).getText().toString();
         if (((EditText) dobandage.findViewById(R.id.dob_input)).getText().toString().trim().equals("") && ageString.trim().equals("")) {
             Toast.makeText(this, "Both DOB and AGE cannot be blank.", Toast.LENGTH_LONG).show();
             return;

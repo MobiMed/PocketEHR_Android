@@ -2,6 +2,7 @@ package com.cookiesmart.pocketehr_android;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,7 +34,9 @@ import org.json.JSONException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,11 +46,18 @@ import java.util.List;
 public class PatientActivity extends Activity {
     private static String objectId;
     private String mCurrentPhotoPath;
+    private static final int CHANGE_STATUS = 1;
+    private static final int ADD_NOTE = 2;
     private static final int SELECT_PICTURE = 3;
     private static final int TAKE_PICTURE = 4;
     private static String PATIENT = "PatientActivity";
     Context context = this;
     final int THUMBNAIL_SIZE = 250;
+    private String status = "";
+    private String view_tag = "";
+    private LinearLayout main_view = null;
+    ProgressDialog progressDialog;
+    Bitmap thumbnail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +65,9 @@ public class PatientActivity extends Activity {
         setContentView(R.layout.activity_patient);
         Intent intent = getIntent();
         objectId = intent.getStringExtra("objectId");
+        view_tag = intent.getStringExtra("view_tag");
+        main_view = (LinearLayout) findViewById(R.id.patient_main_layout);
+        progressDialog = ProgressDialog.show(this, getString(R.string.loading_text), "", true);
         getPatientDetails();
     }
 
@@ -63,25 +76,25 @@ public class PatientActivity extends Activity {
         Intent intent = new Intent(this, ChangeStatusActivity.class);
         intent.putExtra("objectId", objectId);
         intent.putExtra("status", ((TextView) view).getText().toString());
-        startActivityForResult(intent, 1);
+        startActivityForResult(intent, CHANGE_STATUS);
     }
 
     public void addNote(View view) {
         Intent intent = new Intent(this, AddNoteActivity.class);
         intent.putExtra("objectId", objectId);
-        startActivityForResult(intent, 2);
+        startActivityForResult(intent, ADD_NOTE);
     }
 
     public void addPicture(View view) {
-        final CharSequence[] items = {"Camera", "Gallery",
-                "Cancel"};
+        final CharSequence[] items = {getString(R.string.image_dialog_box_camera), getString(R.string.image_dialog_box_gallery),
+                getString(R.string.image_dialog_box_cancel)};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Add Photo!");
+        builder.setTitle(getString(R.string.image_dialog_box));
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                if (items[item].equals("Camera")) {
+                if (items[item].equals(getString(R.string.image_dialog_box_camera))) {
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     File f = null;
                     try {
@@ -94,7 +107,7 @@ public class PatientActivity extends Activity {
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
                         startActivityForResult(intent, TAKE_PICTURE);
                     }
-                } else if (items[item].equals("Gallery")) {
+                } else if (items[item].equals(getString(R.string.image_dialog_box_gallery))) {
                     Intent intent = new Intent(
                             Intent.ACTION_PICK,
                             android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -102,7 +115,7 @@ public class PatientActivity extends Activity {
                     startActivityForResult(
                             Intent.createChooser(intent, "Select File"),
                             SELECT_PICTURE);
-                } else if (items[item].equals("Cancel")) {
+                } else if (items[item].equals(getString(R.string.image_dialog_box_cancel))) {
                     dialog.dismiss();
                 }
             }
@@ -115,30 +128,34 @@ public class PatientActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_CANCELED) {
             return;
-        } else if (requestCode == 1) {
+        } else if (requestCode == CHANGE_STATUS) {
             TextView status_field = (TextView) findViewById(R.id.status_patient_screen);
-            String status = data.getStringExtra("status");
+            status = data.getStringExtra("status");
             System.out.println(status);
             if (status.equalsIgnoreCase(getString(R.string.negative_status))) {
+                status = getString(R.string.server_negative_status);
                 status_field.setBackgroundColor(Color.GREEN);
                 //status_field.setTextColor(Color.WHITE);
                 status_field.setText(getString(R.string.negative_status));
             } else if (status.equalsIgnoreCase(getString(R.string.positive_status))) {
+                status = getString(R.string.server_positive_status);
                 status_field.setBackgroundColor(Color.RED);
                 //status_field.setTextColor(Color.WHITE);
                 status_field.setText(getString(R.string.positive_status));
             } else if (status.equalsIgnoreCase(getString(R.string.incomplete_status))) {
+                status = getString(R.string.server_incomplete_status);
                 status_field.setBackgroundColor(Color.BLUE);
                 //status_field.setTextColor(Color.WHITE);
                 status_field.setText(R.string.incomplete_status);
             } else if (status.equalsIgnoreCase(getString(R.string.deceased_status))) {
+                status = getString(R.string.server_deceased_status);
                 status_field.setBackgroundColor(Color.BLACK);
                 //status_field.setTextColor(Color.WHITE);
                 status_field.setText(getString(R.string.deceased_status));
             }
 
             String notes = data.getStringExtra("notes");
-            LinearLayout main_section = (LinearLayout) findViewById(R.id.activity_view);
+            LinearLayout activity_section = (LinearLayout) findViewById(R.id.activity_view);
             if (!notes.trim().equalsIgnoreCase("")) {
                 TextView newTextView = new TextView(context);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -148,9 +165,9 @@ public class PatientActivity extends Activity {
                 newTextView.setMinHeight(150);
                 newTextView.setPadding(20, 10, 0, 0);
                 newTextView.setText(notes);
-                main_section.addView(newTextView, 0, layoutParams);
+                activity_section.addView(newTextView, 0, layoutParams);
             }
-        } else if (requestCode == 2) {
+        } else if (requestCode == ADD_NOTE) {
             String notes = data.getStringExtra("notes");
             LinearLayout main_section = (LinearLayout) findViewById(R.id.activity_view);
             if (!notes.trim().equalsIgnoreCase("")) {
@@ -167,10 +184,9 @@ public class PatientActivity extends Activity {
 
         } else if (requestCode == TAKE_PICTURE) {
             try {
-                Bitmap bm;
-                Bitmap thumbnail;
-                BitmapFactory.Options btmapOptions = new BitmapFactory.Options();
 
+                BitmapFactory.Options btmapOptions = new BitmapFactory.Options();
+                Bitmap bm;
                 bm = BitmapFactory.decodeFile(mCurrentPhotoPath,
                         btmapOptions);
                 thumbnail = Bitmap.createScaledBitmap(bm, THUMBNAIL_SIZE, THUMBNAIL_SIZE, false);
@@ -201,19 +217,37 @@ public class PatientActivity extends Activity {
                 e.printStackTrace();
             }
         } else if (requestCode == SELECT_PICTURE) {
-            Uri selectedImageUri = data.getData();
-            String tempPath = selectedImageUri.getPath();
-            Bitmap bm;
-            BitmapFactory.Options btmapOptions = new BitmapFactory.Options();
-            bm = BitmapFactory.decodeFile(tempPath, btmapOptions);
-            ByteArrayOutputStream fOut = new ByteArrayOutputStream();
+            InputStream image_input_stream = null;
             try {
-                bm.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
-                byte[] image = fOut.toByteArray();
-                fOut.flush();
-                fOut.close();
+                image_input_stream = context.getContentResolver().openInputStream(data.getData());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            Bitmap bm;
+            bm = BitmapFactory.decodeStream(image_input_stream);
+            thumbnail = Bitmap.createScaledBitmap(bm, THUMBNAIL_SIZE, THUMBNAIL_SIZE, false);
+            ByteArrayOutputStream image_stream = new ByteArrayOutputStream();
+            ByteArrayOutputStream thumbnail_stream = new ByteArrayOutputStream();
+            byte[] image_data = null;
+            byte[] thumbnail_data = null;
+            try {
+                bm.compress(Bitmap.CompressFormat.JPEG, 100, image_stream);
+                thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, thumbnail_stream);
+                image_data = image_stream.toByteArray();
+                thumbnail_data = thumbnail_stream.toByteArray();
+                thumbnail_stream.flush();
+                thumbnail_stream.close();
+                image_stream.flush();
+                image_stream.close();
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+
+            ParseFile image_file = new ParseFile("image_file", image_data);
+            ParseFile thumbnail_file = new ParseFile("thumbnail_file", thumbnail_data);
+            if (uploadPhoto(image_file, thumbnail_file)) {
+                //do nothing
             }
         }
     }
@@ -266,11 +300,7 @@ public class PatientActivity extends Activity {
             }
         });
         activity_layout.addView(imageView, 0, layoutParams);
-        BitmapFactory.Options btmapOptions = new BitmapFactory.Options();
-        Bitmap bm = BitmapFactory.decodeFile(mCurrentPhotoPath,
-                btmapOptions);
-        bm = Bitmap.createScaledBitmap(bm, THUMBNAIL_SIZE, THUMBNAIL_SIZE, false);
-        imageView.setImageBitmap(bm);
+        imageView.setImageBitmap(thumbnail);
     }
 
     private void getPatientDetails() {
@@ -293,7 +323,8 @@ public class PatientActivity extends Activity {
         lastName.setText(patient_object.getString("lastName"));
 
         TextView status_field = (TextView) findViewById(R.id.status_patient_screen);
-        String status = patient_object.getString("status");
+        status = patient_object.getString("status");
+
         if (status.equalsIgnoreCase(getString(R.string.server_negative_status))) {
             status_field.setBackgroundColor(Color.GREEN);
             //status_field.setTextColor(Color.WHITE);
@@ -485,7 +516,7 @@ public class PatientActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ShowPhotoActivity.class);
-                intent.putExtra("Photo_objectId", (String) v.getTag());
+                intent.putExtra("photo_objectId", (String) v.getTag());
                 startActivity(intent);
             }
         });
@@ -528,12 +559,16 @@ public class PatientActivity extends Activity {
                 main_section.addView(newTextView, layoutParams);
             }
         }
+        progressDialog.dismiss();
     }
 
     @Override
     public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra("status", status);
+        intent.putExtra("view_tag", view_tag);
+        setResult(RESULT_OK, intent);
+        finish();
         super.onBackPressed();
-        Intent intent = new Intent(this, PatientListActivity.class);
-        startActivity(intent);
     }
 }

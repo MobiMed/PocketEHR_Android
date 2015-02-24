@@ -1,12 +1,8 @@
 package com.cookiesmart.pocketehr_android;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -20,8 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
-import com.parse.Parse;
-import com.parse.ParseCrashReporting;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -38,13 +32,6 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        if (!isOnline()) {
-            showAlert();
-        } else {
-            ParseCrashReporting.enable(this);
-            Parse.initialize(this, "CguKOD63X4OsgUyUPVy7jxS2b2DWap7My8J3QjI6", "OJZgRlZlpAoN3zc3XacaQCNOaH9i4VGi7i22TfWS");
-        }
 
         final EditText password_input = (EditText) findViewById(R.id.password_input);
 
@@ -179,38 +166,5 @@ public class LoginActivity extends Activity {
     public void onBackPressed() {
         super.onBackPressed();
         setResult(RESULT_CANCELED);
-    }
-
-    private boolean isOnline() {
-        ConnectivityManager cm =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
-    }
-
-    private void showAlert() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                context);
-
-        // set title
-        alertDialogBuilder.setTitle("Network");
-
-        // set dialog message
-        alertDialogBuilder
-                .setMessage("No network connection. Click Ok to exit!")
-                .setCancelable(false)
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // if this login_button is clicked, close
-                        // current activity
-                        LoginActivity.this.finish();
-                    }
-                });
-
-        // create alert dialog
-        AlertDialog alertDialog = alertDialogBuilder.create();
-
-        // show it
-        alertDialog.show();
     }
 }

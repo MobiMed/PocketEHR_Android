@@ -51,6 +51,10 @@
     <string name="server_file_type">kGross</string>
     <string name="server_activity_imageAddedType">kImageAdded</string>
     <string name="image_dialog_box">सोर्स चुनें</string>
+    <string name="image_dialog_box_camera">कैमरा</string>
+    <string name="image_dialog_box_gallery">गेलरी</string>
+    <string name="image_dialog_box_cancel">रद्द करें</string>
+    <string name="loading_text">लोडिंग</string>
     <string-array name="gender">
         <item>स्त्री</item>
         <item>पुरुष</item>

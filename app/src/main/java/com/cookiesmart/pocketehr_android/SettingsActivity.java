@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +17,8 @@ import java.util.Locale;
  * Created by aditya841 on 2/10/2015.
  */
 public class SettingsActivity extends Activity implements AdapterView.OnItemSelectedListener {
+    private static final String TAG = "SettingsActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,20 +64,17 @@ public class SettingsActivity extends Activity implements AdapterView.OnItemSele
     private void setLocale(String language) {
         Locale myLocale = new Locale(language);
         Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
-        System.out.println("Checking current and selected locale");
-        System.out.println(conf.locale.getDisplayLanguage());
-        System.out.println(myLocale.getDisplayLanguage());
+        Log.i(TAG, "Checking current and selected locale");
         if (!conf.locale.getDisplayLanguage().equals(myLocale.getDisplayLanguage()))
-            conf.locale = myLocale;
+            MyApplication.updateLanguage(getApplicationContext(), language);
         else
             return;
-        res.updateConfiguration(conf, dm);
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        finish(); // call this to finish the current activity
+        Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        startActivity(i);
     }
 
 //    @Override

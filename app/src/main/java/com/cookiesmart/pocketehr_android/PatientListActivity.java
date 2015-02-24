@@ -3,11 +3,15 @@ package com.cookiesmart.pocketehr_android;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.parse.ParseObject;
 
@@ -20,7 +24,7 @@ import java.util.ArrayList;
  * Created by aditya841 on 11/19/2014.
  */
 public class PatientListActivity extends Activity {
-    private static String PATIENT = "PatientListActivity";
+    private static String TAG = "PatientListActivity";
     final Context context = this;
     ArrayList<ParseObject> patients;
     private int preLast;
@@ -66,6 +70,7 @@ public class PatientListActivity extends Activity {
                 intent.putExtra("status", patient.getString("status"));
                 intent.putExtra("sex", patient.getString("sex"));
                 intent.putExtra("objectId", patient.getObjectId());
+                intent.putExtra("view_tag", (String) view.getTag());
 
                 //getting locations array of patient
                 JSONArray bodyPartsArray = patient.getJSONArray("locations");
@@ -80,8 +85,52 @@ public class PatientListActivity extends Activity {
                     }
                 }
                 intent.putStringArrayListExtra("locations", bodyParts);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        String view_tag = data.getStringExtra("view_tag");
+        String status = data.getStringExtra("status");
+        final ListView listView = (ListView) findViewById(R.id.listView);
+        getViewsByTag(listView, view_tag, status);
+    }
+
+    private ArrayList<View> getViewsByTag(ViewGroup root, String tag, String status) {
+        ArrayList<View> views = new ArrayList<View>();
+        final int childCount = root.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            final View child = root.getChildAt(i);
+            if (child instanceof ViewGroup) {
+                views.addAll(getViewsByTag((ViewGroup) child, tag, status));
+            }
+
+            final Object tagObj = child.getTag();
+            if (tagObj != null && tagObj.equals(tag)) {
+                Log.i(TAG, "Found view. Updating now." + status);
+                TextView patient_status = (TextView) child.findViewById(R.id.patient_status);
+                if (status.equalsIgnoreCase(getString(R.string.server_negative_status))) {
+                    patient_status.setBackgroundColor(Color.GREEN);
+                    //status_field.setTextColor(Color.WHITE);
+                    patient_status.setText(getString(R.string.negative_status));
+                } else if (status.equalsIgnoreCase(getString(R.string.server_positive_status))) {
+                    patient_status.setBackgroundColor(Color.RED);
+                    //status_field.setTextColor(Color.WHITE);
+                    patient_status.setText(getString(R.string.positive_status));
+                } else if (status.equalsIgnoreCase(getString(R.string.server_incomplete_status))) {
+                    patient_status.setBackgroundColor(Color.BLUE);
+                    //status_field.setTextColor(Color.WHITE);
+                    patient_status.setText(getString(R.string.incomplete_status));
+                } else if (status.equalsIgnoreCase(getString(R.string.server_deceased_status))) {
+                    patient_status.setBackgroundColor(Color.BLACK);
+                    //status_field.setTextColor(Color.WHITE);
+                    patient_status.setText(getString(R.string.deceased_status));
+                }
+            }
+        }
+        return views;
     }
 }

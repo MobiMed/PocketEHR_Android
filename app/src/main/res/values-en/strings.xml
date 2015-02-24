@@ -52,6 +52,10 @@
     <string name="server_sex_female">Female</string>
     <string name="background">#d3d3d3</string>
     <string name="image_dialog_box">Select source</string>
+    <string name="image_dialog_box_camera">Camera</string>
+    <string name="image_dialog_box_gallery">Gallery</string>
+    <string name="image_dialog_box_cancel">Cancel</string>
+    <string name="loading_text">Loading</string>
     <string-array name="gender">
         <item>Female</item>
         <item>Male</item>
