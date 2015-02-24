@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -35,7 +36,7 @@ public class LoginActivity extends Activity {
 
         final EditText password_input = (EditText) findViewById(R.id.password_input);
 
-        Button register_button = (Button) findViewById(R.id.register_button);
+        ImageView register_button = (ImageView) findViewById(R.id.create_hospital_button);
         register_button.setTag("1");
 
         CheckBox checkbox = (CheckBox) findViewById(R.id.visible_check);
@@ -73,7 +74,8 @@ public class LoginActivity extends Activity {
                     Intent intent = new Intent(context, MainActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(context, e.getMessage() + "Username or Password incorrect. Please try again.",
+                    login_layout.removeView(progressBar);
+                    Toast.makeText(context, e.getMessage() + getString(R.string.wrong_cred_toast),
                             Toast.LENGTH_LONG).show();
                 }
             }
@@ -94,7 +96,7 @@ public class LoginActivity extends Activity {
             final String password = ((EditText) findViewById(R.id.password_input)).getText().toString();
             String email = email_input.getText().toString();
             if (username.trim().equals("") || password.trim().equals("") || email.trim().equals("")) {
-                Toast.makeText(context, "All fields are necessary.", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, getString(R.string.all_fields_toast), Toast.LENGTH_LONG).show();
                 return;
             }
             ParseUser user = new ParseUser();
@@ -155,7 +157,7 @@ public class LoginActivity extends Activity {
                     Intent intent = new Intent(context, MainActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(context, e.getMessage() + "Username or Password incorrect. Please try again.",
+                    Toast.makeText(context, e.getMessage() + getString(R.string.wrong_cred_toast),
                             Toast.LENGTH_LONG).show();
                 }
             }

@@ -25,11 +25,11 @@ public class AddPatientContactActivity extends Activity {
     public void saveAndNext(View v) {
         LinearLayout contactInformationLayout = (LinearLayout) v.getParent();
         if (((EditText) contactInformationLayout.findViewById(R.id.last_name_input)).getText().toString().trim().equals("")) {
-            Toast.makeText(this, "Last name cannot be blank.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.last_name_toast), Toast.LENGTH_LONG).show();
             return;
         }
         if (((EditText) contactInformationLayout.findViewById(R.id.first_name_input)).getText().toString().trim().equals("")) {
-            Toast.makeText(this, "First name cannot be blank.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.first_name_toast), Toast.LENGTH_LONG).show();
             return;
         }
         p.setLastName(((EditText) contactInformationLayout.findViewById(R.id.last_name_input)).getText().toString());

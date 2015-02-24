@@ -31,7 +31,15 @@
     <string name="username_input">Username</string>
     <string name="password_input">Password</string>
     <string name="login_button">Login</string>
-    <string name="register_button">Register</string>
+    <string name="join_hospital_button">Join Hospital</string>
+    <string name="create_hospital_button">Create Hospital</string>
+    <string name="network_alert">Network</string>
+    <string name="network_alert_string">No internet connection. Click OK to exit!</string>
+    <string name="ok_string">OK</string>
+    <string name="restart_alert">Restart</string>
+    <string name="restart_alert_string">The app needs to restart for locale change. Click OK to restart!</string>
+    <string name="wrong_cred_toast">Username or Password is incorrect. Please try again.</string>
+    <string name="all_fields_toast">All fields are necessary.</string>
     <string name="english_locale">en</string>
     <string name="hindi_locale">hi</string>
     <string name="french_locale">fr</string>
@@ -56,6 +64,9 @@
     <string name="image_dialog_box_gallery">Gallery</string>
     <string name="image_dialog_box_cancel">Cancel</string>
     <string name="loading_text">Loading</string>
+    <string name="last_name_toast">Last name cannot be blank</string>
+    <string name="first_name_toast">First name cannot be blank</string>
+    <string name="dob_toast">DOB cannot be blank</string>
     <string-array name="gender">
         <item>Female</item>
         <item>Male</item>

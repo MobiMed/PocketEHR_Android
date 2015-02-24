@@ -23,13 +23,13 @@ public class ShowAlertActivity extends Activity {
                 context);
 
         // set title
-        alertDialogBuilder.setTitle("Network");
+        alertDialogBuilder.setTitle(getString(R.string.network_alert));
 
         // set dialog message
         alertDialogBuilder
-                .setMessage("No network connection. Click Ok to exit!")
+                .setMessage(getString(R.string.network_alert_string))
                 .setCancelable(false)
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.ok_string), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // if this login_button is clicked, close
                         // current activity

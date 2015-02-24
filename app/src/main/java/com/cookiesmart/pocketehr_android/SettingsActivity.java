@@ -1,6 +1,9 @@
 package com.cookiesmart.pocketehr_android;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -18,6 +21,7 @@ import java.util.Locale;
  */
 public class SettingsActivity extends Activity implements AdapterView.OnItemSelectedListener {
     private static final String TAG = "SettingsActivity";
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +74,7 @@ public class SettingsActivity extends Activity implements AdapterView.OnItemSele
             MyApplication.updateLanguage(getApplicationContext(), language);
         else
             return;
-        Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
-
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-        startActivity(i);
+        showAlert();
     }
 
 //    @Override
@@ -90,5 +90,33 @@ public class SettingsActivity extends Activity implements AdapterView.OnItemSele
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         //do nothing
+    }
+
+    public void showAlert() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                context);
+
+        // set title
+        alertDialogBuilder.setTitle(getString(R.string.restart_alert));
+        final Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage(getString(R.string.restart_alert_string))
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.ok_string), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // if this login_button is clicked, close
+                        // current activity
+                        startActivity(i);
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
     }
 }

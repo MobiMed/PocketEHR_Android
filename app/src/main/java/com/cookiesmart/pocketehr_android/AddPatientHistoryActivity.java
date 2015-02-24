@@ -62,7 +62,7 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
     public void saveAndNext(View v) {
         String ageString = ((TextView) dobandage.findViewById(R.id.age_input)).getText().toString();
         if (((EditText) dobandage.findViewById(R.id.dob_input)).getText().toString().trim().equals("") && ageString.trim().equals("")) {
-            Toast.makeText(this, "Both DOB and AGE cannot be blank.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.dob_toast), Toast.LENGTH_LONG).show();
             return;
         }
         if (flag) {

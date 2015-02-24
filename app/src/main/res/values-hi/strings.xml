@@ -30,6 +30,15 @@
     <string name="username_input">यूजर का नाम</string>
     <string name="password_input">पासवर्ड</string>
     <string name="login_button">लॉग इन करें</string>
+    <string name="join_hospital_button">अस्पताल के साथ जुड़ें</string>
+    <string name="create_hospital_button">अस्पताल जोड़ें</string>
+    <string name="network_alert">नेटवर्क</string>
+    <string name="network_alert_string">कोई इंटरनेट कनेक्शन नहीं। बाहर निकलने के लिए ठीक क्लिक करें !</string>
+    <string name="ok_string">ठीक है</string>
+    <string name="restart_alert">पुनः आरंभ करें</string>
+    <string name="restart_alert_string">एप्लिकेशन को भाषा परिवर्तन के लिए पुनः आरंभ करने की जरूरत है। पुनः आरंभ करने के लिए ठीक क्लिक करें !</string>
+    <string name="wrong_cred_toast">उपयोगकर्ता नाम या पासवर्ड गलत है। कृपया पुन: प्रयास करें।</string>
+    <string name="all_fields_toast">सभी क्षेत्रों के लिए आवश्यक हैं ।</string>
     <string name="register_button">रजिस्टर</string>
     <string name="incomplete_string">अधूरी</string>
     <string name="add_notes_button">नोट जोड़े</string>
@@ -55,6 +64,9 @@
     <string name="image_dialog_box_gallery">गेलरी</string>
     <string name="image_dialog_box_cancel">रद्द करें</string>
     <string name="loading_text">लोडिंग</string>
+    <string name="last_name_toast">अंतिम नाम रिक्त नहीं हो सकता</string>
+    <string name="first_name_toast">पहला नाम रिक्त नहीं हो सकता</string>
+    <string name="dob_toast">जन्म तिथि को खाली नहीं किया जा सकता</string>
     <string-array name="gender">
         <item>स्त्री</item>
         <item>पुरुष</item>
