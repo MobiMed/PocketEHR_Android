@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -25,16 +27,68 @@ import java.util.ArrayList;
  */
 public class PatientListActivity extends Activity {
     private static String TAG = "PatientListActivity";
+    private final String DATE_ORDER = "createdAt";
+    private final String ALPHA_ORDER = "lastName";
+    private final int ALPHA_AZ = 3;
+    private final int ALPHA_ZA = 1;
+    private final int DATE = 2;
     final Context context = this;
     ArrayList<ParseObject> patients;
     private int preLast;
+    private Menu menu = null;
+    private int currentType = DATE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patientlist);
+        loadView(currentType);
+    }
 
-        final MyCustomAdapter patientViewAdapter = new MyCustomAdapter(this);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.patient_list, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up login_button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_alpha_za_order && currentType != R.id.action_alpha_za_order) {
+            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            MenuItem item1 = menu.findItem(R.id.action_date_order);
+            MenuItem item2 = menu.findItem(R.id.action_alpha_az_order);
+            item1.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+            item2.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+            loadView(ALPHA_ZA);
+            currentType = R.id.action_alpha_za_order;
+        } else if (id == R.id.action_date_order && currentType != R.id.action_date_order) {
+            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            MenuItem item1 = menu.findItem(R.id.action_alpha_az_order);
+            MenuItem item2 = menu.findItem(R.id.action_alpha_za_order);
+            item1.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+            item2.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+            loadView(DATE);
+            currentType = R.id.action_date_order;
+        } else if (id == R.id.action_alpha_az_order && currentType != R.id.action_alpha_az_order) {
+            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            MenuItem item1 = menu.findItem(R.id.action_alpha_za_order);
+            MenuItem item2 = menu.findItem(R.id.action_date_order);
+            item1.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+            item2.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+            loadView(ALPHA_AZ);
+            currentType = R.id.action_alpha_az_order;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void loadView(int type) {
+        final MyCustomAdapter patientViewAdapter = new MyCustomAdapter(this, type);
         final ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(patientViewAdapter);
         patientViewAdapter.loadObjects();

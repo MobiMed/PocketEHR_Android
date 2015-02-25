@@ -17,11 +17,17 @@ public class MyCustomAdapter extends ParseQueryAdapter<ParseObject> {
     private static String ADAPTER = "CustomAdapter";
     private Context activity_context;
 
-    public MyCustomAdapter(final Context context) {
+    public MyCustomAdapter(final Context context, final int type) {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
                 ParseQuery query = new ParseQuery("Patient");
-                query.orderByDescending("createdAt");
+                if (type == 1) {
+                    query.orderByDescending("lastName");
+                } else if (type == 2) {
+                    query.orderByDescending("createdAt");
+                } else {
+                    query.orderByAscending("lastName");
+                }
                 return query;
             }
         });

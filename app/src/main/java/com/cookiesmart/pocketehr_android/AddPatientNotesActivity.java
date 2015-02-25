@@ -24,7 +24,7 @@ public class AddPatientNotesActivity extends Activity {
 
     public void saveAndNext(View v) {
 
-        LinearLayout notesLayout = (LinearLayout) v.getParent();
+        LinearLayout notesLayout = (LinearLayout) v.getParent().getParent();
         p.setNotes(((EditText) notesLayout.findViewById(R.id.patient_notes_input)).getText().toString());
 
         Intent intent = new Intent(this, AddPatientBodyActivity.class);

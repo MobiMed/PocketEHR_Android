@@ -26,6 +26,9 @@
     <string name="dob_label">DOB</string>
     <string name="occupation_input">व्यवसाय</string>
     <string name="action_settings">सेटिंग्स</string>
+    <string name="action_alpha_za_order">Z-A</string>
+    <string name="action_date_order">दिनांक</string>
+    <string name="action_alpha_az_order">A-Z</string>
     <string name="action_about">बारे में</string>
     <string name="username_input">यूजर का नाम</string>
     <string name="password_input">पासवर्ड</string>

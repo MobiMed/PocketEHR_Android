@@ -69,7 +69,7 @@ public class ChangeStatusActivity extends Activity implements AdapterView.OnItem
     }
 
     public void sendStatus(View view) {
-        LinearLayout main_layout = (LinearLayout) view.getParent();
+        LinearLayout main_layout = (LinearLayout) view.getParent().getParent();
         String notes = ((EditText) main_layout.findViewById(R.id.patient_notes_input)).getText().toString();
         if (!notes.trim().equalsIgnoreCase("")) {
             saveNotes(notes);
