@@ -1,6 +1,7 @@
 package com.cookiesmart.pocketehr_android;
 
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.parse.ParseObject;
@@ -33,7 +35,7 @@ public class PatientListActivity extends Activity {
     private final int ALPHA_ZA = 1;
     private final int DATE = 2;
     final Context context = this;
-    ArrayList<ParseObject> patients;
+    //    private ArrayList<ParseObject> patients;
     private int preLast;
     private Menu menu = null;
     private int currentType = DATE;
@@ -42,7 +44,22 @@ public class PatientListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patientlist);
-        loadView(currentType);
+        Intent intent = getIntent();
+        int type = intent.getIntExtra("type", 0);
+        switch (type) {
+            case ALPHA_AZ:
+                currentType = R.id.action_alpha_az_order;
+                break;
+            case ALPHA_ZA:
+                currentType = R.id.action_alpha_za_order;
+                break;
+            case DATE:
+                currentType = R.id.action_date_order;
+                break;
+            default:
+                Log.i(TAG, "Wrong choices");
+        }
+        loadView(type);
     }
 
     @Override
@@ -50,8 +67,42 @@ public class PatientListActivity extends Activity {
         this.menu = menu;
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.patient_list, menu);
+
+        MenuItem date = menu.findItem(R.id.action_date_order);
+        MenuItem az = menu.findItem(R.id.action_alpha_az_order);
+        MenuItem za = menu.findItem(R.id.action_alpha_za_order);
+
+        switch (currentType) {
+            case R.id.action_alpha_za_order:
+                date.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+                az.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+                za.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+                break;
+            case R.id.action_alpha_az_order:
+                date.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+                za.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+                az.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+                break;
+            case R.id.action_date_order:
+                az.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+                za.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+                date.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+                break;
+            default:
+                Log.i(TAG, "Wrong current type");
+        }
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -60,37 +111,34 @@ public class PatientListActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_alpha_za_order && currentType != R.id.action_alpha_za_order) {
-            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-            MenuItem item1 = menu.findItem(R.id.action_date_order);
-            MenuItem item2 = menu.findItem(R.id.action_alpha_az_order);
-            item1.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-            item2.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-            loadView(ALPHA_ZA);
-            currentType = R.id.action_alpha_za_order;
+            Intent intent = new Intent(this, PatientListActivity.class);
+            intent.putExtra("type", ALPHA_ZA);
+            finish();
+            startActivity(intent);
         } else if (id == R.id.action_date_order && currentType != R.id.action_date_order) {
-            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-            MenuItem item1 = menu.findItem(R.id.action_alpha_az_order);
-            MenuItem item2 = menu.findItem(R.id.action_alpha_za_order);
-            item1.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-            item2.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-            loadView(DATE);
-            currentType = R.id.action_date_order;
+            Intent intent = new Intent(this, PatientListActivity.class);
+            intent.putExtra("type", DATE);
+            finish();
+            startActivity(intent);
         } else if (id == R.id.action_alpha_az_order && currentType != R.id.action_alpha_az_order) {
-            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-            MenuItem item1 = menu.findItem(R.id.action_alpha_za_order);
-            MenuItem item2 = menu.findItem(R.id.action_date_order);
-            item1.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-            item2.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-            loadView(ALPHA_AZ);
-            currentType = R.id.action_alpha_az_order;
+            Intent intent = new Intent(this, PatientListActivity.class);
+            intent.putExtra("type", ALPHA_AZ);
+            finish();
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
 
     public void loadView(int type) {
-        final MyCustomAdapter patientViewAdapter = new MyCustomAdapter(this, type);
+        final MyCustomAdapter patientViewAdapter = new MyCustomAdapter(this, type, "");
         final ListView listView = (ListView) findViewById(R.id.listView);
+        if (patientViewAdapter.isEmpty()) {
+            Log.i(TAG, "No items to show");
+        }
+
         listView.setAdapter(patientViewAdapter);
+        patientViewAdapter.notifyDataSetInvalidated();
+        patientViewAdapter.notifyDataSetChanged();
         patientViewAdapter.loadObjects();
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -111,7 +159,6 @@ public class PatientListActivity extends Activity {
             }
         });
 
-        patients = new ArrayList<ParseObject>();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

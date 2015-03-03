@@ -5,6 +5,9 @@
     <string name="home_patient_text">रोगी</string>
     <string name="patient_patient_text">रोगी</string>
     <string name="home_add_patient_text">रोगी जोड़ें</string>
+    <string name="home_add_admin_text">व्यवस्थापक जोड़ें</string>
+    <string name="home_add_doctor_text">डॉक्टर जोड़ें</string>
+    <string name="home_edit_hospital_text">संपादित अस्पताल़ें</string>
     <string name="last_name_input">उपनाम</string>
     <string name="first_name_input">पहला नाम</string>
     <string name="hospital_input">अस्पताल संख्या</string>
@@ -26,10 +29,12 @@
     <string name="dob_label">DOB</string>
     <string name="occupation_input">व्यवसाय</string>
     <string name="action_settings">सेटिंग्स</string>
+    <string name="action_search">सर्च</string>
     <string name="action_alpha_za_order">Z-A</string>
     <string name="action_date_order">दिनांक</string>
     <string name="action_alpha_az_order">A-Z</string>
     <string name="action_about">बारे में</string>
+    <string name="search_hint">खोज करने के लिए रोगी का नाम दर्ज</string>
     <string name="username_input">यूजर का नाम</string>
     <string name="password_input">पासवर्ड</string>
     <string name="login_button">लॉग इन करें</string>
@@ -46,6 +51,7 @@
     <string name="incomplete_string">अधूरी</string>
     <string name="add_notes_button">नोट जोड़े</string>
     <string name="add_picture_button">चित्र जोड़ें</string>
+    <string name="view_patient_button">प्रोफ़ाइल देखें</string>
     <string name="background">#d3d3d3</string>
     <string name="english_locale">en</string>
     <string name="hindi_locale">hi</string>
@@ -58,8 +64,8 @@
     <string name="server_negative_status">kDiagnosedNegative</string>
     <string name="server_incomplete_status">kIncomplete</string>
     <string name="server_deceased_status">kDeceased</string>
-    <string name="server_sex_male">Male</string>
-    <string name="server_sex_female">Female</string>
+    <string name="server_sex_male">kMale</string>
+    <string name="server_sex_female">kFemale</string>
     <string name="server_file_type">kGross</string>
     <string name="server_activity_imageAddedType">kImageAdded</string>
     <string name="image_dialog_box">सोर्स चुनें</string>

@@ -7,6 +7,7 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,25 +18,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
  * Created by aditya841 on 12/1/2014.
  */
 public class AddPatientHistoryActivity extends Activity implements AdapterView.OnItemSelectedListener {
-    private static final String ADDPATIENT = "AddPatientHistoryActivity";
+    private static final String TAG = "AddPatientHistoryActivity";
     private static boolean flag = false;
     private static LinearLayout patientHistory;
     private static LinearLayout dobandage;
-    Patient p = null;
+    private ArrayList<String> bodyParts;
+    private Patient p = null;
+    private String action = "";
     Context context = this;
-
-    public static void setAge(int age) {
-        TextView ageField = (TextView) dobandage.findViewById(R.id.age_input);
-        ageField.setText(age + "");
-        ageField.setFocusable(false);
-        flag = true;
-    }
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,18 +44,33 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
 
         Intent intent = getIntent();
         p = intent.getParcelableExtra("Patient");
+        action = intent.getStringExtra("action");
 
-        Spinner spinner = (Spinner) findViewById(R.id.gender_spinner);
-// Create an ArrayAdapter using the string array and a default spinner layout
+        spinner = (Spinner) findViewById(R.id.gender_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.gender, R.layout.spinner_item);
-// Specify the layout to use when the list of choices appears
+        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
+        // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-        spinner.setSelection(0);
+
+        if (action.equals("view")) {
+            setView();
+            bodyParts = intent.getStringArrayListExtra("bodyParts");
+        } else {
+            spinner.setSelection(0);
+        }
     }
+
+    public static void setAge(int age) {
+        TextView ageField = (TextView) dobandage.findViewById(R.id.age_input);
+        ageField.setText(age + "");
+        ageField.setFocusable(false);
+        flag = true;
+    }
+
 
     public void saveAndNext(View v) {
         String ageString = ((TextView) dobandage.findViewById(R.id.age_input)).getText().toString();
@@ -72,9 +85,18 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
             p.setAge(Integer.parseInt(ageString));
         }
 
-        Intent intent = new Intent(this, AddPatientNotesActivity.class);
-        intent.putExtra("Patient", p);
-        startActivity(intent);
+        if (action.equals("view")) {
+            Intent intent = new Intent(this, AddPatientBodyActivity.class);
+            p.setNotes("");
+            intent.putExtra("Patient", p);
+            intent.putExtra("action", action);
+            intent.putStringArrayListExtra("bodyParts", bodyParts);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, AddPatientNotesActivity.class);
+            intent.putExtra("Patient", p);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -89,6 +111,23 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
     public void showDatePicker(View v) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getFragmentManager(), "datePicker");
+    }
+
+    private void setView() {
+        Spinner spinner = (Spinner) findViewById(R.id.gender_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+
+        Log.i(TAG, p.getGender());
+        if (p.getGender().equals(getString(R.string.female_gender))) {
+            spinner.setSelection(0);
+        } else if (p.getGender().equals(getString(R.string.male_gender))) {
+            spinner.setSelection(1);
+        }
+
+        EditText dobField = ((EditText) dobandage.findViewById(R.id.dob_input));
+        dobField.setText(p.getDob());
+
+        setAge(p.getAge());
     }
 
     public static class DatePickerFragment extends DialogFragment

@@ -10,8 +10,9 @@ import android.view.View;
 
 
 public class MainActivity extends Activity {
-    private static final String MAIN = "MainActivity";
+    private static final String TAG = "MainActivity";
     public static String USEROBJECTID = "";
+    private final int DATE = 2;
     Context context = this;
 
     @Override
@@ -53,11 +54,13 @@ public class MainActivity extends Activity {
 
     public void showPatientList(View v) {
         Intent intent = new Intent(this, PatientListActivity.class);
+        intent.putExtra("type", DATE);
         startActivity(intent);
     }
 
     public void addPatient(View v) {
         Intent intent = new Intent(this, AddPatientContactActivity.class);
+        intent.putExtra("action", "add");
         startActivity(intent);
     }
 

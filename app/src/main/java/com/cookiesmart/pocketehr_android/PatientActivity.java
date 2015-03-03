@@ -38,6 +38,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,11 +52,13 @@ public class PatientActivity extends Activity {
     private static final int ADD_NOTE = 2;
     private static final int SELECT_PICTURE = 3;
     private static final int TAKE_PICTURE = 4;
-    private static String PATIENT = "PatientActivity";
+    private static String TAG = "PatientActivity";
     Context context = this;
+    private Patient patient;
     final int THUMBNAIL_SIZE = 250;
     private String status = "";
     private String view_tag = "";
+    private ArrayList<String> bodyParts;
     private LinearLayout main_view = null;
     ProgressDialog progressDialog;
     Bitmap thumbnail;
@@ -69,6 +73,7 @@ public class PatientActivity extends Activity {
         main_view = (LinearLayout) findViewById(R.id.patient_main_layout);
         progressDialog = ProgressDialog.show(this, getString(R.string.loading_text), "", true);
         getPatientDetails();
+        patient = new Patient();
     }
 
 
@@ -121,6 +126,14 @@ public class PatientActivity extends Activity {
             }
         });
         builder.show();
+    }
+
+    public void viewPatientProfile(View view) {
+        Intent intent = new Intent(this, AddPatientContactActivity.class);
+        intent.putExtra("Patient", patient);
+        intent.putExtra("action", "view");
+        intent.putStringArrayListExtra("bodyParts", bodyParts);
+        startActivity(intent);
     }
 
     @Override
@@ -318,9 +331,15 @@ public class PatientActivity extends Activity {
     private void loadView(ParseObject patient_object) {
         TextView firstName = (TextView) findViewById(R.id.first_name);
         firstName.setText(patient_object.getString("firstName"));
+        patient.setFirstName(patient_object.getString("firstName"));
 
         TextView lastName = (TextView) findViewById(R.id.last_name);
         lastName.setText(patient_object.getString("lastName"));
+        patient.setLastName(patient_object.getString("lastName"));
+
+        patient.setHospital(patient_object.getString("hospital"));
+        patient.setPatientIDNumber(patient_object.getString("patientIDNumber"));
+        patient.setContactNo(patient_object.getString("contactNo"));
 
         TextView status_field = (TextView) findViewById(R.id.status_patient_screen);
         status = patient_object.getString("status");
@@ -348,6 +367,36 @@ public class PatientActivity extends Activity {
 
         TextView sex = (TextView) findViewById(R.id.patient_gender);
         String gender = patient_object.getString("sex");
+        if (gender.equals(getString(R.string.server_sex_male))) {
+            patient.setGender(getString(R.string.male_gender));
+        } else if (gender.equals(getString(R.string.server_sex_female))) {
+            patient.setGender(getString(R.string.female_gender));
+        }
+
+
+        if (patient_object.getDate("dob") == null) {
+            patient.setDob("");
+        } else {
+            Date newDate = patient_object.getDate("dob");
+            Calendar c = Calendar.getInstance();
+            c.setTime(newDate);
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            month = month + 1;
+            String monthString = month + "";
+            String dayString = day + "";
+            if (month < 10) {
+                monthString = "0" + month;
+            }
+            if (day < 10) {
+                dayString = "0" + day;
+            }
+            patient.setDob(monthString + "-" + dayString + "-" + year);
+        }
+
+        patient.setAge(patient_object.getInt("age"));
 
         loadPatientBodyMap(patient_object, sex, gender);
 
@@ -357,7 +406,8 @@ public class PatientActivity extends Activity {
     private void loadPatientBodyMap(ParseObject patient_object, TextView sex, String gender) {
         ImageView body_parts = (ImageView) findViewById(R.id.body_part_image);
         JSONArray bodyPartsArray = patient_object.getJSONArray("locations");
-        ArrayList<String> bodyParts = new ArrayList<String>();
+
+        bodyParts = new ArrayList<String>();
         if (bodyPartsArray != null) {
             for (int i = 0; i < bodyPartsArray.length(); i++) {
                 try {
@@ -495,12 +545,11 @@ public class PatientActivity extends Activity {
                 if (e == null) {
                     parseActivities(notesList);
                 } else {
-                    Log.d(PATIENT, "Error: " + e.getMessage());
+                    Log.d(TAG, "Error: " + e.getMessage());
                     parseActivities(new ArrayList<ParseObject>());
                 }
             }
         });
-        return;
     }
 
     private void showThumbnail(ParseObject activity) throws ParseException {

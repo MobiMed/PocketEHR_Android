@@ -49,6 +49,20 @@ public class Patient implements Parcelable {
         return 0;
     }
 
+//    Patient() {
+//        firstName = "";
+//        lastName = "";
+//        contactNo = "";
+//        gender = "";
+//        email = "";
+//        dob = "";
+//        notes = "";
+//        hospital = "";
+//        patientIDNumber = "";
+//        age = -1;
+//        status = "kIncomplete";
+//    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(firstName);
