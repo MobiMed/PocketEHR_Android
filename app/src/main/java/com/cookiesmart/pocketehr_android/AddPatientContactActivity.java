@@ -15,6 +15,7 @@ import java.util.ArrayList;
  */
 public class AddPatientContactActivity extends Activity {
 
+    private static String objectId;
     private Patient p = null;
     private String action = "";
     private ArrayList<String> bodyParts;
@@ -28,8 +29,11 @@ public class AddPatientContactActivity extends Activity {
 
         if (action.equals("view")) {
             p = intent.getParcelableExtra("Patient");
+            objectId = intent.getStringExtra("objectId");
             bodyParts = intent.getStringArrayListExtra("bodyParts");
             setView();
+        } else {
+            p = new Patient();
         }
     }
 
@@ -53,6 +57,7 @@ public class AddPatientContactActivity extends Activity {
         Intent intent = new Intent(this, AddPatientHistoryActivity.class);
         intent.putExtra("Patient", p);
         intent.putExtra("action", action);
+        intent.putExtra("objectId", objectId);
         if (action.equals("view")) {
             intent.putStringArrayListExtra("bodyParts", bodyParts);
         }

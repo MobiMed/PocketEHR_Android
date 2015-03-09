@@ -6,16 +6,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -54,6 +52,7 @@ public class PatientActivity extends Activity {
     private static final int TAKE_PICTURE = 4;
     private static String TAG = "PatientActivity";
     Context context = this;
+    private ParseObject patient_object;
     private Patient patient;
     final int THUMBNAIL_SIZE = 250;
     private String status = "";
@@ -61,7 +60,13 @@ public class PatientActivity extends Activity {
     private ArrayList<String> bodyParts;
     private LinearLayout main_view = null;
     ProgressDialog progressDialog;
+    private ImageView body_parts;
     Bitmap thumbnail;
+    private float initialX;
+    private String currentPic = "front";
+    private String gender;
+    private TextView sex;
+    private BodyMapLoaderTask bmlt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +76,12 @@ public class PatientActivity extends Activity {
         objectId = intent.getStringExtra("objectId");
         view_tag = intent.getStringExtra("view_tag");
         main_view = (LinearLayout) findViewById(R.id.patient_main_layout);
+        body_parts = (ImageView) findViewById(R.id.body_part_image);
+        addImageListener();
         progressDialog = ProgressDialog.show(this, getString(R.string.loading_text), "", true);
         getPatientDetails();
         patient = new Patient();
     }
-
 
     public void changeStatusActivity(View view) {
         Intent intent = new Intent(this, ChangeStatusActivity.class);
@@ -130,9 +136,11 @@ public class PatientActivity extends Activity {
 
     public void viewPatientProfile(View view) {
         Intent intent = new Intent(this, AddPatientContactActivity.class);
+        intent.putExtra("objectId", objectId);
         intent.putExtra("Patient", patient);
         intent.putExtra("action", "view");
         intent.putStringArrayListExtra("bodyParts", bodyParts);
+        finish();
         startActivity(intent);
     }
 
@@ -323,12 +331,13 @@ public class PatientActivity extends Activity {
         user_query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> parseObjects, ParseException e) {
-                loadView(parseObjects.get(0));
+                patient_object = parseObjects.get(0);
+                loadView();
             }
         });
     }
 
-    private void loadView(ParseObject patient_object) {
+    private void loadView() {
         TextView firstName = (TextView) findViewById(R.id.first_name);
         firstName.setText(patient_object.getString("firstName"));
         patient.setFirstName(patient_object.getString("firstName"));
@@ -365,14 +374,13 @@ public class PatientActivity extends Activity {
         TextView telepathologyID = (TextView) findViewById(R.id.telepathologyID);
         telepathologyID.setText(patient_object.getString("telepathologyID"));
 
-        TextView sex = (TextView) findViewById(R.id.patient_gender);
-        String gender = patient_object.getString("sex");
+        sex = (TextView) findViewById(R.id.patient_gender);
+        gender = patient_object.getString("sex");
         if (gender.equals(getString(R.string.server_sex_male))) {
             patient.setGender(getString(R.string.male_gender));
         } else if (gender.equals(getString(R.string.server_sex_female))) {
             patient.setGender(getString(R.string.female_gender));
         }
-
 
         if (patient_object.getDate("dob") == null) {
             patient.setDob("");
@@ -398,13 +406,11 @@ public class PatientActivity extends Activity {
 
         patient.setAge(patient_object.getInt("age"));
 
-        loadPatientBodyMap(patient_object, sex, gender);
-
+        loadPatientBodyMap();
         fetchActivities();
     }
 
-    private void loadPatientBodyMap(ParseObject patient_object, TextView sex, String gender) {
-        ImageView body_parts = (ImageView) findViewById(R.id.body_part_image);
+    private void loadPatientBodyMap() {
         JSONArray bodyPartsArray = patient_object.getJSONArray("locations");
 
         bodyParts = new ArrayList<String>();
@@ -417,100 +423,9 @@ public class PatientActivity extends Activity {
                 }
             }
         }
-        Drawable[] layers = new Drawable[bodyParts.size() + 1];
-        Resources r = getResources();
-        if (gender.contains(getString(R.string.server_sex_female))) {
-            layers[0] = r.getDrawable(R.drawable.female_body_parts);
-            if (bodyParts.size() == 0) {
-                //do nothing
-            } else {
-                int i = 1;
-                while (i <= bodyParts.size()) {
-                    String bodyPart = bodyParts.get(i - 1);
-                    if (bodyPart.equals("head")) {
-                        layers[i] = r.getDrawable(R.drawable.female_head);
-                    } else if (bodyPart.equals("throat")) {
-                        layers[i] = r.getDrawable(R.drawable.female_throat);
-                    } else if (bodyPart.equals("upperArmLeft")) {
-                        layers[i] = r.getDrawable(R.drawable.female_upper_arm_left);
-                    } else if (bodyPart.equals("chestLeft")) {
-                        layers[i] = r.getDrawable(R.drawable.female_chest_left);
-                    } else if (bodyPart.equals("chestRight")) {
-                        layers[i] = r.getDrawable(R.drawable.female_chest_right);
-                    } else if (bodyPart.equals("upperArmRight")) {
-                        layers[i] = r.getDrawable(R.drawable.female_upper_arm_right);
-                    } else if (bodyPart.equals("abdomen")) {
-                        layers[i] = r.getDrawable(R.drawable.female_abdomen);
-                    } else if (bodyPart.equals("groin")) {
-                        layers[i] = r.getDrawable(R.drawable.female_groin);
-                    } else if (bodyPart.equals("upperLegLeft")) {
-                        layers[i] = r.getDrawable(R.drawable.female_upper_leg_left);
-                    } else if (bodyPart.equals("upperLegLeft")) {
-                        layers[i] = r.getDrawable(R.drawable.female_upper_leg_left);
-                    } else if (bodyPart.equals("upperLegRight")) {
-                        layers[i] = r.getDrawable(R.drawable.female_upper_leg_right);
-                    } else if (bodyPart.equals("lowerLegLeft")) {
-                        layers[i] = r.getDrawable(R.drawable.female_lower_leg_left);
-                    } else if (bodyPart.equals("lowerLegRight")) {
-                        layers[i] = r.getDrawable(R.drawable.female_lower_leg_right);
-                    } else if (bodyPart.equals("lowerArmLeft")) {
-                        layers[i] = r.getDrawable(R.drawable.female_lower_arm_left);
-                    } else if (bodyPart.equals("lowerArmRight")) {
-                        layers[i] = r.getDrawable(R.drawable.female_lower_arm_right);
-                    }
-                    i++;
-                }
-            }
-            LayerDrawable layerDrawable = new LayerDrawable(layers);
-            body_parts.setImageDrawable(layerDrawable);
-            sex.setText(getString(R.string.female_gender));
-        } else {
-            layers[0] = r.getDrawable(R.drawable.male_body_parts);
-            if (bodyParts.size() == 0) {
-                //do nothing
-            } else {
-                int i = 1;
-                while (i <= bodyParts.size()) {
-                    String bodyPart = bodyParts.get(i - 1);
-                    System.out.println(bodyPart);
-                    if (bodyPart.equals("head")) {
-                        layers[i] = r.getDrawable(R.drawable.male_head);
-                    } else if (bodyPart.equals("throat")) {
-                        layers[i] = r.getDrawable(R.drawable.male_throat);
-                    } else if (bodyPart.equals("upperArmLeft")) {
-                        layers[i] = r.getDrawable(R.drawable.male_upper_arm_left);
-                    } else if (bodyPart.equals("chestLeft")) {
-                        layers[i] = r.getDrawable(R.drawable.male_chest_left);
-                    } else if (bodyPart.equals("chestRight")) {
-                        layers[i] = r.getDrawable(R.drawable.male_chest_right);
-                    } else if (bodyPart.equals("upperArmRight")) {
-                        layers[i] = r.getDrawable(R.drawable.male_upper_arm_right);
-                    } else if (bodyPart.equals("abdomen")) {
-                        layers[i] = r.getDrawable(R.drawable.male_abdomen);
-                    } else if (bodyPart.equals("groin")) {
-                        layers[i] = r.getDrawable(R.drawable.male_groin);
-                    } else if (bodyPart.equals("upperLegLeft")) {
-                        layers[i] = r.getDrawable(R.drawable.male_upper_leg_left);
-                    } else if (bodyPart.equals("upperLegLeft")) {
-                        layers[i] = r.getDrawable(R.drawable.male_upper_leg_left);
-                    } else if (bodyPart.equals("upperLegRight")) {
-                        layers[i] = r.getDrawable(R.drawable.male_upper_leg_right);
-                    } else if (bodyPart.equals("lowerLegLeft")) {
-                        layers[i] = r.getDrawable(R.drawable.male_lower_leg_left);
-                    } else if (bodyPart.equals("lowerLegRight")) {
-                        layers[i] = r.getDrawable(R.drawable.male_lower_leg_right);
-                    } else if (bodyPart.equals("lowerArmLeft")) {
-                        layers[i] = r.getDrawable(R.drawable.male_lower_arm_left);
-                    } else if (bodyPart.equals("lowerArmRight")) {
-                        layers[i] = r.getDrawable(R.drawable.male_lower_arm_right);
-                    }
-                    i++;
-                }
-            }
-            LayerDrawable layerDrawable = new LayerDrawable(layers);
-            body_parts.setImageDrawable(layerDrawable);
-            sex.setText(getString(R.string.male_gender));
-        }
+
+        bmlt = new BodyMapLoaderTask(body_parts, this, bodyParts, gender, sex, progressDialog);
+        bmlt.execute("front");
     }
 
     private boolean uploadPhoto(ParseFile image_file, ParseFile thumbnail_file) {
@@ -553,7 +468,7 @@ public class PatientActivity extends Activity {
     }
 
     private void showThumbnail(ParseObject activity) throws ParseException {
-        final LinearLayout activity_layout = (LinearLayout) findViewById(R.id.activity_view);
+        LinearLayout activity_layout = (LinearLayout) findViewById(R.id.activity_view);
         final ImageView imageView = new ImageView(context);
         imageView.setTag(activity.getParseObject("photo").getObjectId());
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -582,10 +497,9 @@ public class PatientActivity extends Activity {
     }
 
     private void parseActivities(List<ParseObject> activity_list) {
-        final LinearLayout main_section = (LinearLayout) findViewById(R.id.activity_view);
+        LinearLayout main_section = (LinearLayout) findViewById(R.id.activity_view);
         for (ParseObject activity : activity_list) {
             String activity_type = activity.getString("type");
-            System.out.println(activity_type);
             if (activity_type.equalsIgnoreCase(getString(R.string.server_activity_imageAddedType))) {
                 try {
                     showThumbnail(activity);
@@ -619,5 +533,33 @@ public class PatientActivity extends Activity {
         setResult(RESULT_OK, intent);
         finish();
         super.onBackPressed();
+    }
+
+    private void addImageListener() {
+        body_parts.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        initialX = event.getX();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        float finalX = event.getX();
+                        if (initialX > finalX || initialX < finalX) {
+                            if (currentPic.equalsIgnoreCase("front")) {
+                                currentPic = "back";
+                                bmlt = new BodyMapLoaderTask(body_parts, context, bodyParts, gender, sex, progressDialog);
+                                Log.i(TAG, "Showing back body now");
+                                bmlt.execute("back");
+                            } else {
+                                currentPic = "front";
+                                bmlt = new BodyMapLoaderTask(body_parts, context, bodyParts, gender, sex, progressDialog);
+                                bmlt.execute("front");
+                            }
+                        }
+                }
+                return true;
+            }
+        });
     }
 }

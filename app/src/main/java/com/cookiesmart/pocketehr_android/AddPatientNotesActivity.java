@@ -29,6 +29,7 @@ public class AddPatientNotesActivity extends Activity {
 
         Intent intent = new Intent(this, AddPatientBodyActivity.class);
         intent.putExtra("Patient", p);
+        intent.putExtra("action", "add");
         startActivity(intent);
     }
 }

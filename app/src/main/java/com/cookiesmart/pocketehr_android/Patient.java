@@ -17,6 +17,7 @@ public class Patient implements Parcelable {
     private String hospital = "";
     private String patientIDNumber = "";
     private int age = -1;
+
     private String status = "kIncomplete";
     public static final Parcelable.Creator<Patient> CREATOR
             = new Parcelable.Creator<Patient>() {

@@ -29,6 +29,7 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
     private static boolean flag = false;
     private static LinearLayout patientHistory;
     private static LinearLayout dobandage;
+    private static String objectId;
     private ArrayList<String> bodyParts;
     private Patient p = null;
     private String action = "";
@@ -59,6 +60,7 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
         if (action.equals("view")) {
             setView();
             bodyParts = intent.getStringArrayListExtra("bodyParts");
+            objectId = intent.getStringExtra("objectId");
         } else {
             spinner.setSelection(0);
         }
@@ -88,6 +90,7 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
         if (action.equals("view")) {
             Intent intent = new Intent(this, AddPatientBodyActivity.class);
             p.setNotes("");
+            intent.putExtra("objectId", objectId);
             intent.putExtra("Patient", p);
             intent.putExtra("action", action);
             intent.putStringArrayListExtra("bodyParts", bodyParts);
