@@ -17,6 +17,7 @@
     <string name="address_input">Address</string>
     <string name="email_input">Email</string>
     <string name="submit_button">Submit</string>
+    <string name="change_side_button">Reverse</string>
     <string name="negative_status">NEGATIVE</string>
     <string name="positive_status">POSITIVE</string>
     <string name="incomplete_status">INCOMPLETE</string>
@@ -24,6 +25,7 @@
     <string name="male_gender">Male</string>
     <string name="female_gender">Female</string>
     <string name="next_button">Next</string>
+    <string name="cancel_button">Cancel</string>
     <string name="gender_input">Sex</string>
     <string name="dob_input">MM/DD/YYYY</string>
     <string name="age_label">Age</string>

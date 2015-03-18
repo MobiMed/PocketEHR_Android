@@ -1,7 +1,9 @@
 package com.cookiesmart.pocketehr_android;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -33,6 +35,10 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Intent intent = getIntent();
+        if (intent.hasExtra("Alert")) {
+            showAlert();
+        }
 
         final EditText password_input = (EditText) findViewById(R.id.password_input);
 
@@ -116,39 +122,31 @@ public class LoginActivity extends Activity {
         }
     }
 
-//    public void patientRegister(View view) {
-//        Button register_button = (Button) view;
-//
-//        final EditText tppid_input = (EditText) findViewById(R.id.tppid_input);
-//
-//        if (register_button.getTag() == "1") {
-//            tppid_input.setVisibility(View.VISIBLE);
-//            register_button.setTag("2");
-//        } else {
-//            Log.i(LOGIN, "onclickset");
-//            final String username = ((EditText) findViewById(R.id.username_input)).getText().toString();
-//            final String password = ((EditText) findViewById(R.id.password_input)).getText().toString();
-//            String email = tppid_input.getText().toString();
-//            if (username.trim().equals("") || password.trim().equals("") || email.trim().equals("")) {
-//                Toast.makeText(context, "All fields are necessary.", Toast.LENGTH_LONG).show();
-//                return;
-//            }
-//            ParseUser user = new ParseUser();
-//            user.setUsername(username);
-//            user.setPassword(password);
-//            user.setEmail(email);
-//
-//            user.signUpInBackground(new SignUpCallback() {
-//                public void done(ParseException e) {
-//                    if (e == null) {
-//                        loginAfterRegister(username, password);
-//                    } else {
-//                        Toast.makeText(context, e.getMessage() + "Try again.", Toast.LENGTH_LONG).show();
-//                    }
-//                }
-//            });
-//        }
-//    }
+    public void showAlert() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                context);
+
+        // set title
+        alertDialogBuilder.setTitle(getString(R.string.network_alert));
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage(getString(R.string.network_alert_string))
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.ok_string), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // if this login_button is clicked, close
+                        // current activity
+                        LoginActivity.this.finish();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
 
     public void loginAfterRegister(String username, String password) {
         ParseUser.logInInBackground(username, password, new LogInCallback() {

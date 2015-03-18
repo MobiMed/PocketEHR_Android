@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ public class AddPatientContactActivity extends Activity {
     private Patient p = null;
     private String action = "";
     private ArrayList<String> bodyParts;
+    private ArrayList<String> backBodyParts;
+    private final int ADD_HISTORY = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +31,21 @@ public class AddPatientContactActivity extends Activity {
         action = intent.getStringExtra("action");
 
         if (action.equals("view")) {
+            RelativeLayout contact_view_layout = (RelativeLayout) findViewById(R.id.cancel_button_Layout);
+            contact_view_layout.setVisibility(View.VISIBLE);
             p = intent.getParcelableExtra("Patient");
             objectId = intent.getStringExtra("objectId");
             bodyParts = intent.getStringArrayListExtra("bodyParts");
+            backBodyParts = intent.getStringArrayListExtra("backBodyParts");
             setView();
         } else {
             p = new Patient();
         }
+    }
+
+    public void closeProfileView(View v) {
+        setResult(RESULT_OK);
+        finish();
     }
 
     public void saveAndNext(View v) {
@@ -60,8 +71,20 @@ public class AddPatientContactActivity extends Activity {
         intent.putExtra("objectId", objectId);
         if (action.equals("view")) {
             intent.putStringArrayListExtra("bodyParts", bodyParts);
+            intent.putStringArrayListExtra("backBodyParts", backBodyParts);
+            startActivityForResult(intent, ADD_HISTORY);
+        } else {
+            startActivity(intent);
         }
-        startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            setResult(RESULT_OK);
+            finish();
+        }
     }
 
     private void setView() {

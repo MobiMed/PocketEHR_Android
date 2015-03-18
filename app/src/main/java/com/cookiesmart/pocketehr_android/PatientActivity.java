@@ -58,15 +58,15 @@ public class PatientActivity extends Activity {
     private String status = "";
     private String view_tag = "";
     private ArrayList<String> bodyParts;
+    private ArrayList<String> backBodyParts;
     private LinearLayout main_view = null;
     ProgressDialog progressDialog;
-    private ImageView body_parts;
     Bitmap thumbnail;
     private float initialX;
-    private String currentPic = "front";
+    private String currentPic;
+    private final int VIEW_PROFILE = 5;
     private String gender;
     private TextView sex;
-    private BodyMapLoaderTask bmlt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,6 @@ public class PatientActivity extends Activity {
         objectId = intent.getStringExtra("objectId");
         view_tag = intent.getStringExtra("view_tag");
         main_view = (LinearLayout) findViewById(R.id.patient_main_layout);
-        body_parts = (ImageView) findViewById(R.id.body_part_image);
         addImageListener();
         progressDialog = ProgressDialog.show(this, getString(R.string.loading_text), "", true);
         getPatientDetails();
@@ -140,8 +139,8 @@ public class PatientActivity extends Activity {
         intent.putExtra("Patient", patient);
         intent.putExtra("action", "view");
         intent.putStringArrayListExtra("bodyParts", bodyParts);
-        finish();
-        startActivity(intent);
+        intent.putStringArrayListExtra("backBodyParts", backBodyParts);
+        startActivityForResult(intent, VIEW_PROFILE);
     }
 
     @Override
@@ -267,9 +266,19 @@ public class PatientActivity extends Activity {
 
             ParseFile image_file = new ParseFile("image_file", image_data);
             ParseFile thumbnail_file = new ParseFile("thumbnail_file", thumbnail_data);
-            if (uploadPhoto(image_file, thumbnail_file)) {
-                //do nothing
+            if (!uploadPhoto(image_file, thumbnail_file)) {
+                System.out.println("What happened");
             }
+        } else if (requestCode == VIEW_PROFILE) {
+            Intent intent = new Intent();
+            intent.putExtra("status", status);
+            intent.putExtra("view_tag", view_tag);
+            Intent intent1 = new Intent(this, PatientActivity.class);
+            intent1.putExtra("objectId", objectId);
+            intent1.putExtra("view_tag", view_tag);
+            setResult(RESULT_OK, intent);
+            finish();
+            startActivity(intent1);
         }
     }
 
@@ -406,26 +415,47 @@ public class PatientActivity extends Activity {
 
         patient.setAge(patient_object.getInt("age"));
 
-        loadPatientBodyMap();
-        fetchActivities();
-    }
-
-    private void loadPatientBodyMap() {
         JSONArray bodyPartsArray = patient_object.getJSONArray("locations");
 
         bodyParts = new ArrayList<String>();
+        backBodyParts = new ArrayList<String>();
+
         if (bodyPartsArray != null) {
             for (int i = 0; i < bodyPartsArray.length(); i++) {
                 try {
-                    bodyParts.add(bodyPartsArray.get(i).toString());
+                    if (bodyPartsArray.get(i).toString().contains("_b") ||
+                            bodyPartsArray.get(i).toString().contains("butt") ||
+                            bodyPartsArray.get(i).toString().contains("back")) {
+                        backBodyParts.add(bodyPartsArray.get(i).toString());
+                    } else {
+                        bodyParts.add(bodyPartsArray.get(i).toString());
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         }
 
-        bmlt = new BodyMapLoaderTask(body_parts, this, bodyParts, gender, sex, progressDialog);
+        if (bodyParts.size() == 0) {
+            currentPic = "back";
+            loadPatientBackBodyMap();
+        } else {
+            currentPic = "front";
+            loadPatientBodyMap();
+        }
+        fetchActivities();
+    }
+
+    private void loadPatientBodyMap() {
+        ImageView body_parts = (ImageView) findViewById(R.id.body_part_image);
+        BodyMapLoaderTask bmlt = new BodyMapLoaderTask(body_parts, context, bodyParts, gender, sex);
         bmlt.execute("front");
+    }
+
+    private void loadPatientBackBodyMap() {
+        ImageView body_parts = (ImageView) findViewById(R.id.body_part_image);
+        BodyMapLoaderTask bmlt = new BodyMapLoaderTask(body_parts, context, backBodyParts, gender, sex);
+        bmlt.execute("back");
     }
 
     private boolean uploadPhoto(ParseFile image_file, ParseFile thumbnail_file) {
@@ -536,30 +566,25 @@ public class PatientActivity extends Activity {
     }
 
     private void addImageListener() {
+        ImageView body_parts = (ImageView) findViewById(R.id.body_part_image);
         body_parts.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        initialX = event.getX();
-                        break;
                     case MotionEvent.ACTION_UP:
-                        float finalX = event.getX();
-                        if (initialX > finalX || initialX < finalX) {
-                            if (currentPic.equalsIgnoreCase("front")) {
-                                currentPic = "back";
-                                bmlt = new BodyMapLoaderTask(body_parts, context, bodyParts, gender, sex, progressDialog);
-                                Log.i(TAG, "Showing back body now");
-                                bmlt.execute("back");
-                            } else {
-                                currentPic = "front";
-                                bmlt = new BodyMapLoaderTask(body_parts, context, bodyParts, gender, sex, progressDialog);
-                                bmlt.execute("front");
-                            }
+
+                        if (currentPic.equalsIgnoreCase("front")) {
+                            currentPic = "back";
+                            Log.i(TAG, "Showing back body now");
+                            loadPatientBackBodyMap();
+                        } else {
+                            currentPic = "front";
+                            loadPatientBodyMap();
                         }
                 }
                 return true;
             }
         });
     }
+
 }

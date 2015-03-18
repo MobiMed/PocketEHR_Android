@@ -62,7 +62,6 @@ public class MyApplication extends Application {
         ctx.getResources().updateConfiguration(cfg, null);
     }
 
-
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         SharedPreferences force_pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext().getApplicationContext());
@@ -80,8 +79,10 @@ public class MyApplication extends Application {
     }
 
     private void showAlert() {
-        Intent intent = new Intent(this, ShowAlertActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.putExtra("Alert", "alert");
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 

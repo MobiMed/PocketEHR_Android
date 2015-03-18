@@ -19,9 +19,6 @@ import android.widget.TextView;
 
 import com.parse.ParseObject;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import java.util.ArrayList;
 
 /**
@@ -165,27 +162,8 @@ public class PatientListActivity extends Activity {
                 Object o = listView.getItemAtPosition(position);
                 ParseObject patient = (ParseObject) o;
                 Intent intent = new Intent(context, PatientActivity.class);
-                intent.putExtra("firstName", patient.getString("firstName"));
-                intent.putExtra("lastName", patient.getString("lastName"));
-                intent.putExtra("telepathologyID", patient.getString("telepathologyID"));
-                intent.putExtra("status", patient.getString("status"));
-                intent.putExtra("sex", patient.getString("sex"));
                 intent.putExtra("objectId", patient.getObjectId());
                 intent.putExtra("view_tag", (String) view.getTag());
-
-                //getting locations array of patient
-                JSONArray bodyPartsArray = patient.getJSONArray("locations");
-                ArrayList<String> bodyParts = new ArrayList<String>();
-                if (bodyPartsArray != null) {
-                    for (int i = 0; i < bodyPartsArray.length(); i++) {
-                        try {
-                            bodyParts.add(bodyPartsArray.get(i).toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-                intent.putStringArrayListExtra("locations", bodyParts);
                 startActivityForResult(intent, 1);
             }
         });
@@ -194,10 +172,12 @@ public class PatientListActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        String view_tag = data.getStringExtra("view_tag");
-        String status = data.getStringExtra("status");
-        final ListView listView = (ListView) findViewById(R.id.listView);
-        getViewsByTag(listView, view_tag, status);
+        if (data.hasExtra("view_tag") && resultCode == RESULT_OK) {
+            String view_tag = data.getStringExtra("view_tag");
+            String status = data.getStringExtra("status");
+            final ListView listView = (ListView) findViewById(R.id.listView);
+            getViewsByTag(listView, view_tag, status);
+        }
     }
 
     private ArrayList<View> getViewsByTag(ViewGroup root, String tag, String status) {

@@ -16,6 +16,7 @@
     <string name="address_input">पता</string>
     <string name="email_input">ईमेल</string>
     <string name="submit_button">जमा करें</string>
+    <string name="change_side_button">रिवर्स</string>
     <string name="negative_status">नकारात्मक</string>
     <string name="positive_status">सकारात्मक</string>
     <string name="incomplete_status">अधूरी</string>
@@ -23,6 +24,7 @@
     <string name="male_gender">पुरुष</string>
     <string name="female_gender">स्त्री</string>
     <string name="next_button">अगली</string>
+    <string name="cancel_button">रद्द करें</string>
     <string name="gender_input">सेक्स</string>
     <string name="dob_input">MM/DD/YYYY</string>
     <string name="age_label">आयु</string>

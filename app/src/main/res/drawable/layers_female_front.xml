@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/female_body_parts">
+        <bitmap
+            android:src="@drawable/female_body_parts"
+            android:gravity="center" />
+    </item>
+    <item android:id="@+id/female_head">
+        <bitmap
+            android:src="@drawable/female_head"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/female_throat">
+        <bitmap
+            android:src="@drawable/female_throat"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/female_upper_arm_left">
+        <bitmap
+            android:src="@drawable/female_upper_arm_left"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/female_chest_left">
+        <bitmap
+            android:src="@drawable/female_chest_left"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/female_chest_right">
+        <bitmap
+            android:src="@drawable/female_chest_right"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/female_upper_arm_right">
+        <bitmap
+            android:src="@drawable/female_upper_arm_right"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/female_lower_arm_left">
+        <bitmap
+            android:src="@drawable/female_lower_arm_left"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/female_abdomen">
+        <bitmap
+            android:src="@drawable/female_abdomen"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/female_groin">
+        <bitmap
+            android:src="@drawable/female_groin"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/female_lower_arm_right">
+        <bitmap
+            android:src="@drawable/female_lower_arm_right"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/female_upper_leg_left">
+        <bitmap
+            android:src="@drawable/female_upper_leg_left"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/female_upper_leg_right">
+        <bitmap
+            android:src="@drawable/female_upper_leg_right"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/female_lower_leg_left">
+        <bitmap
+            android:src="@drawable/female_lower_leg_left"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/female_lower_leg_right">
+        <bitmap
+            android:src="@drawable/female_lower_leg_right"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+</layer-list>

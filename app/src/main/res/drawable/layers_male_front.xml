@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/male_body_parts">
+        <bitmap
+            android:src="@drawable/male_body_parts"
+            android:gravity="center" />
+    </item>
+    <item android:id="@+id/male_head">
+        <bitmap
+            android:src="@drawable/male_head"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/male_throat">
+        <bitmap
+            android:src="@drawable/male_throat"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/male_upper_arm_left">
+        <bitmap
+            android:src="@drawable/male_upper_arm_left"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/male_chest_left">
+        <bitmap
+            android:src="@drawable/male_chest_left"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/male_chest_right">
+        <bitmap
+            android:src="@drawable/male_chest_right"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/male_upper_arm_right">
+        <bitmap
+            android:src="@drawable/male_upper_arm_right"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/male_lower_arm_left">
+        <bitmap
+            android:src="@drawable/male_lower_arm_left"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/male_abdomen">
+        <bitmap
+            android:src="@drawable/male_abdomen"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/male_groin">
+        <bitmap
+            android:src="@drawable/male_groin"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/male_lower_arm_right">
+        <bitmap
+            android:src="@drawable/male_lower_arm_right"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/male_upper_leg_left">
+        <bitmap
+            android:src="@drawable/male_upper_leg_left"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/male_upper_leg_right">
+        <bitmap
+            android:src="@drawable/male_upper_leg_right"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/male_lower_leg_left">
+        <bitmap
+            android:src="@drawable/male_lower_leg_left"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+    <item android:id="@+id/male_lower_leg_right">
+        <bitmap
+            android:src="@drawable/male_lower_leg_right"
+            android:gravity="center"
+            android:alpha="0" />
+    </item>
+</layer-list>

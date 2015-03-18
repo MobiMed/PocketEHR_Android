@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,12 +15,14 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by aditya841 on 12/1/2014.
@@ -31,10 +34,12 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
     private static LinearLayout dobandage;
     private static String objectId;
     private ArrayList<String> bodyParts;
+    private ArrayList<String> backBodyParts;
     private Patient p = null;
     private String action = "";
     Context context = this;
     private Spinner spinner;
+    private final int SHOW_BODY = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +63,11 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
         spinner.setOnItemSelectedListener(this);
 
         if (action.equals("view")) {
+            RelativeLayout contact_view_layout = (RelativeLayout) findViewById(R.id.cancel_button_Layout);
+            contact_view_layout.setVisibility(View.VISIBLE);
             setView();
             bodyParts = intent.getStringArrayListExtra("bodyParts");
+            backBodyParts = intent.getStringArrayListExtra("backBodyParts");
             objectId = intent.getStringExtra("objectId");
         } else {
             spinner.setSelection(0);
@@ -94,7 +102,8 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
             intent.putExtra("Patient", p);
             intent.putExtra("action", action);
             intent.putStringArrayListExtra("bodyParts", bodyParts);
-            startActivity(intent);
+            intent.putStringArrayListExtra("backBodyParts", backBodyParts);
+            startActivityForResult(intent, SHOW_BODY);
         } else {
             Intent intent = new Intent(this, AddPatientNotesActivity.class);
             intent.putExtra("Patient", p);
@@ -102,9 +111,28 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
         }
     }
 
+    public void closeProfileView(View v) {
+        setResult(RESULT_OK);
+        finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            setResult(RESULT_OK);
+            finish();
+        }
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         p.setGender((String) parent.getItemAtPosition(position));
+        if (p.getGender().equals("Male")) {
+            view.setBackgroundColor(Color.parseColor("#00CCFF"));
+        } else {
+            view.setBackgroundColor(Color.parseColor("#FFC0CB"));
+        }
     }
 
     @Override
@@ -145,8 +173,11 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
 
+
             // Create a new instance of DatePickerDialog and return it
-            return new DatePickerDialog(getActivity(), this, year, month, day);
+            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
+            dialog.getDatePicker().setMaxDate(new Date().getTime());
+            return dialog;
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
