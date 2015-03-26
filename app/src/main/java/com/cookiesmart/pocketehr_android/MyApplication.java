@@ -82,7 +82,6 @@ public class MyApplication extends Application {
         Intent intent = new Intent(this, LoginActivity.class);
         intent.putExtra("Alert", "alert");
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 

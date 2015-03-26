@@ -25,6 +25,8 @@
     <string name="female_gender">स्त्री</string>
     <string name="next_button">अगली</string>
     <string name="cancel_button">रद्द करें</string>
+    <string name="feedback_button">प्रतिक्रिया</string>
+    <string name="language_string">भाषा</string>
     <string name="gender_input">सेक्स</string>
     <string name="dob_input">MM/DD/YYYY</string>
     <string name="age_label">आयु</string>

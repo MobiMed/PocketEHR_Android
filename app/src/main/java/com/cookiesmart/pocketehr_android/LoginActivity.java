@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -38,6 +40,10 @@ public class LoginActivity extends Activity {
         Intent intent = getIntent();
         if (intent.hasExtra("Alert")) {
             showAlert();
+        } else {
+            if (!isOnline()) {
+                showAlert();
+            }
         }
 
         final EditText password_input = (EditText) findViewById(R.id.password_input);
@@ -160,6 +166,13 @@ public class LoginActivity extends Activity {
                 }
             }
         });
+    }
+
+    private boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
     @Override
