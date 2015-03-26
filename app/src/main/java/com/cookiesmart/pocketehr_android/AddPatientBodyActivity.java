@@ -309,8 +309,8 @@ public class AddPatientBodyActivity extends Activity {
                     } else if (bodyPart.equals("back")) {
                         backBodyParts.add("back");
                         layers[i] = r.getDrawable(R.drawable.male_back_b);
-                    } else if (bodyPart.equals("upperArmRight")) {
-                        backBodyParts.add("upperArmRight");
+                    } else if (bodyPart.equals("upperArmRight_b")) {
+                        backBodyParts.add("upperArmRight_b");
                         layers[i] = r.getDrawable(R.drawable.male_upper_arm_right_b);
                     } else if (bodyPart.equals("butt")) {
                         backBodyParts.add("butt");

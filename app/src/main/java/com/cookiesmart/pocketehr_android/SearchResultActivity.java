@@ -22,10 +22,10 @@ import java.util.ArrayList;
  */
 public class SearchResultActivity extends Activity {
     private static String TAG = "SearchResultActivity";
-    private int preLast = -1;
     private final int SEARCH = 4;
     //    private ArrayList<ParseObject> patients;
     Context context = this;
+    private int preLast = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

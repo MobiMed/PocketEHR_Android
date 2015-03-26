@@ -19,8 +19,8 @@ import com.parse.ParseObject;
  * Created by aditya841 on 2/18/2015.
  */
 public class ShowPhotoActivity extends Activity {
-    RelativeLayout main_layout;
     private static final String TAG = "ShowPhotoActivity";
+    RelativeLayout main_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

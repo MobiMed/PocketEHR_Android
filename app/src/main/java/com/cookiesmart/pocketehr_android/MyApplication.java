@@ -17,23 +17,10 @@ import java.util.Locale;
 
 /**
  * Created by aditya841 on 2/24/2015.
+ * Version 1.0 for Testing at Haiti.
  */
 public class MyApplication extends Application {
     public static final String FORCE_LOCAL = "";
-
-    @Override
-    public void onCreate() {
-        updateLanguage(this, null);
-        super.onCreate();
-        if (!isOnline()) {
-            showAlert();
-        } else {
-            if (!ParseCrashReporting.isCrashReportingEnabled()) {
-                ParseCrashReporting.enable(this);
-            }
-            Parse.initialize(this, "CguKOD63X4OsgUyUPVy7jxS2b2DWap7My8J3QjI6", "OJZgRlZlpAoN3zc3XacaQCNOaH9i4VGi7i22TfWS");
-        }
-    }
 
     public static void updateLanguage(Context ctx, String lang) {
         Configuration cfg = new Configuration();
@@ -63,6 +50,20 @@ public class MyApplication extends Application {
     }
 
     @Override
+    public void onCreate() {
+        updateLanguage(this, null);
+        super.onCreate();
+        if (!isOnline()) {
+            showAlert();
+        } else {
+            if (!ParseCrashReporting.isCrashReportingEnabled()) {
+                ParseCrashReporting.enable(this);
+            }
+            Parse.initialize(this, "jcflFsvqQYXsRKw4AapHDrO75dgJsCIKfLvKPnk9", "AjSggVLOLOlv6DIdHsi6xm6Xjw3vXM95ZaOAg1D7");
+        }
+    }
+
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         SharedPreferences force_pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext().getApplicationContext());
 
@@ -82,7 +83,6 @@ public class MyApplication extends Application {
         Intent intent = new Intent(this, LoginActivity.class);
         intent.putExtra("Alert", "alert");
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 

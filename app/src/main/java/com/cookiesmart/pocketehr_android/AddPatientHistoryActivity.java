@@ -33,13 +33,20 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
     private static LinearLayout patientHistory;
     private static LinearLayout dobandage;
     private static String objectId;
+    private final int SHOW_BODY = 1;
+    Context context = this;
     private ArrayList<String> bodyParts;
     private ArrayList<String> backBodyParts;
     private Patient p = null;
     private String action = "";
-    Context context = this;
     private Spinner spinner;
-    private final int SHOW_BODY = 1;
+
+    public static void setAge(int age) {
+        TextView ageField = (TextView) dobandage.findViewById(R.id.age_input);
+        ageField.setText(age + "");
+        ageField.setFocusable(false);
+        flag = true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,14 +80,6 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
             spinner.setSelection(0);
         }
     }
-
-    public static void setAge(int age) {
-        TextView ageField = (TextView) dobandage.findViewById(R.id.age_input);
-        ageField.setText(age + "");
-        ageField.setFocusable(false);
-        flag = true;
-    }
-
 
     public void saveAndNext(View v) {
         String ageString = ((TextView) dobandage.findViewById(R.id.age_input)).getText().toString();

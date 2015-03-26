@@ -2,91 +2,91 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/female_body_parts">
         <bitmap
-            android:src="@drawable/female_body_parts"
-            android:gravity="center" />
+            android:gravity="center"
+            android:src="@drawable/female_body_parts" />
     </item>
     <item android:id="@+id/female_head">
         <bitmap
-            android:src="@drawable/female_head"
+            android:alpha="0"
             android:gravity="center"
-            android:alpha="0" />
+            android:src="@drawable/female_head" />
     </item>
     <item android:id="@+id/female_throat">
         <bitmap
-            android:src="@drawable/female_throat"
+            android:alpha="0"
             android:gravity="center"
-            android:alpha="0" />
+            android:src="@drawable/female_throat" />
     </item>
     <item android:id="@+id/female_upper_arm_left">
         <bitmap
-            android:src="@drawable/female_upper_arm_left"
+            android:alpha="0"
             android:gravity="center"
-            android:alpha="0" />
+            android:src="@drawable/female_upper_arm_left" />
     </item>
     <item android:id="@+id/female_chest_left">
         <bitmap
-            android:src="@drawable/female_chest_left"
+            android:alpha="0"
             android:gravity="center"
-            android:alpha="0" />
+            android:src="@drawable/female_chest_left" />
     </item>
     <item android:id="@+id/female_chest_right">
         <bitmap
-            android:src="@drawable/female_chest_right"
+            android:alpha="0"
             android:gravity="center"
-            android:alpha="0" />
+            android:src="@drawable/female_chest_right" />
     </item>
     <item android:id="@+id/female_upper_arm_right">
         <bitmap
-            android:src="@drawable/female_upper_arm_right"
+            android:alpha="0"
             android:gravity="center"
-            android:alpha="0" />
+            android:src="@drawable/female_upper_arm_right" />
     </item>
     <item android:id="@+id/female_lower_arm_left">
         <bitmap
-            android:src="@drawable/female_lower_arm_left"
+            android:alpha="0"
             android:gravity="center"
-            android:alpha="0" />
+            android:src="@drawable/female_lower_arm_left" />
     </item>
     <item android:id="@+id/female_abdomen">
         <bitmap
-            android:src="@drawable/female_abdomen"
+            android:alpha="0"
             android:gravity="center"
-            android:alpha="0" />
+            android:src="@drawable/female_abdomen" />
     </item>
     <item android:id="@+id/female_groin">
         <bitmap
-            android:src="@drawable/female_groin"
+            android:alpha="0"
             android:gravity="center"
-            android:alpha="0" />
+            android:src="@drawable/female_groin" />
     </item>
     <item android:id="@+id/female_lower_arm_right">
         <bitmap
-            android:src="@drawable/female_lower_arm_right"
+            android:alpha="0"
             android:gravity="center"
-            android:alpha="0" />
+            android:src="@drawable/female_lower_arm_right" />
     </item>
     <item android:id="@+id/female_upper_leg_left">
         <bitmap
-            android:src="@drawable/female_upper_leg_left"
+            android:alpha="0"
             android:gravity="center"
-            android:alpha="0" />
+            android:src="@drawable/female_upper_leg_left" />
     </item>
     <item android:id="@+id/female_upper_leg_right">
         <bitmap
-            android:src="@drawable/female_upper_leg_right"
+            android:alpha="0"
             android:gravity="center"
-            android:alpha="0" />
+            android:src="@drawable/female_upper_leg_right" />
     </item>
     <item android:id="@+id/female_lower_leg_left">
         <bitmap
-            android:src="@drawable/female_lower_leg_left"
+            android:alpha="0"
             android:gravity="center"
-            android:alpha="0" />
+            android:src="@drawable/female_lower_leg_left" />
     </item>
     <item android:id="@+id/female_lower_leg_right">
         <bitmap
-            android:src="@drawable/female_lower_leg_right"
+            android:alpha="0"
             android:gravity="center"
-            android:alpha="0" />
+            android:src="@drawable/female_lower_leg_right" />
     </item>
 </layer-list>

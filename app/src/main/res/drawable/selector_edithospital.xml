@@ -1,5 +1,5 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" android:drawable="@drawable/edit_hospital_x" />
+    <item android:drawable="@drawable/edit_hospital_x" android:state_pressed="true" />
 
-    <item android:state_pressed="false" android:drawable="@drawable/edit_hospital" />
+    <item android:drawable="@drawable/edit_hospital" android:state_pressed="false" />
 </selector>

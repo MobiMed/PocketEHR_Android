@@ -17,11 +17,11 @@ import java.util.ArrayList;
 public class AddPatientContactActivity extends Activity {
 
     private static String objectId;
+    private final int ADD_HISTORY = 1;
     private Patient p = null;
     private String action = "";
     private ArrayList<String> bodyParts;
     private ArrayList<String> backBodyParts;
-    private final int ADD_HISTORY = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

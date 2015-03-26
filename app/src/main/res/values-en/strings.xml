@@ -26,6 +26,8 @@
     <string name="female_gender">Female</string>
     <string name="next_button">Next</string>
     <string name="cancel_button">Cancel</string>
+    <string name="feedback_button">Feedback</string>
+    <string name="language_string">Language</string>
     <string name="gender_input">Sex</string>
     <string name="dob_input">MM/DD/YYYY</string>
     <string name="age_label">Age</string>

@@ -44,27 +44,27 @@ import java.util.List;
  * Created by aditya841 on 11/21/2014.
  */
 public class PatientActivity extends Activity {
-    private static String objectId;
-    private String mCurrentPhotoPath;
     private static final int CHANGE_STATUS = 1;
     private static final int ADD_NOTE = 2;
     private static final int SELECT_PICTURE = 3;
     private static final int TAKE_PICTURE = 4;
+    private static String objectId;
     private static String TAG = "PatientActivity";
+    final int THUMBNAIL_SIZE = 250;
+    private final int VIEW_PROFILE = 5;
     Context context = this;
+    ProgressDialog progressDialog;
+    Bitmap thumbnail;
+    private String mCurrentPhotoPath;
     private ParseObject patient_object;
     private Patient patient;
-    final int THUMBNAIL_SIZE = 250;
     private String status = "";
     private String view_tag = "";
     private ArrayList<String> bodyParts;
     private ArrayList<String> backBodyParts;
     private LinearLayout main_view = null;
-    ProgressDialog progressDialog;
-    Bitmap thumbnail;
     private float initialX;
     private String currentPic;
-    private final int VIEW_PROFILE = 5;
     private String gender;
     private TextView sex;
 
