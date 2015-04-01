@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="version_number">1.0</string>
+    <string name="app_name">Pocket EHR</string>
+    <string name="home_patient_text">Les patients</string>
+    <string name="home_add_admin_text">Ajouter admin</string>
+    <string name="home_add_doctor_text">Ajouter Docteur</string>
+    <string name="home_edit_hospital_text">Modifier Hôpital</string>
+    <string name="patient_patient_text">Patient</string>
+    <string name="last_name_input">Nom de Famille</string>
+    <string name="first_name_input">Prénom</string>
+    <string name="hospital_input">Hôpital</string>
+    <string name="patient_id_number_input">Patient Numéro ID</string>
+    <string name="contact_number_input">Nombre de Contact</string>
+    <string name="address_input">Adresse</string>
+    <string name="email_input">Email</string>
+    <string name="submit_button">Soumettre</string>
+    <string name="change_side_button">Inverse</string>
+    <string name="negative_status">NÉGATIF</string>
+    <string name="positive_status">POSITIF</string>
+    <string name="incomplete_status">INCOMPLET</string>
+    <string name="deceased_status">DÉCÉDÉ</string>
+    <string name="male_gender">Mâle</string>
+    <string name="female_gender">Femelle</string>
+    <string name="next_button">Suivant</string>
+    <string name="cancel_button">Annuler</string>
+    <string name="feedback_button">Réaction</string>
+    <string name="language_string">Langue</string>
+    <string name="network_alert">Réseau</string>
+    <string name="network_alert_string">Pas de connexion Internet.Cliquez sur OK pour quitter!</string>
+    <string name="ok_string">D\'ACCORD</string>
+    <string name="restart_alert">Redémarrage</string>
+    <string name="restart_alert_string">L\'application doit redémarrer pour le changement de paramètres régionaux.Cliquez sur OK pour redémarrer!</string>
+    <string name="wrong_cred_toast">Nom d\'utilisateur ou mot de passe est incorrect. Se il vous plaît essayer à nouveau.</string>
+    <string name="all_fields_toast">Tous les champs sont nécessaires.</string>
+    <string name="gender_input">Sexe</string>
+    <string name="dob_input">MM/DD/YYYY</string>
+    <string name="age_label">Age</string>
+    <string name="dob_label">Né(e)le</string>
+    <string name="occupation_input">Occupation</string>
+    <string name="home_add_patient_text">Ajouter des Patients</string>
+    <string name="hello_world">Bonjour Le Monde!</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="action_search">Recherche</string>
+    <string name="action_alpha_za_order">Z-A</string>
+    <string name="action_date_order">Date</string>
+    <string name="action_alpha_az_order">A-Z</string>
+    <string name="action_about">A Propos</string>
+    <string name="search_hint">Entrez le nom du patient à la recherche</string>
+    <string name="username_input">Nom</string>
+    <string name="password_input">Mot de Passe</string>
+    <string name="login_button">S\'identifier</string>
+    <string name="join_hospital_button">Joins un Hôpital</string>
+    <string name="create_hospital_button">Créer Hôpital</string>
+    <string name="register_button">Enregistrer</string>
+    <string name="incomplete_string">INCOMPLET</string>
+    <string name="patient_register_button">Registre des Patients</string>
+    <string name="add_notes_button">Ajouter une Note</string>
+    <string name="add_picture_button">Ajouter une image</string>
+    <string name="view_patient_button">Voir le profil</string>
+    <string name="background">#d3d3d3</string>
+    <string name="english_locale">en</string>
+    <string name="hindi_locale">hi</string>
+    <string name="french_locale">fr</string>
+    <string name="english_language">English</string>
+    <string name="hindi_language">Hindi</string>
+    <string name="french_language">French</string>
+    <string name="version">Version</string>
+    <string name="server_positive_status">kDiagnosedPositive</string>
+    <string name="server_negative_status">kDiagnosedNegative</string>
+    <string name="server_incomplete_status">kIncomplete</string>
+    <string name="server_deceased_status">kDeceased</string>
+    <string name="server_sex_male">kMale</string>
+    <string name="server_sex_female">kFemale</string>
+    <string name="server_file_type">kGross</string>
+    <string name="server_activity_imageAddedType">kImageAdded</string>
+    <string name="image_dialog_box">Sélectionnez la source</string>
+    <string name="image_dialog_box_camera">Caméra</string>
+    <string name="image_dialog_box_gallery">Galerie</string>
+    <string name="image_dialog_box_cancel">Annuler</string>
+    <string name="loading_text">Chargement</string>
+    <string name="last_name_toast">Nom de famille ne peut être vide</string>
+    <string name="first_name_toast">Prénom ne peut être vide</string>
+    <string name="dob_toast">DOB ne peut pas être vide</string>
+    <string-array name="gender">
+        <item>Femelle</item>
+        <item>Mâle</item>
+    </string-array>
+    <string-array name="language">
+        <item>Anglais</item>
+        <item>Français</item>
+        <item>Hindi</item>
+    </string-array>
+    <string-array name="status">
+        <item>Incomplet</item>
+        <item>Négatif</item>
+        <item>Positif</item>
+        <item>Décédé</item>
+    </string-array>
+
+</resources>
