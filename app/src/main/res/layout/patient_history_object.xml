@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/patient_history_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/dobandage_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/dob_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/round_edittext"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="@string/dob_label"
+            android:inputType="none"
+            android:onClick="showDatePicker"
+            android:paddingLeft="10dp"
+            android:textColorHint="@android:color/black" />
+
+        <TextView
+            android:id="@+id/age_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/round_edittext"
+            android:hint="@string/age_label"
+            android:inputType="number"
+            android:paddingLeft="10dp"
+            android:textColorHint="@android:color/black"
+            android:textSize="19dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/gender_layout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:text="@string/gender_input"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/gender_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/next_button"
+            android:layout_width="140dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:onClick="saveAndNext"
+            android:src="@drawable/selector_next" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/next_button" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/cancel_button_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/cancel_button"
+            android:layout_width="140dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:onClick="closeProfileView"
+            android:src="@drawable/selector_cancel" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/cancel_button" />
+    </RelativeLayout>
+</LinearLayout>

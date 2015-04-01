@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contact_information_scroll_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color">
+
+    <LinearLayout
+        android:id="@+id/contact_information_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/last_name_input"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_edittext"
+            android:hint="@string/last_name_input"
+            android:inputType="textCapWords"
+            android:paddingLeft="10dp"
+            android:textColorHint="@android:color/black" />
+
+        <EditText
+            android:id="@+id/first_name_input"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/round_edittext"
+            android:hint="@string/first_name_input"
+            android:inputType="textCapWords"
+            android:paddingLeft="10dp"
+            android:textColorHint="@android:color/black" />
+
+        <EditText
+            android:id="@+id/hospital_input"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/round_edittext"
+            android:hint="@string/hospital_input"
+            android:inputType="textCapWords"
+            android:paddingLeft="10dp"
+            android:textColorHint="@android:color/black" />
+
+        <EditText
+            android:id="@+id/patient_id_number_input"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/round_edittext"
+            android:hint="@string/patient_id_number_input"
+            android:inputType="textCapCharacters"
+            android:paddingLeft="10dp"
+            android:textColorHint="@android:color/black" />
+
+        <EditText
+            android:id="@+id/contact_number_input"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/round_edittext"
+            android:hint="@string/contact_number_input"
+            android:inputType="phone"
+            android:paddingLeft="10dp"
+            android:textColorHint="@android:color/black" />
+
+        <EditText
+            android:id="@+id/address_input"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/round_edittext"
+            android:hint="@string/address_input"
+            android:inputType="textPostalAddress|textCapWords|textNoSuggestions"
+            android:paddingLeft="10dp"
+            android:textColorHint="@android:color/black" />
+
+        <EditText
+            android:id="@+id/email_input"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/round_edittext"
+            android:hint="@string/email_input"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="10dp"
+            android:textColorHint="@android:color/black" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/next_button"
+                android:layout_width="140dp"
+                android:layout_height="70dp"
+                android:layout_centerHorizontal="true"
+                android:onClick="saveAndNext"
+                android:src="@drawable/selector_next" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="@string/next_button" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cancel_button_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/cancel_button"
+                android:layout_width="140dp"
+                android:layout_height="70dp"
+                android:layout_centerHorizontal="true"
+                android:onClick="closeProfileView"
+                android:src="@drawable/selector_cancel" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="@string/cancel_button" />
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
