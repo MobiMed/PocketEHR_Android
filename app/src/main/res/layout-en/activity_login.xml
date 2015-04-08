@@ -96,7 +96,7 @@
                 android:id="@+id/join_hospital_button"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:onClick="login"
+                android:onClick="createUser"
                 android:src="@drawable/selector_join" />
 
             <TextView
@@ -116,7 +116,7 @@
                 android:id="@+id/create_hospital_button"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:onClick="login"
+                android:onClick="createHospital"
                 android:src="@drawable/selector_create" />
 
             <TextView

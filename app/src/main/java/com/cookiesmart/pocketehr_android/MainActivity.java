@@ -73,4 +73,9 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, AboutActivity.class);
         startActivity(intent);
     }
+
+    public void startAddHospitalActivity(View v) {
+        Intent intent = new Intent(this, AddHospitalActivity.class);
+        startActivity(intent);
+    }
 }

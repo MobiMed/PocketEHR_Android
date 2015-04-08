@@ -24,15 +24,17 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         updateLanguage(this, null);
-        super.onCreate();
         if (!isOnline()) {
-            showAlert();
+            Intent intent = new Intent(this, AlertActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         } else {
             if (!ParseCrashReporting.isCrashReportingEnabled()) {
                 ParseCrashReporting.enable(this);
             }
             Parse.initialize(this, "CguKOD63X4OsgUyUPVy7jxS2b2DWap7My8J3QjI6", "OJZgRlZlpAoN3zc3XacaQCNOaH9i4VGi7i22TfWS");
         }
+        super.onCreate();
     }
 
     public static void updateLanguage(Context ctx, String lang) {
@@ -77,12 +79,4 @@ public class MyApplication extends Application {
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
-
-    private void showAlert() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        intent.putExtra("Alert", "alert");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-
 }

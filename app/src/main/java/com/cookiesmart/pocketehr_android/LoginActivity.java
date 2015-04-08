@@ -37,14 +37,6 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Intent intent = getIntent();
-        if (intent.hasExtra("Alert")) {
-            showAlert();
-        } else {
-            if (!isOnline()) {
-                showAlert();
-            }
-        }
 
         final EditText password_input = (EditText) findViewById(R.id.password_input);
 
@@ -92,6 +84,16 @@ public class LoginActivity extends Activity {
                 }
             }
         });
+    }
+
+    public void createUser(View view) {
+        Intent intent = new Intent(this, VerifyUser.class);
+        startActivityForResult(intent, 1);
+    }
+
+    public void createHospital(View view) {
+        Intent intent = new Intent(this, AddHospitalActivity.class);
+        startActivity(intent);
     }
 
     public void register(View view) {
@@ -173,11 +175,5 @@ public class LoginActivity extends Activity {
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        setResult(RESULT_CANCELED);
     }
 }

@@ -58,30 +58,31 @@
                 android:text="@string/home_add_patient_text" />
         </RelativeLayout>
 
-        <!--<RelativeLayout-->
-        <!--android:id="@+id/add_admin_layout"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="27dp"-->
-        <!--android:orientation="vertical"-->
-        <!--android:layout_marginTop="190dp">-->
+        <RelativeLayout
+            android:id="@+id/add_admin_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:orientation="vertical"
+            android:layout_marginTop="350dp">
 
-        <!--<ImageView-->
-        <!--android:id="@+id/add_admin"-->
-        <!--android:layout_width="150dp"-->
-        <!--android:layout_height="150dp"-->
-        <!--android:clickable="true"-->
-        <!--android:src="@drawable/selector_addadmin" />-->
+            <ImageView
+                android:id="@+id/add_admin"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:clickable="true"
+                android:onClick="startAddHospitalActivity"
+                android:src="@drawable/selector_addadmin" />
 
-        <!--<TextView-->
-        <!--android:id="@+id/add_admin_text"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="42dp"-->
-        <!--android:layout_marginTop="130dp"-->
-        <!--android:text="@string/home_add_admin_text" />-->
+            <TextView
+                android:id="@+id/add_admin_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="42dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/home_add_admin_text" />
 
-        <!--</RelativeLayout>-->
+        </RelativeLayout>
 
         <!--<RelativeLayout-->
         <!--android:layout_width="wrap_content"-->

@@ -80,6 +80,8 @@
     <string name="image_dialog_box_cancel">Annuler</string>
     <string name="loading_text">Chargement</string>
     <string name="last_name_toast">Nom de famille ne peut être vide</string>
+    <string name="username_toast">Nom d\'utilisateur ne peut être vide</string>
+    <string name="password_toast">Mot de passe ne peut être vide</string>
     <string name="first_name_toast">Prénom ne peut être vide</string>
     <string name="dob_toast">DOB ne peut pas être vide</string>
     <string-array name="gender">

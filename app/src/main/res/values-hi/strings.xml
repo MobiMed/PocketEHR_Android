@@ -79,6 +79,8 @@
     <string name="loading_text">लोडिंग</string>
     <string name="last_name_toast">अंतिम नाम रिक्त नहीं हो सकता</string>
     <string name="first_name_toast">पहला नाम रिक्त नहीं हो सकता</string>
+    <string name="password_toast">पासवर्ड रिक्त नहीं हो सकता</string>
+    <string name="username_toast">उपयोगकर्ता नाम खाली नहीं हो सकता है</string>
     <string name="dob_toast">जन्म तिथि को खाली नहीं किया जा सकता</string>
     <string-array name="gender">
         <item>स्त्री</item>

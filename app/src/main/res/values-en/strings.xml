@@ -78,6 +78,8 @@
     <string name="image_dialog_box_cancel">Cancel</string>
     <string name="loading_text">Loading</string>
     <string name="last_name_toast">Last name cannot be blank</string>
+    <string name="username_toast">Username cannot be blank</string>
+    <string name="password_toast">Password cannot be blank</string>
     <string name="first_name_toast">First name cannot be blank</string>
     <string name="dob_toast">DOB cannot be blank</string>
     <string-array name="gender">
