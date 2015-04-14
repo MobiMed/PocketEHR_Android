@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -23,7 +22,6 @@ import android.widget.Toast;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.SignUpCallback;
 
 /**
  * Created by aditya841 on 12/5/2014.
@@ -50,7 +48,7 @@ public class LoginActivity extends Activity {
                 if (isChecked) {
                     password_input.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 } else {
-                    password_input.setInputType(129);
+                    password_input.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                 }
             }
         });
@@ -74,8 +72,11 @@ public class LoginActivity extends Activity {
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             public void done(ParseUser user, ParseException e) {
                 if (user != null) {
+                    ((EditText) findViewById(R.id.username_input)).setText("");
+                    ((EditText) findViewById(R.id.password_input)).setText("");
                     login_layout.removeView(progressBar);
                     Intent intent = new Intent(context, MainActivity.class);
+                    intent.putExtra("user_type", "User"/*user.getString("user_type")*/);
                     startActivity(intent);
                 } else {
                     login_layout.removeView(progressBar);
@@ -94,40 +95,6 @@ public class LoginActivity extends Activity {
     public void createHospital(View view) {
         Intent intent = new Intent(this, AddHospitalActivity.class);
         startActivity(intent);
-    }
-
-    public void register(View view) {
-        Button register_button = (Button) view;
-
-        final EditText email_input = (EditText) findViewById(R.id.email_input);
-
-        if (register_button.getTag() == "1") {
-            email_input.setVisibility(View.VISIBLE);
-            register_button.setTag("2");
-        } else {
-            Log.i(LOGIN, "onclickset");
-            final String username = ((EditText) findViewById(R.id.username_input)).getText().toString();
-            final String password = ((EditText) findViewById(R.id.password_input)).getText().toString();
-            String email = email_input.getText().toString();
-            if (username.trim().equals("") || password.trim().equals("") || email.trim().equals("")) {
-                Toast.makeText(context, getString(R.string.all_fields_toast), Toast.LENGTH_LONG).show();
-                return;
-            }
-            ParseUser user = new ParseUser();
-            user.setUsername(username);
-            user.setPassword(password);
-            user.setEmail(email);
-
-            user.signUpInBackground(new SignUpCallback() {
-                public void done(ParseException e) {
-                    if (e == null) {
-                        loginAfterRegister(username, password);
-                    } else {
-                        Toast.makeText(context, e.getMessage() + "Try again.", Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-        }
     }
 
     public void showAlert() {
@@ -175,5 +142,10 @@ public class LoginActivity extends Activity {
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    public void forgotPassword(View view) {
+        Intent intent = new Intent(this, ForgotPasswordActivity.class);
+        startActivity(intent);
     }
 }

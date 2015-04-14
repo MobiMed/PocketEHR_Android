@@ -32,7 +32,7 @@ public class MyApplication extends Application {
             if (!ParseCrashReporting.isCrashReportingEnabled()) {
                 ParseCrashReporting.enable(this);
             }
-            Parse.initialize(this, "CguKOD63X4OsgUyUPVy7jxS2b2DWap7My8J3QjI6", "OJZgRlZlpAoN3zc3XacaQCNOaH9i4VGi7i22TfWS");
+            Parse.initialize(this, "e3iuA19d4bgZNUNWjzNxK1bmu0fEQX8mSOd4VzZv", "OSQJme7WddoMCJrI5gGtnrsSHDHvqgy16dj4VU5e");
         }
         super.onCreate();
     }

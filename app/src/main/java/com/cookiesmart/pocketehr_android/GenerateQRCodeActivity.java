@@ -52,6 +52,8 @@ public class GenerateQRCodeActivity extends Activity {
             ImageView myImage = (ImageView) findViewById(R.id.imageView1);
             myImage.setImageBitmap(bitmap);
 
+            //store image in database in hospital QR code column
+            //send email with the QR code to admin hospital email
         } catch (WriterException e) {
             e.printStackTrace();
         }

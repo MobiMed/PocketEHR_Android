@@ -277,14 +277,6 @@
                     android:layout_height="wrap_content" />
 
                 <EditText
-                    android:id="@+id/admin_role_input"
-                    android:layout_margin="2dip"
-                    android:hint="Role"
-                    android:padding="7dip"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
-
-                <EditText
                     android:id="@+id/admin_contact_input"
                     android:layout_margin="2dip"
                     android:hint="Contact Number"
@@ -314,7 +306,7 @@
                 android:layout_width="140dp"
                 android:layout_height="70dp"
                 android:layout_centerHorizontal="true"
-                android:onClick="saveHospital"
+                android:onClick="editHospital"
                 android:src="@drawable/selector_submit" />
 
             <TextView

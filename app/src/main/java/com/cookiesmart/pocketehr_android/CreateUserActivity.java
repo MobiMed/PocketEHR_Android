@@ -163,6 +163,7 @@ public class CreateUserActivity extends ListActivity implements View.OnClickList
             }
             return;
         }
+        //send email to user with the user and password
         finish();
     }
 }

@@ -1,83 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<pre-dex-items>
+<items version="2" >
 
     <item
-        dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.2-5e59c0953240c43b6b47521011c8e0e7b57e0a2d.jar"
-        jar="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.2\libs\internal_impl-21.0.2.jar"
-        jumboMode="false"
-        revision="21.0.2"
-        sha1="962e8b12569c56dbdcf8367eb4eac8bb129cd18f"/>
-    <item
-        dex="A:\CookieSmart\PocketEHR_Android1\app\build\intermediates\pre-dexed\debug\Parse-1.7.1-e12d5a95f250c537e51383e5645acb95a1e271b2.jar"
-        jar="A:\CookieSmart\PocketEHR_Android1\app\libs\Parse-1.7.1.jar"
-        jumboMode="false"
-        revision="21.0.2"
-        sha1="87c45f9f66da531a65f065ee32f603c7e6db1528"/>
-    <item
-        dex="A:\CookieSmart\PocketEHR_Android1\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.2-ad255bfce39c15aaa6a2352192caaa8b00c0fb8e.jar"
-        jar="C:\Users\aditya841\AppData\Local\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.2\support-annotations-21.0.2.jar"
-        jumboMode="false"
-        revision="21.0.2"
-        sha1="99373741f99a0556ee293c41e8faa1ca3ae8a4e6"/>
-    <item
-        dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\core-3.2.0-65dfa22fdca9e53930812a90377f641e81eaf69c.jar"
-        jar="C:\Users\aditya841\.gradle\caches\modules-2\files-2.1\com.google.zxing\core\3.2.0\e019d15a13a9786f881141d2df6654b8510bce8b\core-3.2.0.jar"
-        jumboMode="false"
-        revision="21.0.2"
-        sha1="e019d15a13a9786f881141d2df6654b8510bce8b"/>
-    <item
-        dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\android-core-3.2.0-79ca3b816b3feebb489ce5d4760c1c3b3f036985.jar"
-        jar="C:\Users\aditya841\.gradle\caches\modules-2\files-2.1\com.google.zxing\android-core\3.2.0\222b58541c79971b53cca8ed4a40cf251f1630df\android-core-3.2.0.jar"
-        jumboMode="false"
-        revision="21.0.2"
-        sha1="222b58541c79971b53cca8ed4a40cf251f1630df"/>
-    <item
-        dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\classes-0643fc96f27ab1e4c374de6a3b45a8a960a6c8a8.jar"
-        jar="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.2\classes.jar"
-        jumboMode="false"
-        revision="21.0.2"
-        sha1="d1bf02de1c56d942e7a9d093b8610ba1ef4128e3"/>
-    <item
-        dex="A:\CookieSmart\PocketEHR_Android1\app\build\intermediates\pre-dexed\debug\classes-2b2b8c4b6329454ca9a4bd4c72d1e67a47bc0445.jar"
-        jar="A:\CookieSmart\PocketEHR_Android1\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.2\classes.jar"
-        jumboMode="false"
-        revision="21.0.2"
-        sha1="d1bf02de1c56d942e7a9d093b8610ba1ef4128e3"/>
-    <item
-        dex="A:\CookieSmart\PocketEHR_Android1\app\build\intermediates\pre-dexed\debug\bolts-android-1.1.2-6116cb872c5ce3fc37e56f51a5bd9230f6bcbefd.jar"
-        jar="C:\Users\aditya841\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.1.2\91c20388c9a45f62b5ed8fe0502bb76ff6251fc7\bolts-android-1.1.2.jar"
-        jumboMode="false"
-        revision="21.0.2"
-        sha1="91c20388c9a45f62b5ed8fe0502bb76ff6251fc7"/>
-    <item
-        dex="A:\CookieSmart\PocketEHR_Android1\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.2-c11df4e17e25ac82375f1fcebd664b4592ef2eee.jar"
-        jar="A:\CookieSmart\PocketEHR_Android1\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.2\libs\internal_impl-21.0.2.jar"
-        jumboMode="false"
-        revision="21.0.2"
-        sha1="962e8b12569c56dbdcf8367eb4eac8bb129cd18f"/>
-    <item
-        dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\ParseCrashReporting-1.8.2-c74783b3661b8c6e26573b500040677c523d4770.jar"
-        jar="A:\CookieSmart\PocketEHR_Android\app\libs\ParseCrashReporting-1.8.2.jar"
-        jumboMode="false"
-        revision="21.0.2"
-        sha1="ccf9e90414e7bb2cf09f4d7c77c42f70c690e118"/>
-    <item
-        dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\Parse-1.8.2-ec4483d6a83266df255d09590f6610cdcd809ae3.jar"
-        jar="A:\CookieSmart\PocketEHR_Android\app\libs\Parse-1.8.2.jar"
-        jumboMode="false"
-        revision="21.0.2"
-        sha1="c2cb0bfe37cbefd855b6faa3c9a5be833aba7300"/>
-    <item
-        dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\bolts-android-1.2.0-8a09c976bd1ac24e9a248343fba92d24b689fe13.jar"
-        jar="C:\Users\aditya841\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.2.0\6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd\bolts-android-1.2.0.jar"
-        jumboMode="false"
-        revision="21.0.2"
-        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd"/>
-    <item
-        dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\android-integration-3.2.0-61911475257032a0f20d8d6c79bd20d5c5ec36d0.jar"
         jar="C:\Users\aditya841\.gradle\caches\modules-2\files-2.1\com.google.zxing\android-integration\3.2.0\790720750cfe1e04510d0cb37ca8e8eff2beeed3\android-integration-3.2.0.jar"
         jumboMode="false"
         revision="21.0.2"
-        sha1="790720750cfe1e04510d0cb37ca8e8eff2beeed3"/>
+        sha1="790720750cfe1e04510d0cb37ca8e8eff2beeed3">
+        <dex dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\android-integration-3.2.0-61911475257032a0f20d8d6c79bd20d5c5ec36d0.jar" />
+    </item>
+    <item
+        jar="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.2\classes.jar"
+        jumboMode="false"
+        revision="21.0.2"
+        sha1="d1bf02de1c56d942e7a9d093b8610ba1ef4128e3">
+        <dex dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\classes-0643fc96f27ab1e4c374de6a3b45a8a960a6c8a8.jar" />
+    </item>
+    <item
+        jar="C:\Users\aditya841\.gradle\caches\modules-2\files-2.1\com.google.zxing\android-core\3.2.0\222b58541c79971b53cca8ed4a40cf251f1630df\android-core-3.2.0.jar"
+        jumboMode="false"
+        revision="21.0.2"
+        sha1="222b58541c79971b53cca8ed4a40cf251f1630df">
+        <dex dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\android-core-3.2.0-79ca3b816b3feebb489ce5d4760c1c3b3f036985.jar" />
+    </item>
+    <item
+        jar="C:\Users\aditya841\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.2.0\6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd\bolts-android-1.2.0.jar"
+        jumboMode="false"
+        revision="21.0.2"
+        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
+        <dex dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\bolts-android-1.2.0-8a09c976bd1ac24e9a248343fba92d24b689fe13.jar" />
+    </item>
+    <item
+        jar="A:\CookieSmart\PocketEHR_Android\app\libs\Parse-1.8.2.jar"
+        jumboMode="false"
+        revision="21.0.2"
+        sha1="c2cb0bfe37cbefd855b6faa3c9a5be833aba7300">
+        <dex dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\Parse-1.8.2-ec4483d6a83266df255d09590f6610cdcd809ae3.jar" />
+    </item>
+    <item
+        jar="A:\CookieSmart\PocketEHR_Android\app\libs\ParseCrashReporting-1.8.2.jar"
+        jumboMode="false"
+        revision="21.0.2"
+        sha1="ccf9e90414e7bb2cf09f4d7c77c42f70c690e118">
+        <dex dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\ParseCrashReporting-1.8.2-c74783b3661b8c6e26573b500040677c523d4770.jar" />
+    </item>
+    <item
+        jar="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.2\libs\internal_impl-21.0.2.jar"
+        jumboMode="false"
+        revision="21.0.2"
+        sha1="962e8b12569c56dbdcf8367eb4eac8bb129cd18f">
+        <dex dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.2-5e59c0953240c43b6b47521011c8e0e7b57e0a2d.jar" />
+    </item>
+    <item
+        jar="C:\Users\aditya841\.gradle\caches\modules-2\files-2.1\com.google.zxing\core\3.2.0\e019d15a13a9786f881141d2df6654b8510bce8b\core-3.2.0.jar"
+        jumboMode="false"
+        revision="21.0.2"
+        sha1="e019d15a13a9786f881141d2df6654b8510bce8b">
+        <dex dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\core-3.2.0-65dfa22fdca9e53930812a90377f641e81eaf69c.jar" />
+    </item>
+    <item
+        jar="C:\Users\aditya841\AppData\Local\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.2\support-annotations-21.0.2.jar"
+        jumboMode="false"
+        revision="21.0.2"
+        sha1="99373741f99a0556ee293c41e8faa1ca3ae8a4e6">
+        <dex dex="A:\CookieSmart\PocketEHR_Android\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.2-ad255bfce39c15aaa6a2352192caaa8b00c0fb8e.jar" />
+    </item>
 
-</pre-dex-items>
+</items>

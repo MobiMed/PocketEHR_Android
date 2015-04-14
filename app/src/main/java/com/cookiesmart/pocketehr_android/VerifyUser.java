@@ -27,12 +27,22 @@ public class VerifyUser extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanResult != null) {
-            System.out.println(scanResult.getContents());
+            checkUser(scanResult.getContents());
         }
     }
 
-    public void checkUser(View view){
+    public void checkUser(View view) {
         String username = ((EditText) findViewById(R.id.username_input)).getText().toString();
+        //check username exists in database. If activated or not?
+
+        //If exists and not activated send to make profile activity
+        Intent intent = new Intent(this, CreateUserActivity.class);
+        startActivity(intent);
+        //else if user exists and activated show error
+        //else day that user does not exist
+    }
+
+    private void checkUser(String username) {
         //check username exists in database. If activated or not?
 
         //If exists and not activated send to make profile activity

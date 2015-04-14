@@ -1,0 +1,186 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="27dp"
+            android:id="@+id/main_add_user_layout">
+
+            <ImageView
+                android:id="@+id/add_user"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="addUser"
+                android:src="@drawable/selector_adddoctor" />
+
+            <TextView
+                android:id="@+id/add_user_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="42dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/home_add_user_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/edit_hospital_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/main_add_user_layout"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:id="@+id/edit_hospital"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="editHospital"
+                android:src="@drawable/selector_edithospital" />
+
+            <TextView
+                android:id="@+id/edit_hospital_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="42dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/home_edit_hospital_text" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/main_patient_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="180dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/home_patient"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="showPatientList"
+                android:src="@drawable/selector_mainpatient" />
+
+            <TextView
+                android:id="@+id/patient_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/home_patient_text" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="180dp"
+            android:layout_toRightOf="@id/main_patient_layout"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/add_patient"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="showMyPatients"
+                android:src="@drawable/selector_addpatient" />
+
+            <TextView
+                android:id="@+id/add_patient_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="42dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/home_my_patients_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/checkin_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:orientation="vertical"
+            android:layout_marginTop="350dp">
+
+            <ImageView
+                android:id="@+id/checkin_patient"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="checkInPatient"
+                android:src="@drawable/selector_addadmin" />
+
+            <TextView
+                android:id="@+id/checkin_patient_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="42dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/home_checkin_text" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/checkin_layout"
+            android:orientation="vertical"
+            android:layout_marginTop="350dp"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:id="@+id/discharge_patient"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="dischargePatient"
+                android:src="@drawable/selector_adddoctor" />
+
+            <TextView
+                android:id="@+id/discharge_patient_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/home_discharge_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="520dp"
+            android:layout_marginLeft="27dp">
+
+            <ImageView
+                android:id="@+id/ordered_tests_layout"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="orderedTests"
+                android:src="@drawable/selector_adddoctor" />
+
+            <TextView
+                android:id="@+id/ordered_tests_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/home_ordered_test_text" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</ScrollView>
+

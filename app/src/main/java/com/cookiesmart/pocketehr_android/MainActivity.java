@@ -11,21 +11,28 @@ import android.view.View;
 
 public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
-    public static String USEROBJECTID = "";
+    public static String UserObjectId = "";
     private final int DATE = 2;
+    private final String admin_user_type = "Admin";
     Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        String user_type = intent.getStringExtra("user_type");
+        if (user_type.equals(admin_user_type)) {
+            setContentView(R.layout.activity_main_admin);
+        } else {
+            setContentView(R.layout.activity_main_user);
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            USEROBJECTID = data.getStringExtra("userObjectId");
+            UserObjectId = data.getStringExtra("userObjectId");
         } else {
             finish();
         }
@@ -74,8 +81,33 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
-    public void startAddHospitalActivity(View v) {
-        Intent intent = new Intent(this, AddHospitalActivity.class);
+    public void addUser(View v) {
+        Intent intent = new Intent(this, CreateUserActivity.class);
+        startActivity(intent);
+    }
+
+    public void showMyPatients(View v) {
+        Intent intent = new Intent(this, CreateUserActivity.class);
+        startActivity(intent);
+    }
+
+    public void checkInPatient(View v) {
+        Intent intent = new Intent(this, CreateUserActivity.class);
+        startActivity(intent);
+    }
+
+    public void dischargePatient(View v) {
+        Intent intent = new Intent(this, CreateUserActivity.class);
+        startActivity(intent);
+    }
+
+    public void orderedTests(View v) {
+        Intent intent = new Intent(this, CreateUserActivity.class);
+        startActivity(intent);
+    }
+
+    public void editHospital(View v) {
+        Intent intent = new Intent(this, EditHospitalActivity.class);
         startActivity(intent);
     }
 }

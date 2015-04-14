@@ -40,7 +40,7 @@
             android:textColorHint="@android:color/black" />
 
         <EditText
-            android:id="@+id/hospital_input"
+            android:id="@+id/hospital_name_input"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"

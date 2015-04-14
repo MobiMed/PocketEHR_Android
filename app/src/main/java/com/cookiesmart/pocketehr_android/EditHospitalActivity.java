@@ -19,17 +19,34 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-public class AddHospitalActivity extends ListActivity implements OnClickListener {
+public class EditHospitalActivity extends ListActivity implements OnClickListener {
     public OnLongClickListener longClickListner;
     LinearLayout panel1, panel2, panel3, panel4;
     TextView text1, text2, text3, text4, text5;
     public static View openLayout;
     private Context context = this;
+    private ParseUser currentUser;
+    private ParseObject hospital;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_addhospital);
+        setContentView(R.layout.activity_edithospital);
+        ((EditText) findViewById(R.id.username_input)).setKeyListener(null);
+
+        currentUser = ParseUser.getCurrentUser();
+        try {
+            hospital = ParseObject.createWithoutData("hospital", currentUser.fetchIfNeeded().getString("hospitalId"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            populateView();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //fetch hospital object and populate view
 
         panel1 = (LinearLayout) findViewById(R.id.panel1);
         panel2 = (LinearLayout) findViewById(R.id.panel2);
@@ -46,12 +63,27 @@ public class AddHospitalActivity extends ListActivity implements OnClickListener
         text3.setOnClickListener(this);
         text4.setOnClickListener(this);
         text1.performClick();
-
     }
 
     @Override
     public void onClick(View v) {
         hideOthers(v);
+    }
+
+    private void populateView() throws ParseException {
+        ((EditText) findViewById(R.id.username_input)).setText(currentUser.getUsername());
+        ((EditText) findViewById(R.id.password_input)).setText("(Change Password)");
+        ((EditText) findViewById(R.id.admin_name_input)).setText(currentUser.getString("name"));
+        ((EditText) findViewById(R.id.admin_name_input)).setText(currentUser.getString("contactNumber"));
+        ((EditText) findViewById(R.id.admin_email_input)).setText(currentUser.getEmail());
+        ((EditText) findViewById(R.id.hospital_name_input)).setText(hospital.fetchIfNeeded().getString("name"));
+        ((EditText) findViewById(R.id.address_input)).setText(hospital.getString("address"));
+        ((EditText) findViewById(R.id.city_input)).setText(hospital.getString("city"));
+        ((EditText) findViewById(R.id.state_input)).setText(hospital.getString("state"));
+        ((EditText) findViewById(R.id.country_input)).setText(hospital.getString("country"));
+        ((EditText) findViewById(R.id.postal_code_input)).setText(hospital.getString("postalCode"));
+        ((EditText) findViewById(R.id.hospital_contact_number)).setText(hospital.getString("contactNumber"));
+        ((EditText) findViewById(R.id.hospital_email_input)).setText(hospital.getString("email"));
     }
 
     private void hideThemAll() {
@@ -131,19 +163,10 @@ public class AddHospitalActivity extends ListActivity implements OnClickListener
         }
     }
 
-    public void saveHospital(View v) {
+    public void editHospital(View v) {
         final ParseObject hospital = new ParseObject("hospital");
-        ParseUser user = new ParseUser();
+        ParseUser currentUser = ParseUser.getCurrentUser();
 
-        String username = ((EditText) findViewById(R.id.username_input)).getText().toString();
-        if (username.trim().equals("")) {
-            Toast.makeText(this, getString(R.string.username_toast), Toast.LENGTH_SHORT).show();
-            return;
-        } else if (username.trim().length() < 5) {
-            Toast.makeText(this, getString(R.string.username_toast), Toast.LENGTH_SHORT).show();
-            return;
-        }
-        user.setUsername(username);
         String password = ((EditText) findViewById(R.id.password_input)).getText().toString();
         if (password.trim().equals("")) {
             Toast.makeText(this, getString(R.string.password_toast), Toast.LENGTH_SHORT).show();
@@ -151,24 +174,31 @@ public class AddHospitalActivity extends ListActivity implements OnClickListener
         } else if (password.trim().length() < 5) {
             Toast.makeText(this, getString(R.string.password_toast), Toast.LENGTH_SHORT).show();
             return;
-        }
-        user.setPassword(password);
+        } else if (password.equals("(Change Password)"))
+            currentUser.setPassword(password);
 
         String admin_name = ((EditText) findViewById(R.id.admin_name_input)).getText().toString();
         if (admin_name.trim().equals("")) {
             Toast.makeText(this, getString(R.string.home_add_admin_text), Toast.LENGTH_SHORT).show();
             return;
         }
-        user.add("name", admin_name);
+        currentUser.add("name", admin_name);
         String admin_contact = ((EditText) findViewById(R.id.admin_name_input)).getText().toString();
         if (admin_contact.trim().equals("")) {
             Toast.makeText(this, getString(R.string.contact_number_input), Toast.LENGTH_SHORT).show();
             return;
         }
-        user.add("contactNumber", admin_contact);
+        currentUser.add("contactNumber", admin_contact);
+
+        String admin_email = ((EditText) findViewById(R.id.admin_email_input)).getText().toString();
+        if (admin_email.trim().equals("")) {
+            Toast.makeText(this, getString(R.string.contact_number_input), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        currentUser.setEmail(admin_email);
 
         try {
-            user.signUp();
+            currentUser.signUp();
         } catch (ParseException e) {
             if (e.getCode() == ParseException.USERNAME_TAKEN) {
                 Toast.makeText(this, getString(R.string.username_input), Toast.LENGTH_SHORT).show();
@@ -185,6 +215,13 @@ public class AddHospitalActivity extends ListActivity implements OnClickListener
         }
         hospital.add("hospital_name", hospital_name);
 
+        String hospital_email = ((EditText) findViewById(R.id.hospital_email_input)).getText().toString();
+        if (hospital_email.trim().equals("")) {
+            Toast.makeText(this, getString(R.string.hospital_input), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        hospital.add("email", hospital_email);
+
         String hospital_address_line = ((EditText) findViewById(R.id.property_number_input)).getText().toString()
                 + ((EditText) findViewById(R.id.address_input)).getText().toString()
                 + ((EditText) findViewById(R.id.address_input1)).getText().toString();
@@ -192,6 +229,9 @@ public class AddHospitalActivity extends ListActivity implements OnClickListener
 
         String hospital_city = ((EditText) findViewById(R.id.city_input)).getText().toString();
         hospital.add("city", hospital_city);
+
+        String hospital_contact_number = ((EditText) findViewById(R.id.hospital_contact_number)).getText().toString();
+        hospital.add("contactNumber", hospital_contact_number);
 
         String hospital_state = ((EditText) findViewById(R.id.state_input)).getText().toString();
         hospital.add("state", hospital_state);
@@ -216,10 +256,5 @@ public class AddHospitalActivity extends ListActivity implements OnClickListener
                 finish();
             }
         });
-
-        Intent intent = new Intent(context, GenerateQRCodeActivity.class);
-        intent.putExtra("QRData", "pEHRH16675");
-        startActivity(intent);
-        finish();
     }
 }
