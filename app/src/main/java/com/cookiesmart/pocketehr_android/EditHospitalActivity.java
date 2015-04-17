@@ -93,25 +93,25 @@ public class EditHospitalActivity extends ListActivity implements OnClickListene
         System.out.println(openLayout.toString());
         if (openLayout == panel1) {
             ImageView image = (ImageView) findViewById(R.id.image1);
-            image.setImageResource(R.drawable.ic_plus_32);
+            image.setImageResource(R.drawable.ic_plus);
             openLayout = null;
             panel1.startAnimation(new ScaleAnimToHide(1.0f, 1.0f, 1.0f, 0.0f, 500, panel1, true));
         }
         if (openLayout == panel2) {
             ImageView image = (ImageView) findViewById(R.id.image2);
-            image.setImageResource(R.drawable.ic_plus_32);
+            image.setImageResource(R.drawable.ic_plus);
             openLayout = null;
             panel2.startAnimation(new ScaleAnimToHide(1.0f, 1.0f, 1.0f, 0.0f, 500, panel2, true));
         }
         if (openLayout == panel3) {
             ImageView image = (ImageView) findViewById(R.id.image3);
-            image.setImageResource(R.drawable.ic_plus_32);
+            image.setImageResource(R.drawable.ic_plus);
             openLayout = null;
             panel3.startAnimation(new ScaleAnimToHide(1.0f, 1.0f, 1.0f, 0.0f, 500, panel3, true));
         }
         if (openLayout == panel4) {
             ImageView image = (ImageView) findViewById(R.id.image4);
-            image.setImageResource(R.drawable.ic_plus_32);
+            image.setImageResource(R.drawable.ic_plus);
             openLayout = null;
             panel4.startAnimation(new ScaleAnimToHide(1.0f, 1.0f, 1.0f, 0.0f, 500, panel4, true));
         }
@@ -131,7 +131,7 @@ public class EditHospitalActivity extends ListActivity implements OnClickListene
             hideThemAll();
             if (v != View.VISIBLE) {
                 ImageView image = (ImageView) findViewById(R.id.image1);
-                image.setImageResource(R.drawable.ic_minus_32);
+                image.setImageResource(R.drawable.ic_minus);
                 openLayout = panel1;
                 panel1.startAnimation(new ScaleAnimToShow(1.0f, 1.0f, 1.0f, 0.0f, 500, panel1, true));
             }
@@ -140,7 +140,7 @@ public class EditHospitalActivity extends ListActivity implements OnClickListene
             hideThemAll();
             if (v != View.VISIBLE) {
                 ImageView image = (ImageView) findViewById(R.id.image2);
-                image.setImageResource(R.drawable.ic_minus_32);
+                image.setImageResource(R.drawable.ic_minus);
                 openLayout = panel2;
                 panel2.startAnimation(new ScaleAnimToShow(1.0f, 1.0f, 1.0f, 0.0f, 500, panel2, true));
             }
@@ -149,7 +149,7 @@ public class EditHospitalActivity extends ListActivity implements OnClickListene
             hideThemAll();
             if (v != View.VISIBLE) {
                 ImageView image = (ImageView) findViewById(R.id.image3);
-                image.setImageResource(R.drawable.ic_minus_32);
+                image.setImageResource(R.drawable.ic_minus);
                 openLayout = panel3;
                 panel3.startAnimation(new ScaleAnimToShow(1.0f, 1.0f, 1.0f, 0.0f, 500, panel3, true));
             }
@@ -158,7 +158,7 @@ public class EditHospitalActivity extends ListActivity implements OnClickListene
             hideThemAll();
             if (v != View.VISIBLE) {
                 ImageView image = (ImageView) findViewById(R.id.image4);
-                image.setImageResource(R.drawable.ic_minus_32);
+                image.setImageResource(R.drawable.ic_minus);
                 openLayout = panel4;
                 panel4.startAnimation(new ScaleAnimToShow(1.0f, 1.0f, 1.0f, 0.0f, 500, panel4, true));
             }

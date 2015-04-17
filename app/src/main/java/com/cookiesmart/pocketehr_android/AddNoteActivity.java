@@ -46,7 +46,7 @@ public class AddNoteActivity extends Activity {
         noteObject.put("text", notes);
         noteObject.put("patient", patientObject);
         noteObject.put("type", "kTextAdded");
-        noteObject.saveInBackground();
+        noteObject.saveEventually();
     }
 
     @Override
