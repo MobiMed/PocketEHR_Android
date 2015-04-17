@@ -1,4 +1,4 @@
-package com.cookiesmart.pocketehr_android;
+package com.cookiesmart.pocketehr_android.HelperClasses;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -7,6 +7,8 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.cookiesmart.pocketehr_android.R;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

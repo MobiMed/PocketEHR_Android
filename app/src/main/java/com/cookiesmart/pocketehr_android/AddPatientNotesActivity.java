@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.cookiesmart.pocketehr_android.HelperClasses.Patient;
+
 /**
  * Created by aditya841 on 12/1/2014.
  */

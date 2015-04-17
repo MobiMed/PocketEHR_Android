@@ -1,0 +1,169 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/routine_status_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/routine_status"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="routineSelected"
+                android:src="@drawable/selector_routinestatus" />
+
+            <TextView
+                android:id="@+id/routine_status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/routine_status_string"
+                android:textAllCaps="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/surgery_status_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/routine_status_layout"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/surgery_status"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="surgerySelected"
+                android:src="@drawable/selector_surgerystatus" />
+
+            <TextView
+                android:id="@+id/surgery_status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/surgery_status_string"
+                android:textAllCaps="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/newborn_status_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="180dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/newborn_status"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="newbornSelected"
+                android:src="@drawable/selector_newbornstatus" />
+
+            <TextView
+                android:id="@+id/newborn_status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/newborn_status_string"
+                android:textAllCaps="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/labor_status_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="180dp"
+            android:layout_toRightOf="@id/newborn_status_layout"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/labor_status"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="laborSelected"
+                android:src="@drawable/selector_laborstatus" />
+
+            <TextView
+                android:id="@+id/labor_status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/labor_status_string"
+                android:textAllCaps="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/accident_status_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="350dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/accident_status"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="accidentSelected"
+                android:src="@drawable/selector_accidentstatus" />
+
+            <TextView
+                android:id="@+id/accident_status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/accident_status_string"
+                android:textAllCaps="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/urgent_status_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="350dp"
+            android:layout_toRightOf="@id/accident_status_layout"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/urgent_status"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="urgentSelected"
+                android:src="@drawable/selector_urgentstatus" />
+
+            <TextView
+                android:id="@+id/urgent_status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/urgent_status_string"
+                android:textAllCaps="true" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</ScrollView>
+

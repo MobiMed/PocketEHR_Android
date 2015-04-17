@@ -20,8 +20,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:21.0.2'
-    compile 'com.parse.bolts:bolts-android:1.+'
+    compile 'com.android.support:support-v4:22.0.0'
     compile fileTree(dir: 'libs', include: 'Parse-*.jar')
     compile fileTree(dir: 'libs', include: 'ParseCrashReporting-*.jar')
     compile 'com.google.zxing:core:3.2.0'

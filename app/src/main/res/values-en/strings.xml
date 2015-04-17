@@ -13,7 +13,7 @@
     <string name="home_edit_hospital_text">Edit Hospital</string>
     <string name="last_name_input">Last Name</string>
     <string name="first_name_input">First Name</string>
-    <string name="hospital_input">Hospital/Medical Centre</string>
+    <string name="hospital_input">Hospital Name</string>
     <string name="patient_id_number_input">Patient ID Number</string>
     <string name="contact_number_input">Contact No.</string>
     <string name="address_input">Address</string>
@@ -37,10 +37,11 @@
     <string name="dob_label">DOB</string>
     <string name="occupation_input">Occupation</string>
     <string name="action_settings">Settings</string>
-    <string name="action_search">Search</string>
+    <string name="action_search">Search Patient</string>
     <string name="action_alpha_za_order">Z-A</string>
     <string name="action_date_order">Date</string>
     <string name="action_alpha_az_order">A-Z</string>
+    <string name="create_patient_string">Create new Patient</string>
     <string name="action_about">About</string>
     <string name="search_hint">Enter patient name to search</string>
     <string name="username_input">Username</string>
@@ -57,7 +58,7 @@
     <string name="email_sent_alert_string">Please check your email for your login details.</string>
     <string name="password_changed_alert">Password Changed</string>
     <string name="password_changed_alert_string">Your password has been successfully changed.</string>
-    <string name="password_not_same_alert">Password Don't Match</string>
+    <string name="password_not_same_alert">Password Don\'t Match</string>
     <string name="password_not_same_alert_string">The passwords do not match. Please input your password again.</string>
     <string name="ok_string">OK</string>
     <string name="restart_alert">Restart</string>
@@ -94,6 +95,26 @@
     <string name="password_toast">Password cannot be blank</string>
     <string name="first_name_toast">First name cannot be blank</string>
     <string name="dob_toast">DOB cannot be blank</string>
+    <string name="admin_details">Admin Details</string>
+    <string name="admin_name">Enter Admin Name</string>
+    <string name="contact_details">Contact Details</string>
+    <string name="postal_code_input">Postal Code</string>
+    <string name="country_input">Country</string>
+    <string name="state_input">State/Province</string>
+    <string name="city_input">City</string>
+    <string name="property_number_input">Property Number</string>
+    <string name="hospital_details">Hospital Details</string>
+    <string name="add_hospital_title">Adding Hospital</string>
+    <string name="login_details">Login Details</string>
+    <string name="add_patient_title">Adding Patient</string>
+    <string name="patient_personal_details">Personal Details</string>
+    <string name="patient_history">Patient History</string>
+    <string name="routine_status_string">Routine</string>
+    <string name="surgery_status_string">Surgery</string>
+    <string name="newborn_status_string">Newborn</string>
+    <string name="labor_status_string">Labor</string>
+    <string name="accident_status_string">Accident</string>
+    <string name="urgent_status_string">Urgent</string>
     <string-array name="gender">
         <item>Female</item>
         <item>Male</item>

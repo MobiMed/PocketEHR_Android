@@ -10,12 +10,12 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
+            android:id="@+id/routine_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="27dp"
-            android:id="@+id/main_add_user_layout">
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/add_user"
@@ -34,13 +34,13 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/edit_hospital_layout"
+            android:id="@+id/surgery_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/main_add_user_layout"
             android:layout_marginLeft="10dp"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/routine_status_layout"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/edit_hospital"
@@ -60,7 +60,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/main_patient_layout"
+            android:id="@+id/newborn_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="27dp"
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="180dp"
-            android:layout_toRightOf="@id/main_patient_layout"
+            android:layout_toRightOf="@id/newborn_status_layout"
             android:orientation="vertical">
 
             <ImageView
@@ -109,12 +109,12 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/checkin_layout"
+            android:id="@+id/accident_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="27dp"
-            android:orientation="vertical"
-            android:layout_marginTop="350dp">
+            android:layout_marginTop="350dp"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/checkin_patient"
@@ -136,10 +136,10 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/checkin_layout"
-            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="350dp"
-            android:layout_marginLeft="10dp">
+            android:layout_toRightOf="@id/accident_status_layout"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/discharge_patient"
@@ -160,9 +160,9 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_marginLeft="27dp"
             android:layout_marginTop="520dp"
-            android:layout_marginLeft="27dp">
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/ordered_tests_layout"

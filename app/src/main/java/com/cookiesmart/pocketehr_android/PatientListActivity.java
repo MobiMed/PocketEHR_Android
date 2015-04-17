@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.cookiesmart.pocketehr_android.HelperClasses.MyCustomAdapter;
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
@@ -26,16 +27,16 @@ import java.util.ArrayList;
  */
 public class PatientListActivity extends Activity {
     private static String TAG = "PatientListActivity";
+    final Context context = this;
     private final String DATE_ORDER = "createdAt";
     private final String ALPHA_ORDER = "lastName";
     private final int ALPHA_AZ = 3;
     private final int ALPHA_ZA = 1;
     private final int DATE = 2;
-    final Context context = this;
+    private int currentType = DATE;
     //    private ArrayList<ParseObject> patients;
     private int preLast;
     private Menu menu = null;
-    private int currentType = DATE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,4 +1,4 @@
-package com.cookiesmart.pocketehr_android;
+package com.cookiesmart.pocketehr_android.HelperClasses;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.cookiesmart.pocketehr_android.R;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;

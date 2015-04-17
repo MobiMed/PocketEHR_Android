@@ -57,10 +57,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:textSize="14sp"
             android:onClick="forgotPassword"
             android:text="@string/forgot_password"
-            android:textColor="@android:color/holo_blue_bright" />
+            android:textColor="@android:color/holo_blue_bright"
+            android:textSize="14sp" />
 
         <RelativeLayout
             android:layout_width="160dp"

@@ -21,22 +21,6 @@ import java.util.Locale;
 public class MyApplication extends Application {
     public static final String FORCE_LOCAL = "";
 
-    @Override
-    public void onCreate() {
-        updateLanguage(this, null);
-        if (!isOnline()) {
-            Intent intent = new Intent(this, AlertActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        } else {
-            if (!ParseCrashReporting.isCrashReportingEnabled()) {
-                ParseCrashReporting.enable(this);
-            }
-            Parse.initialize(this, "e3iuA19d4bgZNUNWjzNxK1bmu0fEQX8mSOd4VzZv", "OSQJme7WddoMCJrI5gGtnrsSHDHvqgy16dj4VU5e");
-        }
-        super.onCreate();
-    }
-
     public static void updateLanguage(Context ctx, String lang) {
         Configuration cfg = new Configuration();
         SharedPreferences force_pref = PreferenceManager.getDefaultSharedPreferences(ctx);
@@ -62,6 +46,22 @@ public class MyApplication extends Application {
         }
 
         ctx.getResources().updateConfiguration(cfg, null);
+    }
+
+    @Override
+    public void onCreate() {
+        updateLanguage(this, null);
+        if (!isOnline()) {
+            Intent intent = new Intent(this, AlertActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } else {
+            if (!ParseCrashReporting.isCrashReportingEnabled()) {
+                ParseCrashReporting.enable(this);
+            }
+            Parse.initialize(this, "e3iuA19d4bgZNUNWjzNxK1bmu0fEQX8mSOd4VzZv", "OSQJme7WddoMCJrI5gGtnrsSHDHvqgy16dj4VU5e");
+        }
+        super.onCreate();
     }
 
     @Override

@@ -14,16 +14,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cookiesmart.pocketehr_android.HelperClasses.ScaleAnimToHide;
+import com.cookiesmart.pocketehr_android.HelperClasses.ScaleAnimToShow;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 public class EditHospitalActivity extends ListActivity implements OnClickListener {
+    public static View openLayout;
     public OnLongClickListener longClickListner;
     LinearLayout panel1, panel2, panel3, panel4;
     TextView text1, text2, text3, text4, text5;
-    public static View openLayout;
     private Context context = this;
     private ParseUser currentUser;
     private ParseObject hospital;

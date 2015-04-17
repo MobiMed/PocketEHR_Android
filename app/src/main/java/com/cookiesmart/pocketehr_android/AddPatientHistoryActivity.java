@@ -20,6 +20,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cookiesmart.pocketehr_android.HelperClasses.Patient;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -28,18 +30,25 @@ import java.util.Date;
  * Created by aditya841 on 12/1/2014.
  */
 public class AddPatientHistoryActivity extends Activity implements AdapterView.OnItemSelectedListener {
-    private static final String TAG = "AddPatientHistoryActivity";
+    private static final String TAG = "AddPatientHistActivity";
     private static boolean flag = false;
     private static LinearLayout patientHistory;
     private static LinearLayout dobandage;
     private static String objectId;
+    private final int SHOW_BODY = 1;
+    Context context = this;
     private ArrayList<String> bodyParts;
     private ArrayList<String> backBodyParts;
     private Patient p = null;
     private String action = "";
-    Context context = this;
     private Spinner spinner;
-    private final int SHOW_BODY = 1;
+
+    public static void setAge(int age) {
+        TextView ageField = (TextView) dobandage.findViewById(R.id.age_input);
+        ageField.setText(age + "");
+        ageField.setFocusable(false);
+        flag = true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,14 +82,6 @@ public class AddPatientHistoryActivity extends Activity implements AdapterView.O
             spinner.setSelection(0);
         }
     }
-
-    public static void setAge(int age) {
-        TextView ageField = (TextView) dobandage.findViewById(R.id.age_input);
-        ageField.setText(age + "");
-        ageField.setFocusable(false);
-        flag = true;
-    }
-
 
     public void saveAndNext(View v) {
         String ageString = ((TextView) dobandage.findViewById(R.id.age_input)).getText().toString();

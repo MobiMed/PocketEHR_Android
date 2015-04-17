@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cookiesmart.pocketehr_android.HelperClasses.ScaleAnimToHide;
+import com.cookiesmart.pocketehr_android.HelperClasses.ScaleAnimToShow;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
@@ -18,10 +20,10 @@ import com.parse.ParseUser;
  * Created by aditya841 on 4/7/2015.
  */
 public class CreateUserActivity extends ListActivity implements View.OnClickListener {
+    public static View openLayout;
     public View.OnLongClickListener longClickListner;
     LinearLayout panel1, panel2, panel3;
     TextView text1, text2, text3;
-    public static View openLayout;
     private Context context = this;
 
     @Override

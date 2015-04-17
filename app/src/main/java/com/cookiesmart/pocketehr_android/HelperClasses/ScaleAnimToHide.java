@@ -1,4 +1,4 @@
-package com.cookiesmart.pocketehr_android;
+package com.cookiesmart.pocketehr_android.HelperClasses;
 
 import android.util.Log;
 import android.view.View;
@@ -9,41 +9,35 @@ import android.widget.LinearLayout;
 /**
  * Created by aditya841 on 4/7/2015.
  */
-public class ScaleAnimToShow extends ScaleAnimation {
-
+public class ScaleAnimToHide extends ScaleAnimation {
     private View mView;
     private LinearLayout.LayoutParams mLayoutParams;
-
     private int mMarginBottomFromY, mMarginBottomToY;
-
     private boolean mVanishAfter = false;
 
-    public ScaleAnimToShow(float toX, float fromX, float toY, float fromY, int duration, View view, boolean vanishAfter) {
+    public ScaleAnimToHide(float fromX, float toX, float fromY, float toY, int duration, View view, boolean vanishAfter) {
         super(fromX, toX, fromY, toY);
         setDuration(duration);
         mView = view;
         mVanishAfter = vanishAfter;
         mLayoutParams = (LinearLayout.LayoutParams) view.getLayoutParams();
-        mView.setVisibility(View.VISIBLE);
         int height = mView.getHeight();
-        //mMarginBottomFromY = (int) (height * fromY) + mLayoutParams.bottomMargin + height;
-        //mMarginBottomToY = (int) (0 - ((height * toY) + mLayoutParams.bottomMargin)) + height;
+        mMarginBottomFromY = (int) (height * fromY) + mLayoutParams.bottomMargin - height;
+        mMarginBottomToY = (int) (0 - ((height * toY) + mLayoutParams.bottomMargin)) - height;
 
-        mMarginBottomFromY = 0;
-        mMarginBottomToY = height;
-
-        Log.v("CZ", ".................height..." + height + " , mMarginBottomFromY...." + mMarginBottomFromY + " , mMarginBottomToY.." + mMarginBottomToY);
+        Log.v("CZ", "height..." + height + " , mMarginBottomFromY...." + mMarginBottomFromY + " , mMarginBottomToY.." + mMarginBottomToY);
     }
 
     @Override
     protected void applyTransformation(float interpolatedTime, Transformation t) {
         super.applyTransformation(interpolatedTime, t);
         if (interpolatedTime < 1.0f) {
-            int newMarginBottom = (int) ((mMarginBottomToY - mMarginBottomFromY) * interpolatedTime) - mMarginBottomToY;
+            int newMarginBottom = mMarginBottomFromY + (int) ((mMarginBottomToY - mMarginBottomFromY) * interpolatedTime);
             mLayoutParams.setMargins(mLayoutParams.leftMargin, mLayoutParams.topMargin, mLayoutParams.rightMargin, newMarginBottom);
             mView.getParent().requestLayout();
             //Log.v("CZ","newMarginBottom..." + newMarginBottom + " , mLayoutParams.topMargin..." + mLayoutParams.topMargin);
+        } else if (mVanishAfter) {
+            mView.setVisibility(View.GONE);
         }
     }
-
 }

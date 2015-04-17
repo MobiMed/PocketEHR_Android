@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.cookiesmart.pocketehr_android.HelperClasses.Patient;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;

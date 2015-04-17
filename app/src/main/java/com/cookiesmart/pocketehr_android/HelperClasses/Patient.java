@@ -1,4 +1,4 @@
-package com.cookiesmart.pocketehr_android;
+package com.cookiesmart.pocketehr_android.HelperClasses;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -16,6 +16,8 @@ public class Patient implements Parcelable {
     private String notes = "";
     private String hospital = "";
     private String patientIDNumber = "";
+
+    private String patientHistory = "";
     private int age = -1;
 
     private String status = "kIncomplete";
@@ -34,6 +36,7 @@ public class Patient implements Parcelable {
             p.age = in.readInt();
             p.status = in.readString();
             p.patientIDNumber = in.readString();
+            p.patientHistory = in.readString();
             return p;
         }
 
@@ -77,6 +80,7 @@ public class Patient implements Parcelable {
         dest.writeInt(age);
         dest.writeString(status);
         dest.writeString(patientIDNumber);
+        dest.writeString(patientHistory);
     }
 
     public String getFirstName() {
@@ -158,4 +162,13 @@ public class Patient implements Parcelable {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public void setPatientHistory(String patientHistory) {
+        this.patientHistory = patientHistory;
+    }
+
+    public String getPatientHistory() {
+        return patientHistory;
+    }
+
 }

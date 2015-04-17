@@ -65,12 +65,6 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
-    public void addPatient(View v) {
-        Intent intent = new Intent(this, AddPatientContactActivity.class);
-        intent.putExtra("action", "add");
-        startActivity(intent);
-    }
-
     private void startSettingsActivity() {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
@@ -92,7 +86,7 @@ public class MainActivity extends Activity {
     }
 
     public void checkInPatient(View v) {
-        Intent intent = new Intent(this, CreateUserActivity.class);
+        Intent intent = new Intent(this, CheckinActivity.class);
         startActivity(intent);
     }
 

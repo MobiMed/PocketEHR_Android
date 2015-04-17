@@ -10,6 +10,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.cookiesmart.pocketehr_android.HelperClasses.MyCustomAdapter;
 import com.parse.ParseObject;
 
 import org.json.JSONArray;
@@ -22,20 +23,20 @@ import java.util.ArrayList;
  */
 public class SearchResultActivity extends Activity {
     private static String TAG = "SearchResultActivity";
-    private int preLast = -1;
     private final int SEARCH = 4;
     //    private ArrayList<ParseObject> patients;
     Context context = this;
+    private int preLast = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patientlist);
+        finish();
         handleIntent(getIntent());
     }
 
     private void handleIntent(Intent intent) {
-
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             //use the query to search your data somehow
