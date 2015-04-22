@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
     }
 
     public void showPatientList(View v) {
-        Intent intent = new Intent(this, PatientListActivity.class);
+        Intent intent = new Intent(this, PatientListActivity_copy.class);
         intent.putExtra("type", DATE);
         startActivity(intent);
     }

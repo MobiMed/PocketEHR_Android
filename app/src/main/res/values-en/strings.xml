@@ -115,6 +115,30 @@
     <string name="labor_status_string">Labor</string>
     <string name="accident_status_string">Accident</string>
     <string name="urgent_status_string">Urgent</string>
+    <string name="general_location_string">General</string>
+    <string name="surgery_location_string">Surgery</string>
+    <string name="pediatrics_location_string">Pediatrics</string>
+    <string name="maternity_location_string">Maternity</string>
+    <string name="er_location_string">ER</string>
+    <string name="icu_location_string">ICU</string>
+    <string name="dental_location_string">Dental</string>
+    <string name="radiology_location_string">Radiology</string>
+    <string name="cardiology_location_string">Cardiology</string>
+    <string name="orthopedics_location_string">Orthopedics</string>
+    <string name="urology_location_string">Urology</string>
+    <string name="other_location_string">Other</string>
+    <string name="initial_observation">Intial Observation</string>
+    <string name="name_header">Name</string>
+    <string name="test_status_header">Test</string>
+    <string name="date_header">Date</string>
+    <string name="event_status_header">Status</string>
+    <string name="event_location_header">Local</string>
+    <string name="admitServerString">Admit</string>
+    <string name="admit_server_string">Admit</string>
+    <string name="visit_server_string">Visit</string>
+    <string name="emergency_server_string">Emergency</string>
+    <string name="test_reported_string">Reported</string>
+    <string name="infectious_location_string">Infectious</string>
     <string-array name="gender">
         <item>Female</item>
         <item>Male</item>

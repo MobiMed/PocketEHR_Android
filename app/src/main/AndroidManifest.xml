@@ -163,5 +163,27 @@
             android:name=".PatientStatusActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
+
+        <activity
+            android:name=".PatientLocationActivity"
+            android:configChanges="screenSize|orientation"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".DoctorSelectionActivity"
+            android:configChanges="screenSize|orientation"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".AddPatientActivity"
+            android:configChanges="screenSize|orientation"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".PatientListActivity_copy"
+            android:configChanges="screenSize|orientation"
+            android:label="@string/app_name" />
     </application>
+
+
 </manifest>

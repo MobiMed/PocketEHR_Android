@@ -6,9 +6,76 @@
     android:background="@color/background_color"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/patient_name_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/name_header"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/test_status_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/test_status_header"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:layout_marginLeft="90dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/date_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/date_header"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:layout_marginLeft="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/event_status_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/event_status_header"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:layout_marginLeft="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/event_location_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/event_location_header"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:layout_marginLeft="15dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/emptyList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/loading_text" />
 
 </LinearLayout>

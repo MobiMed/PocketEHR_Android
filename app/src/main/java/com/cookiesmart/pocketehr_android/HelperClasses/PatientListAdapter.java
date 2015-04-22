@@ -1,93 +1,60 @@
 package com.cookiesmart.pocketehr_android.HelperClasses;
 
 import android.content.Context;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cookiesmart.pocketehr_android.R;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.ParseQueryAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 /**
- * Created by aditya841 on 11/19/2014.
+ * Created by aditya841 on 4/22/2015.
  */
-public class MyCustomAdapter extends ParseQueryAdapter<ParseObject> {
-    private static String TAG = "CustomAdapter";
+public class PatientListAdapter extends ArrayAdapter<PatientList> {
+    private LayoutInflater mLayoutInflater;
+    private ArrayList<PatientList> patientList = new ArrayList<>();
     private Context activity_context;
 
-    public MyCustomAdapter(final Context context, final int type, final String searchTerm) {
-        super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
-            public ParseQuery<ParseObject> create() {
-                ParseQuery<ParseObject> query = null;
-                if (type == 1) {
-                    ParseQuery<ParseObject> innerQuery = new ParseQuery<ParseObject>("patient");
-                    query = new ParseQuery<>("medicalEvents");
-                    query.whereMatchesKeyInQuery("patientId", "objectId", innerQuery);
-                    query.orderByDescending("createdAt");
-                    query.include("patientId");
-                } else if (type == 2) {
-                    query = new ParseQuery<>("patient");
-                    query.orderByDescending("createdAt");
-                } else if (type == 3) {
-                    query = new ParseQuery<>("patient");
-                    query.orderByAscending("lastName");
-                } else if (type == 4) {
-                    List<ParseQuery<ParseObject>> queries = new ArrayList<ParseQuery<ParseObject>>();
-                    ParseQuery<ParseObject> query1 = new ParseQuery<ParseObject>("patient");
-                    ParseQuery<ParseObject> query2 = new ParseQuery<ParseObject>("patient");
-                    query1.whereMatches("lastName", searchTerm, "i");
-                    query2.whereMatches("firstName", searchTerm, "i");
-                    queries.add(query1);
-                    queries.add(query2);
-                    query = ParseQuery.or(queries);
-                }
-                return query;
-            }
-        });
-        Log.i(TAG, searchTerm + type);
+
+    public PatientListAdapter(Context context) {
+        super(context, 0);
         activity_context = context;
+        mLayoutInflater = (LayoutInflater) activity_context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    // Customize the layout by overriding getItemView
     @Override
-    public View getItemView(ParseObject object, View v, ViewGroup parent) {
-        if (v == null) {
-            v = View.inflate(getContext(), R.layout.rowlayout, null);
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = mLayoutInflater.inflate(
+                    R.layout.rowlayout, parent, false);
+
         }
+        PatientList patientList = this.patientList.get(position);
 
-        v.setTag(object.getObjectId());
-//        System.out.println(object.getClassName());
-//        return v;
-
-        ParseObject patient_object = object.getParseObject("patientId");
-
-
-        // Add the patient status
-        String status = object.getString("eventType");
+        String status = patientList.getPatientVisitStatus();
 
         if (status.equalsIgnoreCase(activity_context.getString(R.string.admit_server_string))) {
-            v.setBackgroundColor(activity_context.getResources().getColor(R.color.admit_label_color));
+            convertView.setBackgroundColor(activity_context.getResources().getColor(R.color.admit_label_color));
         } else if (status.equalsIgnoreCase(activity_context.getString(R.string.visit_server_string))) {
-            v.setBackgroundColor(activity_context.getResources().getColor(R.color.visit_label_color));
+            convertView.setBackgroundColor(activity_context.getResources().getColor(R.color.visit_label_color));
         } else if (status.equalsIgnoreCase(activity_context.getString(R.string.emergency_server_string))) {
-            v.setBackgroundColor(activity_context.getResources().getColor(R.color.emergency_label_color));
+            convertView.setBackgroundColor(activity_context.getResources().getColor(R.color.emergency_label_color));
         }
 
         // Add the patient name
-        TextView nameTextView = (TextView) v.findViewById(R.id.patient_name_placeholder);
-        nameTextView.setText(patient_object.getString("patientLastName") + ", " + patient_object.getString("patientFirstName"));
+        TextView nameTextView = (TextView) convertView.findViewById(R.id.patient_name_placeholder);
+        nameTextView.setText(patientList.getPatientLastName() + ", " + patientList.getPatientFirstName());
 
-        ImageView testStatus = (ImageView) v.findViewById(R.id.test_status_placeholder);
-//        String testStatusString = object.getString("testStatus");
+        ImageView testStatus = (ImageView) convertView.findViewById(R.id.test_status_placeholder);
+//        String testStatusString = patientList.getPatientTestStatus();
         String testStatusString = "Reported";
         if (testStatusString.equalsIgnoreCase(activity_context.getString(R.string.test_reported_string))) {
             testStatus.setImageResource(R.drawable.ic_test_report);
@@ -95,8 +62,8 @@ public class MyCustomAdapter extends ParseQueryAdapter<ParseObject> {
             testStatus.setImageResource(R.drawable.ic_test_order);
         }
 
-        TextView eventDate = (TextView) v.findViewById(R.id.date_placeholder);
-        Date date = object.getCreatedAt();
+        TextView eventDate = (TextView) convertView.findViewById(R.id.date_placeholder);
+        Date date = patientList.getPatientVisitDate();
         if (date != null) {
             Calendar c = Calendar.getInstance();
             c.setTime(date);
@@ -118,8 +85,8 @@ public class MyCustomAdapter extends ParseQueryAdapter<ParseObject> {
             eventDate.setText("Date not coming");
         }
 
-        ImageView eventStatus = (ImageView) v.findViewById(R.id.event_status_placeholder);
-        String eventStatusString = object.getString("eventStatus");
+        ImageView eventStatus = (ImageView) convertView.findViewById(R.id.event_status_placeholder);
+        String eventStatusString = patientList.getPatientVisitStatus();
         if (eventStatusString.equalsIgnoreCase(activity_context.getString(R.string.routine_status_string))) {
             eventStatus.setImageResource(R.drawable.ic_routine);
         } else if (eventStatusString.equalsIgnoreCase(activity_context.getString(R.string.surgery_status_string))) {
@@ -134,8 +101,8 @@ public class MyCustomAdapter extends ParseQueryAdapter<ParseObject> {
             eventStatus.setImageResource(R.drawable.ic_urgent);
         }
 
-        ImageView eventLocation = (ImageView) v.findViewById(R.id.event_location_placeholder);
-        String eventLocationString = object.getString("eventLocation");
+        ImageView eventLocation = (ImageView) convertView.findViewById(R.id.event_location_placeholder);
+        String eventLocationString = patientList.getPatientVisitLocation();
 
         if (eventLocationString.equalsIgnoreCase(activity_context.getString(R.string.general_location_string))) {
             eventLocation.setImageResource(R.drawable.ic_general);
@@ -165,6 +132,11 @@ public class MyCustomAdapter extends ParseQueryAdapter<ParseObject> {
             eventStatus.setImageResource(R.drawable.ic_other);
         }
 
-        return v;
+        return convertView;
+    }
+
+    public void updateEntries(ArrayList<PatientList> newPatientList) {
+        patientList = newPatientList;
+        notifyDataSetChanged();
     }
 }

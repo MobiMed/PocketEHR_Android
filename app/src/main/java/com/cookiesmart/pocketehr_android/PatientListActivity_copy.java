@@ -15,15 +15,19 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 
-import com.cookiesmart.pocketehr_android.HelperClasses.MyCustomAdapter;
+import com.cookiesmart.pocketehr_android.HelperClasses.PatientListAdapter;
+import com.parse.FunctionCallback;
+import com.parse.ParseCloud;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by aditya841 on 11/19/2014.
  */
-public class PatientListActivity extends Activity {
+public class PatientListActivity_copy extends Activity {
     private static String TAG = "PatientListActivity";
     final Context context = this;
     private final String DATE_ORDER = "createdAt";
@@ -34,7 +38,7 @@ public class PatientListActivity extends Activity {
     private int currentType = DATE;
     //    private ArrayList<ParseObject> patients;
     private int preLast;
-    private Menu menu = null;
+    private int iteration = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +65,6 @@ public class PatientListActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        this.menu = menu;
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.patient_list, menu);
 
@@ -127,8 +130,9 @@ public class PatientListActivity extends Activity {
     }
 
     public void loadView(int type) {
-        final MyCustomAdapter patientViewAdapter = new MyCustomAdapter(this, type, "");
+        final PatientListAdapter patientViewAdapter = new PatientListAdapter(this);
         final ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setEmptyView(findViewById(R.id.emptyList));
         listView.setAdapter(patientViewAdapter);
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -143,7 +147,8 @@ public class PatientListActivity extends Activity {
                 if (lastItem == totalItemCount) {
                     if (preLast != lastItem) { //to avoid multiple calls for last item
                         preLast = lastItem;
-                        patientViewAdapter.loadNextPage();
+                        iteration++;
+                        loadNextPage(patientViewAdapter);
                     }
                 }
             }
@@ -160,6 +165,9 @@ public class PatientListActivity extends Activity {
                 startActivityForResult(intent, 1);
             }
         });
+
+        iteration++;
+        loadNextPage(patientViewAdapter);
     }
 
     @Override
@@ -212,5 +220,17 @@ public class PatientListActivity extends Activity {
     public void onBackPressed() {
         finish();
         super.onBackPressed();
+    }
+
+    private void loadNextPage(final PatientListAdapter adapter) {
+        HashMap<String, Integer> request = new HashMap<>();
+        request.put("iteration", iteration);
+        ParseCloud.callFunctionInBackground("patientList", request, new FunctionCallback<Object>() {
+            @Override
+            public void done(Object o, ParseException e) {
+//                adapter.updateEntries((ArrayList<PatientList>) o);
+                System.out.println(o);
+            }
+        });
     }
 }

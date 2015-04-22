@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:id="@+id/routine_status_layout"
+            android:id="@+id/general_location_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="27dp"
@@ -22,7 +22,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:onClick="addUser"
-                android:src="@drawable/selector_adddoctor" />
+                android:src="@drawable/selector_discharge" />
 
             <TextView
                 android:id="@+id/add_user_text"
@@ -34,12 +34,12 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/surgery_status_layout"
+            android:id="@+id/surgery_location_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/routine_status_layout"
+            android:layout_toRightOf="@id/general_location_layout"
             android:orientation="vertical">
 
             <ImageView
@@ -60,7 +60,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/newborn_status_layout"
+            android:id="@+id/pediatrics_location_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="27dp"
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="180dp"
-            android:layout_toRightOf="@id/newborn_status_layout"
+            android:layout_toRightOf="@id/pediatrics_location_layout"
             android:orientation="vertical">
 
             <ImageView
@@ -97,7 +97,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:onClick="showMyPatients"
-                android:src="@drawable/selector_addpatient" />
+                android:src="@drawable/selector_mypatients" />
 
             <TextView
                 android:id="@+id/add_patient_text"
@@ -121,7 +121,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:onClick="checkInPatient"
-                android:src="@drawable/selector_addadmin" />
+                android:src="@drawable/selector_checkin" />
 
             <TextView
                 android:id="@+id/checkin_patient_text"
@@ -146,7 +146,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:onClick="dischargePatient"
-                android:src="@drawable/selector_adddoctor" />
+                android:src="@drawable/selector_discharge" />
 
             <TextView
                 android:id="@+id/discharge_patient_text"
@@ -169,7 +169,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:onClick="orderedTests"
-                android:src="@drawable/selector_adddoctor" />
+                android:src="@drawable/selector_discharge" />
 
             <TextView
                 android:id="@+id/ordered_tests_text"

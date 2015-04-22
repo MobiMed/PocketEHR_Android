@@ -8,7 +8,7 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:id="@+id/routine_status_layout"
+            android:id="@+id/general_location_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="27dp"
@@ -33,12 +33,12 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/surgery_status_layout"
+            android:id="@+id/surgery_location_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/routine_status_layout"
+            android:layout_toRightOf="@id/general_location_layout"
             android:orientation="vertical">
 
             <ImageView
@@ -60,7 +60,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/newborn_status_layout"
+            android:id="@+id/pediatrics_location_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="27dp"
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="180dp"
-            android:layout_toRightOf="@id/newborn_status_layout"
+            android:layout_toRightOf="@id/pediatrics_location_layout"
             android:orientation="vertical">
 
             <ImageView

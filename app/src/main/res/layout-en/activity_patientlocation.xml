@@ -1,0 +1,351 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/general_location_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/general_location"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="generalSelected"
+                android:src="@drawable/selector_generallocation" />
+
+            <TextView
+                android:id="@+id/general_location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/general_location_string"
+                android:textAllCaps="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/surgery_location_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/general_location_layout"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/surgery_location"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="surgerySelected"
+                android:src="@drawable/selector_surgerylocation" />
+
+            <TextView
+                android:id="@+id/surgery_location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/surgery_location_string"
+                android:textAllCaps="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/pediatrics_location_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="180dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/pediatrics_location"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="pediatricsSelected"
+                android:src="@drawable/selector_pediatricslocation" />
+
+            <TextView
+                android:id="@+id/pediatrics_location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/pediatrics_location_string"
+                android:textAllCaps="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/maternity_location_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="180dp"
+            android:layout_toRightOf="@id/pediatrics_location_layout"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/maternity_location"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="maternitySelected"
+                android:src="@drawable/selector_maternitylocation" />
+
+            <TextView
+                android:id="@+id/maternity_location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/maternity_location_string"
+                android:textAllCaps="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/er_location_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="350dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/er_location"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="erSelected"
+                android:src="@drawable/selector_erlocation" />
+
+            <TextView
+                android:id="@+id/er_location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/er_location_string"
+                android:textAllCaps="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/icu_location_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="350dp"
+            android:layout_toRightOf="@id/er_location_layout"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/icu_location"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="icuSelected"
+                android:src="@drawable/selector_iculocation" />
+
+            <TextView
+                android:id="@+id/icu_location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/icu_location_string"
+                android:textAllCaps="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/dental_location_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="520dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/dental_location"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="dentalSelected"
+                android:src="@drawable/selector_dentallocation" />
+
+            <TextView
+                android:id="@+id/dental_location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/dental_location_string"
+                android:textAllCaps="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/radiology_location_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="520dp"
+            android:layout_toRightOf="@id/er_location_layout"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/radiology_location"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="radiologySelected"
+                android:src="@drawable/selector_radiologylocation" />
+
+            <TextView
+                android:id="@+id/radiology_location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/radiology_location_string"
+                android:textAllCaps="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cardiology_location_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="690dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/cardiology_location"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="cardiologySelected"
+                android:src="@drawable/selector_cardiologylocation" />
+
+            <TextView
+                android:id="@+id/cardiology_location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/cardiology_location_string"
+                android:textAllCaps="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/infectious_location_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="690dp"
+            android:layout_toRightOf="@id/er_location_layout"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/infectious_location"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="infectiousSelected"
+                android:src="@drawable/selector_infectiouslocation" />
+
+            <TextView
+                android:id="@+id/infectious_location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/infectious_location_string"
+                android:textAllCaps="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/orthopedics_location_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="860dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/orthopedics_location"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="orthopedicsSelected"
+                android:src="@drawable/selector_orthopedicslocation" />
+
+            <TextView
+                android:id="@+id/orthopedics_location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/orthopedics_location_string"
+                android:textAllCaps="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/urology_location_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="860dp"
+            android:layout_toRightOf="@id/er_location_layout"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/urology_location"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="urologySelected"
+                android:src="@drawable/selector_urologylocation" />
+
+            <TextView
+                android:id="@+id/urology_location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/urology_location_string"
+                android:textAllCaps="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/other_location_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="1030dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/other_location"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="otherSelected"
+                android:src="@drawable/selector_otherlocation" />
+
+            <TextView
+                android:id="@+id/other_location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/other_location_string"
+                android:textAllCaps="true" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</ScrollView>
+

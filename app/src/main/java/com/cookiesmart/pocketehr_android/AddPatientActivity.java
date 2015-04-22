@@ -7,18 +7,27 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cookiesmart.pocketehr_android.HelperClasses.Patient;
+import com.cookiesmart.pocketehr_android.HelperClasses.ScaleAnimToHide;
+import com.cookiesmart.pocketehr_android.HelperClasses.ScaleAnimToShow;
+import com.cookiesmart.pocketehr_android.HelperClasses.Visit;
+import com.parse.FunctionCallback;
+import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.SaveCallback;
+import com.parse.ParseUser;
 
 import org.json.JSONObject;
 
@@ -31,17 +40,38 @@ import java.util.Locale;
 /**
  * Created by aditya841 on 4/16/2015.
  */
-public class AddPatientActivity extends Activity implements AdapterView.OnItemSelectedListener {
-    Context context = this;
+public class AddPatientActivity extends Activity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
     private static EditText dob_input;
+    public static View openLayout;
     private Spinner spinner;
     private Patient patient;
+    private Visit visit;
+    LinearLayout panel1, panel2, panel3;
+    TextView text1, text2, text3;
+    private Context context = this;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addpatient);
         dob_input = (EditText) findViewById(R.id.dob_input);
+        visit = new Visit();
+        patient = new Patient();
+
+        panel1 = (LinearLayout) findViewById(R.id.panel1);
+        panel2 = (LinearLayout) findViewById(R.id.panel2);
+        panel3 = (LinearLayout) findViewById(R.id.panel3);
+
+        text1 = (TextView) findViewById(R.id.text1);
+        text2 = (TextView) findViewById(R.id.text2);
+        text3 = (TextView) findViewById(R.id.text3);
+
+        text1.setOnClickListener(this);
+        text2.setOnClickListener(this);
+        text3.setOnClickListener(this);
+        text1.performClick();
+
 
         spinner = (Spinner) findViewById(R.id.gender_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -76,6 +106,73 @@ public class AddPatientActivity extends Activity implements AdapterView.OnItemSe
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         //do nothing
+    }
+
+    @Override
+    public void onClick(View v) {
+        hideOthers(v);
+    }
+
+    private void hideThemAll() {
+        if (openLayout == null) return;
+        System.out.println(openLayout.toString());
+        if (openLayout == panel1) {
+            ImageView image = (ImageView) findViewById(R.id.image1);
+            image.setImageResource(R.drawable.ic_plus);
+            openLayout = null;
+            panel1.startAnimation(new ScaleAnimToHide(1.0f, 1.0f, 1.0f, 0.0f, 500, panel1, true));
+        }
+        if (openLayout == panel2) {
+            ImageView image = (ImageView) findViewById(R.id.image2);
+            image.setImageResource(R.drawable.ic_plus);
+            openLayout = null;
+            panel2.startAnimation(new ScaleAnimToHide(1.0f, 1.0f, 1.0f, 0.0f, 500, panel2, true));
+        }
+        if (openLayout == panel3) {
+            ImageView image = (ImageView) findViewById(R.id.image3);
+            image.setImageResource(R.drawable.ic_plus);
+            openLayout = null;
+            panel3.startAnimation(new ScaleAnimToHide(1.0f, 1.0f, 1.0f, 0.0f, 500, panel3, true));
+        }
+    }
+
+    private void hideOthers(View layoutView) {
+        int v;
+        if (layoutView.getId() == R.id.text1) {
+            v = panel1.getVisibility();
+            if (v != View.VISIBLE) {
+                panel1.setVisibility(View.VISIBLE);
+                Log.v("CZ", "height..." + panel1.getHeight());
+            }
+
+            //panel1.setVisibility(View.GONE);
+            //Log.v("CZ","again height..." + panel1.getHeight());
+            hideThemAll();
+            if (v != View.VISIBLE) {
+                ImageView image = (ImageView) findViewById(R.id.image1);
+                image.setImageResource(R.drawable.ic_minus);
+                openLayout = panel1;
+                panel1.startAnimation(new ScaleAnimToShow(1.0f, 1.0f, 1.0f, 0.0f, 500, panel1, true));
+            }
+        } else if (layoutView.getId() == R.id.text2) {
+            v = panel2.getVisibility();
+            hideThemAll();
+            if (v != View.VISIBLE) {
+                ImageView image = (ImageView) findViewById(R.id.image2);
+                image.setImageResource(R.drawable.ic_minus);
+                openLayout = panel2;
+                panel2.startAnimation(new ScaleAnimToShow(1.0f, 1.0f, 1.0f, 0.0f, 500, panel2, true));
+            }
+        } else if (layoutView.getId() == R.id.text3) {
+            v = panel3.getVisibility();
+            hideThemAll();
+            if (v != View.VISIBLE) {
+                ImageView image = (ImageView) findViewById(R.id.image3);
+                image.setImageResource(R.drawable.ic_minus);
+                openLayout = panel3;
+                panel3.startAnimation(new ScaleAnimToShow(1.0f, 1.0f, 1.0f, 0.0f, 500, panel3, true));
+            }
+        }
     }
 
     public static class DatePickerFragment extends DialogFragment
@@ -130,7 +227,7 @@ public class AddPatientActivity extends Activity implements AdapterView.OnItemSe
             Toast.makeText(context, getString(R.string.first_name_toast), Toast.LENGTH_SHORT).show();
             return;
         } else {
-            patient_details.put("firstName", firstName);
+            patient_details.put("patientFirstName", firstName);
             patientParse.put("firstName", firstName);
             patient.setFirstName(firstName);
         }
@@ -140,7 +237,7 @@ public class AddPatientActivity extends Activity implements AdapterView.OnItemSe
             Toast.makeText(context, getString(R.string.last_name_toast), Toast.LENGTH_SHORT).show();
             return;
         } else {
-            patient_details.put("lastName", lastName);
+            patient_details.put("patientLastName", lastName);
             patientParse.put("lastName", lastName);
             patient.setLastName(lastName);
         }
@@ -157,7 +254,7 @@ public class AddPatientActivity extends Activity implements AdapterView.OnItemSe
                 return;
             }
             if (dob != null) {
-                patient_details.put("dob", dob);
+                patient_details.put("patientDOB", dob);
                 patientParse.put("dob", dob);
                 patient.setDob(dob_string);
             } else {
@@ -169,17 +266,17 @@ public class AddPatientActivity extends Activity implements AdapterView.OnItemSe
             return;
         }
 
-        patient_details.put("gender", patient.getGender().toLowerCase());
+        patient_details.put("patientGender", patient.getGender().toLowerCase());
         patientParse.put("gender", patient.getGender().toLowerCase());
 
 
         String phoneNumber = ((EditText) findViewById(R.id.contact_number)).getText().toString();
         if (phoneNumber.trim().equals("")) {
             patient.setContactNo(null);
-            patient_details.put("phoneNumber", JSONObject.NULL);
+            patient_details.put("patientContactNumber", JSONObject.NULL);
             patientParse.put("phoneNumber", JSONObject.NULL);
         } else {
-            patient_details.put("phoneNumber", phoneNumber);
+            patient_details.put("patientContactNumber", phoneNumber);
             patientParse.put("phoneNumber", phoneNumber);
             patient.setContactNo(phoneNumber);
         }
@@ -187,10 +284,10 @@ public class AddPatientActivity extends Activity implements AdapterView.OnItemSe
         String email = ((EditText) findViewById(R.id.email_input)).getText().toString();
         if (email.trim().equals("")) {
             patient.setEmail(null);
-            patient_details.put("email", JSONObject.NULL);
+            patient_details.put("patientEmail", JSONObject.NULL);
             patientParse.put("email", JSONObject.NULL);
         } else {
-            patient_details.put("email", email);
+            patient_details.put("patientEmail", email);
             patientParse.put("email", email);
             patient.setEmail(email);
         }
@@ -206,13 +303,29 @@ public class AddPatientActivity extends Activity implements AdapterView.OnItemSe
             patient.setPatientHistory(patientHistory);
         }
 
-        patientParse.saveInBackground(new SaveCallback() {
+        patient_details.put("userObjectId", ParseUser.getCurrentUser().getObjectId());
+
+        ParseCloud.callFunctionInBackground("addPatientDetails", patient_details, new FunctionCallback<String>() {
             @Override
-            public void done(ParseException e) {
+            public void done(String patientObjectId, ParseException e) {
+                System.out.println(patientObjectId);
                 Intent intent = new Intent(context, VisitTypeActivity.class);
-                intent.putExtra("patient_object_id", patientParse.getObjectId());
+                visit.setPatient_object_id(patientObjectId);
+                intent.putExtra("visit", visit);
                 startActivity(intent);
+                finish();
             }
         });
+
+//        patientParse.saveInBackground(new SaveCallback() {
+//            @Override
+//            public void done(ParseException e) {
+//                Intent intent = new Intent(context, VisitTypeActivity.class);
+//                visit.setPatient_object_id(patientParse.getObjectId());
+//                intent.putExtra("visit", visit);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
     }
 }

@@ -11,21 +11,14 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
-import com.cookiesmart.pocketehr_android.HelperClasses.Patient;
-import com.parse.ParseException;
+import com.cookiesmart.pocketehr_android.HelperClasses.Visit;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -40,7 +33,7 @@ public class AddPatientBodyActivity extends Activity {
     private static String objectId;
     private ArrayList<String> bodyPartsList = new ArrayList<String>();
     private ArrayList<String> backBodyPartsList = new ArrayList<String>();
-    private Patient p = null;
+    private Visit visit = null;
     private String action = "";
     private ImageView bodyImage;
     private LayerDrawable imageLayer;
@@ -52,66 +45,29 @@ public class AddPatientBodyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_object);
         Intent intent = getIntent();
-        p = intent.getParcelableExtra("Patient");
-        action = intent.getStringExtra("action");
-        GENDER = p.getGender();
+        visit = intent.getParcelableExtra("visit");
+        GENDER = visit.getGender();
         bodyImage = (ImageView) findViewById(R.id.body_part_image);
         reverse_view = (ImageView) findViewById(R.id.reverse_image);
 
-        if (action.equals("view")) {
-            RelativeLayout cancel_view_layout = (RelativeLayout) findViewById(R.id.cancel_button_Layout);
-            cancel_view_layout.setVisibility(View.VISIBLE);
 
-            RelativeLayout next_view_layout = (RelativeLayout) findViewById(R.id.next_button_layout);
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(next_view_layout.getLayoutParams());
-            if (getString(R.string.screen_type).equals("tablet")) {
-                layoutParams.setMargins(250, 0, 0, 7);
-            } else {
-                layoutParams.setMargins(400, 0, 0, 15);
-            }
-            next_view_layout.setLayoutParams(layoutParams);
-
-
-            bodyPartsList = intent.getStringArrayListExtra("bodyParts");
-            backBodyPartsList = intent.getStringArrayListExtra("backBodyParts");
-            Log.i(TAG, "size of back body parts: " + backBodyPartsList.size());
-            objectId = intent.getStringExtra("objectId");
-            loadBackPatientBodyMap();
-            loadPatientBodyMap();
-            if (bodyPartsList.size() == 0) {
-                currentPic = "back";
-                if (GENDER.equals(getString(R.string.male_gender))) {
-                    drawBackMaleBodyPart();
-                } else {
-                    drawBackFemaleBodyPart();
-                }
-            } else {
-                currentPic = "front";
-                if (GENDER.equals(getString(R.string.male_gender))) {
-                    drawMaleBodyPart();
-                } else {
-                    drawFemaleBodyPart();
-                }
-            }
-        } else {
-            Resources r = getResources();
-            Drawable[] layers = new Drawable[1];
-            if (GENDER.equals(getString(R.string.male_gender))) {
+        Resources r = getResources();
+        Drawable[] layers = new Drawable[1];
+        if (GENDER.equals(getString(R.string.male_gender))) {
 //          bodyImage.setImageResource(R.drawable.male_body_parts);
-                layers[0] = r.getDrawable(R.drawable.male_body_parts);
-                LayerDrawable layerDrawable = new LayerDrawable(layers);
-                bodyImage.setImageDrawable(layerDrawable);
-            } else if (GENDER.equals(getString(R.string.female_gender))) {
-                layers[0] = r.getDrawable(R.drawable.female_body_parts);
-                LayerDrawable layerDrawable = new LayerDrawable(layers);
-                bodyImage.setImageDrawable(layerDrawable);
-            }
+            layers[0] = r.getDrawable(R.drawable.male_body_parts);
+            LayerDrawable layerDrawable = new LayerDrawable(layers);
+            bodyImage.setImageDrawable(layerDrawable);
+        } else if (GENDER.equals(getString(R.string.female_gender))) {
+            layers[0] = r.getDrawable(R.drawable.female_body_parts);
+            LayerDrawable layerDrawable = new LayerDrawable(layers);
+            bodyImage.setImageDrawable(layerDrawable);
         }
 
         reverse_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "COming to reverse click");
+                Log.i(TAG, "Coming to reverse click");
                 if (currentPic.equals("front")) {
                     currentPic = "back";
                     reverseImage("back");
@@ -1194,84 +1150,15 @@ public class AddPatientBodyActivity extends Activity {
     }
 
     public void saveAndFinish(View v) {
-        ParseObject patient;
-        if (action.equals("view")) {
-            patient = ParseObject.createWithoutData("Patient", objectId);
-        } else {
-            Log.i(TAG, "Coming to nonview patient");
-            patient = new ParseObject("Patient");
-            ParseUser userObject = ParseUser.getCurrentUser();
-            patient.put("author", userObject);
-        }
+        ParseObject visitObject = new ParseObject("visit");
+        ParseObject patientObject = ParseObject.createWithoutData("patient", visit.getPatient_object_id());
+        ParseObject hospitalObject = ParseObject.createWithoutData("hospital", "cfTfPm0fdl");
 
-        patient.put("firstName", p.getFirstName());
-        patient.put("lastName", p.getLastName());
+        visitObject.put("patientId", patientObject);
+        visitObject.put("hospitalId", hospitalObject);
 
-        if (bodyParts.size() == 0 && backBodyParts.size() == 0) {
-            patient.put("locations", JSONObject.NULL);
-        } else {
-            try {
-                bodyParts.addAll(backBodyParts);
-                JSONArray bodyPartsArray = new JSONArray(bodyParts.toArray());
-                patient.put("locations", bodyPartsArray);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (p.getHospital().trim().equals("")) {
-            patient.put("hospital", JSONObject.NULL);
-        } else {
-            patient.put("hospital", p.getHospital());
-        }
-        if (p.getContactNo().trim().equals("")) {
-            patient.put("contactNo", JSONObject.NULL);
-        } else {
-            patient.put("contactNo", p.getContactNo());
-        }
-        if (p.getPatientIDNumber().trim().equals("")) {
-            patient.put("patientIDNumber", JSONObject.NULL);
-        } else {
-            patient.put("patientIDNumber", p.getPatientIDNumber());
-        }
-
-        Date d = null;
-        if (!p.getDob().trim().equals("")) {
-            SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-            try {
-                d = df.parse(p.getDob());
-            } catch (Exception e) {
-                e.printStackTrace();
-                return;
-            }
-            if (d != null) {
-                patient.put("dob", d);
-            } else {
-                patient.put("dob", JSONObject.NULL);
-            }
-        } else {
-            patient.put("dob", JSONObject.NULL);
-        }
-        if (p.getGender().equals(getString(R.string.male_gender))) {
-            patient.put("sex", getString(R.string.server_sex_male));
-        } else if (p.getGender().equals(getString(R.string.female_gender))) {
-            patient.put("sex", getString(R.string.server_sex_female));
-        }
-        patient.put("age", p.getAge());
-        patient.put("status", p.getStatus());
-
-        final ParseObject patient_copy = patient;
-        patient.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if (e == null) {
-                    String objectId = patient_copy.getObjectId();
-                    saveNotes(objectId, p.getNotes());
-                } else {
-                    Log.i(TAG, e.getMessage());
-                }
-            }
-        });
+        //save object and go forward
+        finish();
     }
 
     public void saveNotes(String objectId, String notes) {

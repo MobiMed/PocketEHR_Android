@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.cookiesmart.pocketehr_android.HelperClasses.CheckInSearchAdapter;
+import com.cookiesmart.pocketehr_android.HelperClasses.Visit;
 import com.parse.ParseObject;
 
 /**
@@ -69,7 +70,9 @@ public class CheckInSearchResultActivity extends Activity {
                 Object o = listView.getItemAtPosition(position);
                 ParseObject patient = (ParseObject) o;
                 Intent intent = new Intent(context, VisitTypeActivity.class);
-                intent.putExtra("patient_object_id", patient.getObjectId());
+                Visit visit = new Visit();
+                visit.setPatient_object_id(patient.getObjectId());
+                intent.putExtra("visit", visit);
                 startActivityForResult(intent, 1);
             }
         });
@@ -79,5 +82,6 @@ public class CheckInSearchResultActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //do nothing with the result
+        finish();
     }
 }

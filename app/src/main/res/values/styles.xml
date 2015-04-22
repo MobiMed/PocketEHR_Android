@@ -3,4 +3,7 @@
 
     <color name="male_label_color">#00CCFF</color>
     <color name="female_label_color">#FFC0CB</color>
+    <color name="emergency_label_color">#F33333</color>
+    <color name="admit_label_color">#FDC723</color>
+    <color name="visit_label_color">#49C817</color>
 </resources>
