@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
 
-import com.cookiesmart.pocketehr_android.Contents;
+import com.cookiesmart.pocketehr_android.Controllers.Contents;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;

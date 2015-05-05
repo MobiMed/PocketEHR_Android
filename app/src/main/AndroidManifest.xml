@@ -13,7 +13,7 @@
         android:required="false" />
 
     <application
-        android:name=".MyApplication"
+        android:name=".Controllers.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_pocketehr"
         android:label="@string/app_name"
@@ -21,7 +21,7 @@
         android:theme="@style/CustomActionBarTheme">
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".Controllers.LoginActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name">
             <intent-filter>
@@ -31,71 +31,71 @@
         </activity>
 
         <activity
-            android:name=".PatientListActivity"
+            android:name=".Controllers.PatientListActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".PatientActivity"
+            android:name=".Controllers.PatientActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".AddPatientBodyActivity"
+            android:name=".Controllers.AddPatientBodyActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".AddPatientNotesActivity"
+            android:name=".Controllers.AddPatientNotesActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="AddPatientContactActivity"
+            android:name=".Controllers.AddPatientContactActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".AddPatientHistoryActivity"
+            android:name=".Controllers.AddPatientHistoryActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ChangeStatusActivity"
+            android:name=".Controllers.ChangeStatusActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".AddNoteActivity"
+            android:name=".Controllers.AddNoteActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".Controllers.MainActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".ShowPhotoActivity"
+            android:name=".Controllers.ShowPhotoActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".SettingsActivity"
+            android:name=".Controllers.SettingsActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".AboutActivity"
+            android:name=".Controllers.AboutActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".SearchResultActivity"
+            android:name=".Controllers.SearchResultActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name">
 
@@ -109,7 +109,7 @@
         </activity>
 
         <activity
-            android:name=".CheckInSearchResultActivity"
+            android:name=".Controllers.CheckInSearchResultActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name">
 
@@ -123,13 +123,13 @@
         </activity>
 
         <activity
-            android:name=".AddHospitalActivity"
+            android:name=".Controllers.AddHospitalActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".CheckinActivity"
+            android:name=".Controllers.CheckinActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name">
 
@@ -140,47 +140,57 @@
         </activity>
 
         <activity
-            android:name=".VerifyUser"
+            android:name=".Controllers.VerifyUser"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".GenerateQRCodeActivity"
+            android:name=".Controllers.GenerateQRCodeActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".ForgotPasswordActivity"
+            android:name=".Controllers.ForgotPasswordActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".VisitTypeActivity"
+            android:name=".Controllers.VisitTypeActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".PatientStatusActivity"
+            android:name=".Controllers.PatientStatusActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".PatientLocationActivity"
+            android:name=".Controllers.PatientLocationActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".DoctorSelectionActivity"
+            android:name=".Controllers.DoctorSelectionActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".AddPatientActivity"
+            android:name=".Controllers.AddPatientActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".PatientListActivity_copy"
+            android:name=".Controllers.NewPatientListActivity"
+            android:configChanges="screenSize|orientation"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".Controllers.PatientVisitsScreenActivity"
+            android:configChanges="screenSize|orientation"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".Controllers.NewPatientActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name" />
     </application>

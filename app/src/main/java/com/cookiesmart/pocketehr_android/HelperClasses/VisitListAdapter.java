@@ -20,13 +20,13 @@ import java.util.Locale;
 /**
  * Created by aditya841 on 4/22/2015.
  */
-public class PatientListAdapter extends ArrayAdapter<HashMap<String, Object>> {
+public class VisitListAdapter extends ArrayAdapter<HashMap<String, Object>> {
     private LayoutInflater mLayoutInflater;
     private ArrayList<HashMap<String, Object>> patientList = new ArrayList<>();
     private Context activity_context;
 
 
-    public PatientListAdapter(Context context) {
+    public VisitListAdapter(Context context) {
         super(context, 0);
         activity_context = context;
         mLayoutInflater = (LayoutInflater) activity_context
@@ -52,12 +52,13 @@ public class PatientListAdapter extends ArrayAdapter<HashMap<String, Object>> {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = mLayoutInflater.inflate(
-                    R.layout.rowlayout, parent, false);
+                    R.layout.visitrowlayout, parent, false);
+
         }
         HashMap<String, Object> patientListObject = patientList.get(position);
 
         String eventType = (String) patientListObject.get("eventType") + "";
-        LinearLayout detailsLayout = (LinearLayout) convertView.findViewById(R.id.details_rowlayout);
+        LinearLayout detailsLayout = (LinearLayout) convertView.findViewById(R.id.visit_rowlayout);
 
         if (eventType.equalsIgnoreCase(activity_context.getString(R.string.admit_server_string))) {
             detailsLayout.setBackgroundResource(R.drawable.details_background_admit);
@@ -66,12 +67,6 @@ public class PatientListAdapter extends ArrayAdapter<HashMap<String, Object>> {
         } else if (eventType.equalsIgnoreCase(activity_context.getString(R.string.emergency_server_string))) {
             detailsLayout.setBackgroundResource(R.drawable.details_background_emergency);
         }
-
-        // Add the patient name
-        TextView nameTextView = (TextView) convertView.findViewById(R.id.patient_name_placeholder);
-        nameTextView.setText(patientListObject.get("patientLastName") + ", " + patientListObject.get("patientFirstName"));
-        LinearLayout nameLayout = (LinearLayout) convertView.findViewById(R.id.patient_name_layout);
-        nameLayout.setBackgroundResource(R.drawable.textview_male_border);
 
         ImageView testStatus = (ImageView) convertView.findViewById(R.id.test_status_placeholder);
 //        String testStatusString = (String) patientList.get("patientTestStatus");
@@ -128,15 +123,15 @@ public class PatientListAdapter extends ArrayAdapter<HashMap<String, Object>> {
         } else if (eventLocationString.equalsIgnoreCase(activity_context.getString(R.string.radiology_location_string))) {
             eventLocation.setImageResource(R.drawable.ic_radiology);
         } else if (eventLocationString.equalsIgnoreCase(activity_context.getString(R.string.cardiology_location_string))) {
-            eventStatus.setImageResource(R.drawable.ic_cardiology);
+            eventLocation.setImageResource(R.drawable.ic_cardiology);
         } else if (eventLocationString.equalsIgnoreCase(activity_context.getString(R.string.infectious_location_string))) {
-            eventStatus.setImageResource(R.drawable.ic_infectious);
+            eventLocation.setImageResource(R.drawable.ic_infectious);
         } else if (eventLocationString.equalsIgnoreCase(activity_context.getString(R.string.orthopedics_location_string))) {
-            eventStatus.setImageResource(R.drawable.ic_orthopedics);
+            eventLocation.setImageResource(R.drawable.ic_orthopedics);
         } else if (eventLocationString.equalsIgnoreCase(activity_context.getString(R.string.urology_location_string))) {
-            eventStatus.setImageResource(R.drawable.ic_urology);
+            eventLocation.setImageResource(R.drawable.ic_urology);
         } else if (eventLocationString.equalsIgnoreCase(activity_context.getString(R.string.other_location_string))) {
-            eventStatus.setImageResource(R.drawable.ic_other);
+            eventLocation.setImageResource(R.drawable.ic_other);
         }
 
         return convertView;

@@ -15,6 +15,8 @@ public class Visit implements Parcelable {
     private String patient_object_id = "";
     private String doctorId = "";
     private String additionalInfo = "";
+    private String eventObjectId = "";
+    private String visitDate = "";
 
 
     public String getClassType() {
@@ -72,6 +74,7 @@ public class Visit implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(eventObjectId);
         dest.writeString(patient_object_id);
         dest.writeString(classType);
         dest.writeString(statusType);
@@ -80,6 +83,7 @@ public class Visit implements Parcelable {
         dest.writeString(doctorId);
         dest.writeString(additionalInfo);
         dest.writeString(gender);
+        dest.writeString(visitDate);
     }
 
     public static final Parcelable.Creator<Visit> CREATOR
@@ -87,6 +91,7 @@ public class Visit implements Parcelable {
         @Override
         public Visit createFromParcel(Parcel source) {
             Visit v = new Visit();
+            v.eventObjectId = source.readString();
             v.patient_object_id = source.readString();
             v.classType = source.readString();
             v.statusType = source.readString();
@@ -95,6 +100,7 @@ public class Visit implements Parcelable {
             v.doctorId = source.readString();
             v.additionalInfo = source.readString();
             v.gender = source.readString();
+            v.visitDate = source.readString();
             return v;
         }
 
@@ -117,5 +123,21 @@ public class Visit implements Parcelable {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getEventObjectId() {
+        return eventObjectId;
+    }
+
+    public void setEventObjectId(String eventObjectId) {
+        this.eventObjectId = eventObjectId;
+    }
+
+    public String getVisitDate() {
+        return visitDate;
+    }
+
+    public void setVisitDate(String visitDate) {
+        this.visitDate = visitDate;
     }
 }

@@ -12,15 +12,17 @@ public class PatientList {
     private String patientVisitStatus = "";
     private String patientVisitLocation = "";
     private String patientTestStatus = "";
+    private String patientVisitType = "";
 
     PatientList(String patientFirstName, String patientLastName, String patientTestStatus,
-                String patientVisitLocation, String patientVisitStatus, Date patientVisitDate) {
+                String patientVisitLocation, String patientVisitStatus, Date patientVisitDate, String patientVisitType) {
         this.patientFirstName = patientFirstName;
         this.patientLastName = patientLastName;
         this.patientTestStatus = patientTestStatus;
         this.patientVisitDate = patientVisitDate;
         this.patientVisitLocation = patientVisitLocation;
         this.patientVisitStatus = patientVisitStatus;
+        this.patientVisitType = patientVisitType;
     }
 
     public String getPatientFirstName() {
@@ -69,5 +71,13 @@ public class PatientList {
 
     public void setPatientTestStatus(String patientTestStatus) {
         this.patientTestStatus = patientTestStatus;
+    }
+
+    public String getPatientVisitType() {
+        return patientVisitType;
+    }
+
+    public void setPatientVisitType(String patientVisitType) {
+        this.patientVisitType = patientVisitType;
     }
 }

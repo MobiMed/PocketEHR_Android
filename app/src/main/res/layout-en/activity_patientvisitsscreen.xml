@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="150dp"
+            android:src="@drawable/routine_status"
+            android:layout_margin="15dp"
+            android:onClick="changeProfilePicture" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:id="@+id/patient_first_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="First Name"
+                android:clickable="true"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:fadingEdge="horizontal"
+                android:lines="1"
+
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/patient_last_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Name"
+                android:layout_marginTop="12dp"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/patient_dobgender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female 18 Dec, 2015"
+                android:layout_marginTop="12dp"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/patient_id_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PatientId"
+                android:layout_marginTop="12dp"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <RelativeLayout
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/patient_history_button"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:onClick="showPatientHistory"
+                android:src="@drawable/selector_login" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="20dp"
+                android:text="@string/patient_history" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/contact_information_button"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:onClick="showPatientContactInfo"
+                android:src="@drawable/selector_submit" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="25dp"
+                android:text="@string/contact_info_string" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/checkin_button"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:onClick="startCheckin"
+                android:src="@drawable/selector_next" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="10dp"
+                android:text="@string/checkin_string" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:minHeight="30dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/header_borders">
+
+
+        <TextView
+            android:id="@+id/date_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/date_header"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:id="@+id/test_status_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/test_status_header"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:layout_marginLeft="70dp"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:id="@+id/event_status_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/event_status_header"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:layout_marginLeft="40dp"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:id="@+id/event_location_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/event_location_header"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:layout_marginLeft="40dp"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/emptyList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/loading_text" />
+
+</LinearLayout>

@@ -1,0 +1,5 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/add_patient_activated" android:state_pressed="true" />
+
+    <item android:drawable="@drawable/add_patient" android:state_pressed="false" />
+</selector>
